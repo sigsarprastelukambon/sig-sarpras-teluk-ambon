@@ -1816,8 +1816,8 @@ function tambahKontrolGPS(mapInstance, type) {
 
   /* ================= INSTANSIASI PETA ================= */
 function initMaps() {
-    const satLayer = 'http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}';
-    const hybLayer = 'http://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}';
+    const satLayer = 'https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}';
+    const hybLayer = 'https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}';
 
     // ================= CARTO DARK MODE =================
     const CARTO_API_KEY = 'cb1_3xfs_1_d667e4f61deae57e72924864';
@@ -1916,64 +1916,65 @@ function initMaps() {
     tambahKontrolGPS(mapDashboard, "dashboard");
     tambahKontrolGPS(mapFull, "full");
 }
-        /* ================= KOREKSI SEUTUHNYA: EKSPOR CSV RAMAH EXCEL INDONESIA ================= */
-        function eksporKeCSV() {
-            // Menggunakan ID tabel utama Anda yang sesuai di HTML
-            let table = document.getElementById("tabelUtamaSarpras"); 
-            if (!table) {
-                alert("Data tabel tidak ditemukan!");
-                return;
-            }
 
-            let csv = [];
-            let rows = table.querySelectorAll("tr");
-            
-            for (let i = 0; i < rows.length; i++) {
-                let rowElement = rows[i];
-                
-                // PERBAIKAN LOGIKA FILTER: Cek apakah baris ini sedang disembunyikan oleh sistem pencarian
-                // Kita cek baik dari style.display, class hiden, ataupun jika isi tbody-nya dimanipulasi dinamis
-                if (rowElement.style.display === "none" || rowElement.classList.contains('hidden')) {
-                    continue;
-                }
+/* ================= KOREKSI SEUTUHNYA: EKSPOR CSV RAMAH EXCEL INDONESIA ================= */
+function eksporKeCSV() {
+    // Menggunakan ID tabel utama Anda yang sesuai di HTML
+    let table = document.getElementById("tabelUtamaSarpras"); 
+    if (!table) {
+        alert("Data tabel tidak ditemukan!");
+        return;
+    }
 
-                let row = [];
-                let cols = rowElement.querySelectorAll("td, th");
-                
-                // Jika baris kosong (misal teks "Memuat data tabular..."), jangan dimasukkan ke Excel
-                if (cols.length === 1 && cols[0].getAttribute('colspan')) continue;
-
-                for (let j = 0; j < cols.length; j++) {
-                    let text = cols[j].innerText.trim();
-                    
-                    // Bersihkan tanda kutip ganda agar tidak merusak sel Excel
-                    text = text.replace(/"/g, '""');
-                    
-                    // Bungkus teks dengan kutip ganda
-                    row.push('"' + text + '"');
-                }
-                
-                // PERBAIKAN UTAMA: Gabungkan kolom menggunakan TITIK KOMA (;) agar langsung otomatis rapi di Excel Indonesia
-                csv.push(row.join(";"));
-            }
-            
-            // Satukan baris dengan baris baru, tambahkan instruksi 'sep=;' di paling atas agar Excel dipaksa membaca titik koma
-            let csvContent = "sep=;\n" + csv.join("\n");
-            
-            // Gunakan Blob dengan encoding UTF-8 lengkap dengan BOM agar karakter aman
-            let blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
-            
-            // Proses download otomatis browser
-            let downloadLink = document.createElement("a");
-            downloadLink.download = "Data_Sarpras_Teluk_Ambon.csv";
-            downloadLink.href = window.URL.createObjectURL(blob);
-            downloadLink.style.display = "none";
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
+    let csv = [];
+    let rows = table.querySelectorAll("tr");
+    
+    for (let i = 0; i < rows.length; i++) {
+        let rowElement = rows[i];
+        
+        // PERBAIKAN LOGIKA FILTER: Cek apakah baris ini sedang disembunyikan oleh sistem pencarian
+        // Kita cek baik dari style.display, class hiden, ataupun jika isi tbody-nya dimanipulasi dinamis
+        if (rowElement.style.display === "none" || rowElement.classList.contains('hidden')) {
+            continue;
         }
 
-        function showPage(pageId, menuElement) {
+        let row = [];
+        let cols = rowElement.querySelectorAll("td, th");
+        
+        // Jika baris kosong (misal teks "Memuat data tabular..."), jangan dimasukkan ke Excel
+        if (cols.length === 1 && cols[0].getAttribute('colspan')) continue;
+
+        for (let j = 0; j < cols.length; j++) {
+            let text = cols[j].innerText.trim();
+            
+            // Bersihkan tanda kutip ganda agar tidak merusak sel Excel
+            text = text.replace(/"/g, '""');
+            
+            // Bungkus teks dengan kutip ganda
+            row.push('"' + text + '"');
+        }
+        
+        // PERBAIKAN UTAMA: Gabungkan kolom menggunakan TITIK KOMA (;) agar langsung otomatis rapi di Excel Indonesia
+        csv.push(row.join(";"));
+    }
+    
+    // Satukan baris dengan baris baru, tambahkan instruksi 'sep=;' di paling atas agar Excel dipaksa membaca titik koma
+    let csvContent = "sep=;\n" + csv.join("\n");
+    
+    // Gunakan Blob dengan encoding UTF-8 lengkap dengan BOM agar karakter aman
+    let blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+    
+    // Proses download otomatis browser
+    let downloadLink = document.createElement("a");
+    downloadLink.download = "Data_Sarpras_Teluk_Ambon.csv";
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+}
+
+function showPage(pageId, menuElement) {
     const semuaHalaman = document.querySelectorAll(".page-content");
     
     // 1. Sembunyikan semua halaman
