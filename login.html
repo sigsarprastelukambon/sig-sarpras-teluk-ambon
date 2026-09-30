@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SIG Sarpras Teluk Ambon</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://pin.it/5hRWPibK3');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 1;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            width: 350px;
+            text-align: center;
+        }
+
+        .login-card h2 {
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .login-card p {
+            color: #64748b;
+            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #004494;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <h2>SIG SARPRAS</h2>
+
+        <p>
+            Kecamatan Teluk Ambon<br>
+            Silakan masukkan username dan password
+        </p>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Username"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <button
+            id="loginButton"
+            onclick="doLogin()"
+        >
+            Sign In
+        </button>
+
+    </div>
+
+    <script>
+
+        function doLogin() {
+
+            const user =
+                document.getElementById(
+                    'username'
+                ).value.trim();
+
+            const pass =
+                document.getElementById(
+                    'password'
+                ).value;
+
+            const button =
+                document.getElementById(
+                    'loginButton'
+                );
+
+            if (!user || !pass) {
+
+                alert(
+                    "Username dan Password wajib diisi!"
+                );
+
+                return;
+            }
+
+            /*
+             * URL WEB APP GOOGLE APPS SCRIPT
+             */
+            const scriptURL =
+                'https://script.google.com/macros/s/AKfycbzpGuPGysWOHZa3sDNXRAF4v5prIVSit6eMcM7TImxiq_DhNrFYO4iFSAatgBC6o4WLXQ/exec';
+
+            /*
+             * NONAKTIFKAN TOMBOL
+             */
+            button.disabled = true;
+
+            button.textContent =
+                '⏳ Memeriksa...';
+
+            button.style.opacity =
+                '0.6';
+
+            button.style.cursor =
+                'not-allowed';
+
+            /*
+             * KIRIM LOGIN KE SERVER
+             */
+            fetch(
+                scriptURL,
+                {
+                    method: 'POST',
+                    redirect: 'follow',
+
+                    /*
+                     * Gunakan text/plain agar browser
+                     * tidak melakukan preflight OPTIONS
+                     */
+                    headers: {
+                        'Content-Type':
+                            'text/plain;charset=utf-8'
+                    },
+
+                    body: JSON.stringify({
+                        action: 'login',
+                        username: user,
+                        password: pass
+                    })
+                }
+            )
+
+            .then(
+                response => {
+
+                    if (!response.ok) {
+
+                        throw new Error(
+                            'Server HTTP ' +
+                            response.status
+                        );
+                    }
+
+                    /*
+                     * Jangan langsung response.json().
+                     * Baca sebagai text terlebih dahulu
+                     * agar response redirect Apps Script
+                     * dapat kita periksa.
+                     */
+                    return response.text();
+                }
+            )
+
+            .then(
+                text => {
+
+                    console.log(
+                        'Response Login:',
+                        text
+                    );
+
+                    let data;
+
+                    try {
+
+                        data =
+                            JSON.parse(text);
+
+                    } catch (error) {
+
+                        console.error(
+                            'Response bukan JSON:',
+                            text
+                        );
+
+                        throw new Error(
+                            'Response dari server bukan JSON yang valid.'
+                        );
+                    }
+
+                    /*
+                     * LOGIN BERHASIL
+                     */
+                    if (
+                        data.status === 'success' &&
+                        data.token
+                    ) {
+
+                        /*
+                         * SIMPAN SESSION OPERATOR
+                         *
+                         * Menggunakan sessionStorage,
+                         * bukan localStorage.
+                         *
+                         * Token tidak perlu dilihat
+                         * oleh operator.
+                         */
+                        sessionStorage.setItem(
+                            'operator_token',
+                            data.token
+                        );
+
+                        sessionStorage.setItem(
+                            'operator_username',
+                            data.username
+                        );
+
+                        sessionStorage.setItem(
+                            'operator_role',
+                            data.role
+                        );
+
+                        /*
+                         * MASUK KE WEB GIS
+                         */
+                        window.location.replace(
+                            'index.html'
+                        );
+
+                    } else {
+
+                        throw new Error(
+                            data.message ||
+                            'Username atau Password salah!'
+                        );
+
+                    }
+
+                }
+            )
+
+            .catch(
+                error => {
+
+                    console.error(
+                        'Login Error:',
+                        error
+                    );
+
+                    /*
+                     * Hapus session operator
+                     * jika login gagal.
+                     */
+                    sessionStorage.removeItem(
+                        'operator_token'
+                    );
+
+                    sessionStorage.removeItem(
+                        'operator_username'
+                    );
+
+                    sessionStorage.removeItem(
+                        'operator_role'
+                    );
+
+                    alert(
+                        "❌ Login gagal.\n\n" +
+                        error.message
+                    );
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        'Sign In';
+
+                    button.style.opacity =
+                        '1';
+
+                    button.style.cursor =
+                        'pointer';
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
