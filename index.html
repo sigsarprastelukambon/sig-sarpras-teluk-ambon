@@ -1255,7 +1255,7 @@ function updateLaporanEksekutif(dataParameter) {
                     <option value="Jalan Lingkungan">Jalan Lingkungan</option>
                     <option value="Jalan Setapak">Jalan Setapak</option>
                     <option value="Jalan Tani">Jalan Tani</option>
-                    <option value="Jalan Akses Air">Jalan Akses Air</option>
+                    <option value="Jalan Akses Pesisir">Jalan Akses Pesisir</option>
                     <option value="Jalan Permukiman">Jalan Permukiman</option>
                     <option value="Rumah Tidak Layak Huni">Rumah Tidak Layak Huni</option>
                     <option value="Pipa Distribusi Air/Saluran">Pipa Distribusi Air/Saluran</option>
@@ -1477,7 +1477,7 @@ const kodeJenisMap = {
     "Jalan Lingkungan": "JLN",
     "Jalan Setapak": "JSP",
     "Jalan Tani": "JTN",
-    "Jalan Akses Air": "JAA",
+    "Jalan Akses Pesisir": "JAP",
     "Jalan Permukiman": "JPM",
     "Rumah Tidak Layak Huni": "RTLH",
     "Pipa Distribusi Air/Saluran": "PDA",
@@ -1518,7 +1518,7 @@ function updateIDDanKondisional() {
     }
 
     // Aturan tampil input Panjang atau Luas
-    let jenisLinear = ['Jalan Lingkungan', 'Jalan Setapak', 'Jalan Tani', 'Jalan Akses Air', 'Jalan Permukiman', 'Pipa Distribusi Air/Saluran', 'Talud Pantai', 'Talud Sungai', 'Talud Penahan Tanah', 'Bronjong', 'Drainase/Riol'];
+    let jenisLinear = ['Jalan Lingkungan', 'Jalan Setapak', 'Jalan Tani', 'Jalan Akses Pesisir', 'Jalan Permukiman', 'Pipa Distribusi Air/Saluran', 'Talud Pantai', 'Talud Sungai', 'Talud Penahan Tanah', 'Bronjong', 'Drainase/Riol'];
     let jenisBangunan = ['Kantor Desa/Negeri', 'Rumah Dinas Raja', 'Rumah Adat', 'Balai Dusun', 'Gasebo', 'Rumah Tidak Layak Huni', 'Bak Penampung'];
 
     if(jenisLinear.includes(jenis)) {
