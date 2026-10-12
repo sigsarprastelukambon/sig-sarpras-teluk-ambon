@@ -961,8 +961,8 @@ body.menu-collapsed .page-container {
         width: 100% !important;
         max-width: none !important;
         margin: 0 !important;
-        background: white !important;
-        color: black !important;
+        background: #fff !important;
+        color: #000 !important;
         padding: 5mm 10mm !important;
         box-sizing: border-box;
         float: none !important;
@@ -979,28 +979,31 @@ body.menu-collapsed .page-container {
 
     .kop-surat {
         text-align: center;
-        border-bottom: 3px solid black !important;
+        border-bottom: 3px solid #000 !important;
         margin-bottom: 20px;
         padding-bottom: 10px;
     }
 
     .report-section-title {
-        color: black !important;
-        border-left: 4px solid black !important;
+        color: #000 !important;
+        border-left: 4px solid #000 !important;
     }
 
+    /* ===== TABEL LAPORAN ===== */
     .tabel-laporan-fiks {
         width: 100% !important;
         border-collapse: collapse !important;
+        border-spacing: 0 !important;
         margin-bottom: 20px;
-        color: black !important;
+        color: #000 !important;
     }
 
     .tabel-laporan-fiks th,
     .tabel-laporan-fiks td {
         padding: 8px 10mm !important;
-        border: 1px solid black !important;
+        border: 1px solid #000 !important;
         text-align: left;
+        color: #000 !important;
     }
 
     .tabel-laporan-fiks th {
@@ -1009,12 +1012,54 @@ body.menu-collapsed .page-container {
         print-color-adjust: exact;
     }
 
+    /* ===== TABEL PRIORITAS BAGIAN IV ===== */
+    #dokumenLaporan table.tabel-sarpras {
+        display: table !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border: 1px solid #000 !important;
+        border-collapse: collapse !important;
+        border-spacing: 0 !important;
+        table-layout: auto !important;
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    #dokumenLaporan table.tabel-sarpras thead {
+        display: table-header-group !important;
+    }
+
+    #dokumenLaporan table.tabel-sarpras tbody {
+        display: table-row-group !important;
+    }
+
+    #dokumenLaporan table.tabel-sarpras tr {
+        display: table-row !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    #dokumenLaporan table.tabel-sarpras th,
+    #dokumenLaporan table.tabel-sarpras td {
+        display: table-cell !important;
+        border: 1px solid #000 !important;
+        padding: 6px 8px !important;
+        color: #000 !important;
+        background: #fff !important;
+        text-align: left !important;
+        vertical-align: top !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* ===== PETA LAMPIRAN ===== */
     .peta-lampiran-cetak {
         width: 100% !important;
         background: #fff !important;
-        border: 1px solid black !important;
+        border: 1px solid #000 !important;
     }
 
+    /* ===== TANDA TANGAN ===== */
     .box-ttd {
         display: block !important;
         width: 280px !important;
@@ -1023,7 +1068,7 @@ body.menu-collapsed .page-container {
         text-align: center !important;
         margin-top: 40px !important;
         margin-bottom: 20px !important;
-        color: black !important;
+        color: #000 !important;
     }
 
     .box-ttd .nama-pejabat,
@@ -1240,7 +1285,7 @@ body.menu-collapsed .page-container {
     margin-bottom: 0;
 }
 
-/* Ukuran ikon pada layar kecil */
+/* ================= UKURAN IKON PADA LAYAR KECIL ================= */
 
 @media screen and (max-width: 600px) {
     .kpi-card {
@@ -1266,6 +1311,694 @@ body.menu-collapsed .page-container {
         min-width: 38px;
         font-size: 17px;
     }
+}
+
+/* =========================================
+   NAVIGASI BAWAH KHUSUS HP
+   SIG SARPRAS TELUK AMBON
+========================================= */
+
+@media screen and (max-width: 600px) {
+
+    /* Sidebar menjadi navigasi bawah */
+    #sidebarContainer.sidebar {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 68px;
+        box-sizing: border-box;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        gap: 4px;
+
+        padding: 6px 8px;
+        margin: 0;
+
+        background: #081a33;
+        border-top: 1px solid rgba(59, 130, 246, 0.45);
+        border-right: none;
+
+        overflow: visible;
+        z-index: 2000;
+    }
+
+    /* Sembunyikan tombol lipat sidebar di HP */
+    #sidebarContainer #toggleSidebarBtn {
+        display: none;
+    }
+
+    /* Item menu tampil mendatar */
+    #sidebarContainer .sidebar-item {
+        flex: 1;
+        min-width: 0;
+        height: 54px;
+        margin: 0;
+        padding: 4px 2px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        border: 1px solid transparent;
+        border-radius: 10px;
+        background: transparent;
+        box-shadow: none;
+        transform: none;
+        overflow: visible;
+    }
+
+    /* Ikon menu */
+    #sidebarContainer .sidebar-icon {
+        width: auto;
+        height: 24px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        font-size: 18px;
+    }
+
+    /* Teks menu */
+    #sidebarContainer .sidebar-text {
+        display: block !important;
+        flex: initial;
+        font-size: 10px;
+        line-height: 1.2;
+        letter-spacing: 0;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    /* Menu aktif */
+    #sidebarContainer .sidebar-item.active {
+        background: rgba(37, 99, 235, 0.2);
+        border-color: rgba(96, 165, 250, 0.35);
+        box-shadow: none;
+    }
+
+    #sidebarContainer .sidebar-item.active .sidebar-icon {
+        background: transparent;
+        color: #60a5fa;
+    }
+
+    /* Hilangkan garis aksen vertikal menu desktop */
+    #sidebarContainer .sidebar-item::before {
+        display: none;
+    }
+
+    /* Logout tidak ditampilkan di navigasi bawah HP */
+    #sidebarContainer #menuLogout {
+        display: none !important;
+    }
+
+    /* Konten tidak tertutup navigasi bawah */
+    .page-container,
+    body.menu-collapsed .page-container {
+        left: 0 !important;
+        width: 100% !important;
+        bottom: 68px;
+        padding: 8px;
+    }
+
+    .page-content {
+        padding: 8px;
+    }
+
+    /* =====================================
+       PERBAIKAN LEGENDA CHART DASHBOARD
+    ===================================== */
+
+    .donut-table-legend {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow-x: auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .anggaran-legend-table {
+        width: 100%;
+        min-width: 290px;
+        table-layout: auto;
+        border-collapse: collapse;
+    }
+
+    .anggaran-legend-table th,
+    .anggaran-legend-table td {
+        padding: 7px 5px;
+        font-size: 10px;
+        line-height: 1.4;
+        vertical-align: middle;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    .anggaran-legend-table th:first-child,
+    .anggaran-legend-table td:first-child {
+        min-width: 115px;
+        text-align: left;
+        white-space: normal;
+    }
+
+    .anggaran-legend-table th:not(:first-child),
+    .anggaran-legend-table td:not(:first-child) {
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    /* Kartu chart menyesuaikan tinggi konten */
+    .chart-card,
+    .dashboard-chart-card {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        box-sizing: border-box;
+    }
+
+    /* =====================================
+       PERBAIKAN TABEL DATA SARPRAS & LAPORAN
+    ===================================== */
+
+    .table-responsive,
+    .table-container,
+    .data-table-container,
+    .report-table-container {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
+    }
+
+    .table-responsive table,
+    .table-container table,
+    .data-table-container table,
+    .report-table-container table {
+        width: max-content;
+        min-width: 650px;
+        max-width: none;
+        table-layout: auto;
+        border-collapse: collapse;
+    }
+
+    .table-responsive th,
+    .table-responsive td,
+    .table-container th,
+    .table-container td,
+    .data-table-container th,
+    .data-table-container td,
+    .report-table-container th,
+    .report-table-container td {
+        padding: 8px;
+        font-size: 12px;
+        line-height: 1.45;
+        vertical-align: top;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    /* Isi tabel tidak dipaksa menjadi huruf per baris */
+    .table-responsive td,
+    .table-container td,
+    .data-table-container td,
+    .report-table-container td {
+        white-space: normal;
+        min-width: 65px;
+    }
+
+    /* Konten tidak melebar keluar layar */
+    .page-container,
+    .page-content {
+        min-width: 0;
+        box-sizing: border-box;
+    }
+/* =====================================================
+   RESPONSIVE MOBILE LAYOUT
+   SIG SARPRAS TELUK AMBON
+   Dashboard • Data Sarpras • Laporan
+===================================================== */
+
+@media screen and (max-width: 600px) {
+
+    /* =================================================
+       1. DASHBOARD — JUDUL, FILTER, DAN LEGENDA CHART
+    ================================================= */
+
+    .chart-card-donut {
+        position: relative;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible;
+        padding-top: 16px;
+        box-sizing: border-box;
+    }
+
+    .chart-card-donut .chart-heading {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 12px;
+        padding-right: 0;
+        box-sizing: border-box;
+    }
+
+    .chart-card-donut .chart-heading-text {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .chart-card-donut .chart-heading-text h3 {
+        margin: 0 0 6px;
+        font-size: 15px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    .chart-card-donut .chart-heading-text p {
+        margin: 0;
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .chart-card-donut .chart-filter-control {
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 8px 0 14px;
+        box-sizing: border-box;
+        z-index: 1;
+    }
+
+    .chart-card-donut .chart-filter-select {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        min-height: 38px;
+        padding: 8px 10px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+
+    .chart-card-donut .donut-layout {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        gap: 12px;
+    }
+
+    .chart-card-donut .donut-canvas-wrap {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Legenda distribusi kondisi dan sumber anggaran */
+    #legendKondisi,
+    #legendAnggaran,
+    .donut-table-legend {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
+    }
+
+    #legendAnggaranBody {
+        max-width: 100%;
+    }
+
+    #legendKondisi .anggaran-legend-table,
+    .donut-table-legend .anggaran-legend-table {
+        width: 100%;
+        min-width: 280px;
+        border-collapse: collapse;
+        table-layout: auto;
+    }
+
+    #legendKondisi .anggaran-legend-table th,
+    #legendKondisi .anggaran-legend-table td,
+    .donut-table-legend .anggaran-legend-table th,
+    .donut-table-legend .anggaran-legend-table td {
+        padding: 7px 5px;
+        font-size: 10px;
+        line-height: 1.4;
+        vertical-align: middle;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =================================================
+       2. DATA SARPRAS — TABEL UTAMA
+    ================================================= */
+
+    #dataPage .chart-card:has(#tabelUtamaSarpras) {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto !important;
+        max-height: calc(100vh - 230px) !important;
+        padding: 8px !important;
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        box-sizing: border-box;
+    }
+
+    #tabelUtamaSarpras {
+        width: 850px !important;
+        min-width: 850px !important;
+        max-width: none !important;
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    #tabelUtamaSarpras th,
+    #tabelUtamaSarpras td {
+        padding: 9px 8px;
+        font-size: 12px;
+        line-height: 1.45;
+        vertical-align: top;
+        box-sizing: border-box;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    #tabelUtamaSarpras th {
+        text-align: left;
+        white-space: normal;
+    }
+
+    #tabelUtamaSarpras th:nth-child(1),
+    #tabelUtamaSarpras td:nth-child(1) {
+        width: 45px;
+        text-align: center;
+    }
+
+    #tabelUtamaSarpras th:nth-child(2),
+    #tabelUtamaSarpras td:nth-child(2) {
+        width: 115px;
+    }
+
+    #tabelUtamaSarpras th:nth-child(3),
+    #tabelUtamaSarpras td:nth-child(3) {
+        width: 115px;
+    }
+
+    #tabelUtamaSarpras th:nth-child(4),
+    #tabelUtamaSarpras td:nth-child(4) {
+        width: 110px;
+    }
+
+    #tabelUtamaSarpras th:nth-child(5),
+    #tabelUtamaSarpras td:nth-child(5) {
+        width: 155px;
+    }
+
+    #tabelUtamaSarpras th:nth-child(6),
+    #tabelUtamaSarpras td:nth-child(6) {
+        width: 100px;
+    }
+
+    #tabelUtamaSarpras th:nth-child(7),
+    #tabelUtamaSarpras td:nth-child(7) {
+        width: 110px;
+    }
+
+    #tabelUtamaSarpras td:nth-child(2) {
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =================================================
+       3. DATA SARPRAS — PENCARIAN DAN TOMBOL
+    ================================================= */
+
+    #dataPage .filter-box {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #dataPage .filter-box > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px !important;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    #searchBoxTabel,
+    #filterKondisiTabel {
+        width: 100% !important;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    #dataPage #btnTambahSarpras,
+    #dataPage .filter-box button {
+        max-width: 100%;
+        min-height: 40px;
+        font-size: 11px;
+        box-sizing: border-box;
+    }
+
+
+    /* =================================================
+       4. LAPORAN — AREA DOKUMEN
+    ================================================= */
+
+    #laporanPage {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 8px;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    #laporanPage .chart-grid {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    #laporanPage .chart-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: auto !important;
+        max-height: none !important;
+        box-sizing: border-box;
+    }
+
+    #laporanPage > .chart-card {
+        padding: 10px !important;
+    }
+
+    #laporanPage > .chart-card button {
+        max-width: 100%;
+        min-height: 40px;
+        font-size: 12px;
+        box-sizing: border-box;
+    }
+
+    #dokumenLaporan {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: auto !important;
+        min-height: 0;
+        padding: 12px !important;
+        overflow: visible !important;
+        box-sizing: border-box;
+    }
+
+    #dokumenLaporan .kop-surat,
+    #dokumenLaporan .report-header-title,
+    #dokumenLaporan .report-section-title {
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: anywhere;
+    }
+
+    #dokumenLaporan .kop-surat h2 {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    #dokumenLaporan .kop-surat h3 {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    #dokumenLaporan .kop-surat p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    #dokumenLaporan .report-header-title h3 {
+        font-size: 14px !important;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    #dokumenLaporan .report-section-title {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+
+    /* =================================================
+       5. LAPORAN — PEMBUNGKUS GESER TABEL
+       Tabel harus berada di dalam .tabel-laporan-scroll
+    ================================================= */
+
+    #dokumenLaporan .tabel-laporan-scroll {
+        display: block;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0 0 12px;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        touch-action: pan-x pan-y;
+        box-sizing: border-box;
+    }
+
+    /* Analisis perubahan kondisi */
+    #dokumenLaporan .tabel-laporan-scroll > #tabelAnalisisPerubahan {
+        display: table !important;
+        width: 520px !important;
+        min-width: 520px !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        border-collapse: collapse;
+    }
+
+    /* Prioritas penanganan */
+    #dokumenLaporan .tabel-laporan-scroll > .tabel-sarpras {
+        display: table !important;
+        width: 440px !important;
+        min-width: 440px !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        border-collapse: collapse;
+    }
+
+    /* Ringkasan kuantitatif */
+    #dokumenLaporan .tabel-laporan-scroll > .tabel-laporan-fiks:not(#tabelAnalisisPerubahan) {
+        display: table !important;
+        width: 100% !important;
+        min-width: 280px !important;
+        max-width: none !important;
+        table-layout: auto !important;
+        border-collapse: collapse;
+    }
+
+    /* Ukuran teks tabel laporan */
+    #dokumenLaporan .tabel-laporan-scroll th,
+    #dokumenLaporan .tabel-laporan-scroll td {
+        padding: 7px 6px !important;
+        font-size: 10px !important;
+        line-height: 1.4;
+        text-align: left;
+        vertical-align: top;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
+        box-sizing: border-box;
+    }
+
+    /* Lebar minimum kolom analisis */
+    #dokumenLaporan #tabelAnalisisPerubahan th:nth-child(1),
+    #dokumenLaporan #tabelAnalisisPerubahan td:nth-child(1) {
+        min-width: 115px;
+    }
+
+    #dokumenLaporan #tabelAnalisisPerubahan th:nth-child(2),
+    #dokumenLaporan #tabelAnalisisPerubahan td:nth-child(2),
+    #dokumenLaporan #tabelAnalisisPerubahan th:nth-child(3),
+    #dokumenLaporan #tabelAnalisisPerubahan td:nth-child(3) {
+        min-width: 105px;
+    }
+
+    #dokumenLaporan #tabelAnalisisPerubahan th:nth-child(4),
+    #dokumenLaporan #tabelAnalisisPerubahan td:nth-child(4) {
+        min-width: 100px;
+    }
+
+
+    /* =================================================
+       6. LAPORAN — PETA DAN TANDA TANGAN
+    ================================================= */
+
+    #petaLaporanCetak {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    #dokumenLaporan .area-ttd-camat {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 24px;
+        box-sizing: border-box;
+    }
+
+    #dokumenLaporan .box-ttd {
+        max-width: 100%;
+        font-size: 11px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =================================================
+       7. PENYESUAIAN UMUM KONTEN MOBILE
+    ================================================= */
+
+    .page-container,
+    .page-content {
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
 }
 </style>
 </head>
@@ -2095,6 +2828,7 @@ function updateLaporanEksekutif(dataParameter) {
             <i class="fas fa-print"></i>
             Cetak Laporan / Simpan PDF
         </button>
+
     </div>
 
     <!-- AREA DOKUMEN LAPORAN -->
@@ -2136,72 +2870,87 @@ function updateLaporanEksekutif(dataParameter) {
                 II. Analisis Perubahan Kondisi
             </div>
 
-            <table
-                class="tabel-laporan-fiks"
-                id="tabelAnalisisPerubahan">
+            <!-- Pembungkus geser tabel analisis -->
+            <div class="tabel-laporan-scroll">
 
-                <thead>
-                    <tr>
-                        <th>ID Sarpras</th>
-                        <th>Kondisi 2025</th>
-                        <th>Kondisi 2026</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
+                <table
+                    class="tabel-laporan-fiks"
+                    id="tabelAnalisisPerubahan">
 
-                <tbody id="bodyTabelPerubahan"></tbody>
+                    <thead>
+                        <tr>
+                            <th>ID Sarpras</th>
+                            <th>Kondisi 2025</th>
+                            <th>Kondisi 2026</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
-            </table>
+                    <tbody id="bodyTabelPerubahan"></tbody>
+
+                </table>
+
+            </div>
 
             <!-- III. RINGKASAN KUANTITATIF -->
             <div class="report-section-title">
                 III. Ringkasan Kuantitatif Sarpras
             </div>
 
-            <table class="tabel-laporan-fiks">
-                <tbody>
-                    <tr>
-                        <td>Total Objek Terdata</td>
-                        <td id="repTotal">0 Unit</td>
-                    </tr>
-                    <tr>
-                        <td>Kondisi Layak (BA)</td>
-                        <td id="repBA">0 Unit</td>
-                    </tr>
-                    <tr>
-                        <td>Kondisi Rusak Ringan (RR)</td>
-                        <td id="repRR">0 Unit</td>
-                    </tr>
-                    <tr>
-                        <td>Kondisi Rusak Sedang (RS)</td>
-                        <td id="repRS">0 Unit</td>
-                    </tr>
-                    <tr>
-                        <td>Kondisi Rusak Berat (RB)</td>
-                        <td id="repRB">0 Unit</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Pembungkus tabel ringkasan -->
+            <div class="tabel-laporan-scroll">
+
+                <table class="tabel-laporan-fiks">
+                    <tbody>
+                        <tr>
+                            <td>Total Objek Terdata</td>
+                            <td id="repTotal">0 Unit</td>
+                        </tr>
+                        <tr>
+                            <td>Kondisi Layak (BA)</td>
+                            <td id="repBA">0 Unit</td>
+                        </tr>
+                        <tr>
+                            <td>Kondisi Rusak Ringan (RR)</td>
+                            <td id="repRR">0 Unit</td>
+                        </tr>
+                        <tr>
+                            <td>Kondisi Rusak Sedang (RS)</td>
+                            <td id="repRS">0 Unit</td>
+                        </tr>
+                        <tr>
+                            <td>Kondisi Rusak Berat (RB)</td>
+                            <td id="repRB">0 Unit</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
 
             <!-- IV. PRIORITAS PENANGANAN -->
             <div class="report-section-title">
                 IV. Prioritas Utama Penanganan (Kondisi Rusak Berat)
             </div>
 
-            <table class="tabel-sarpras">
+            <!-- Pembungkus geser tabel prioritas -->
+            <div class="tabel-laporan-scroll">
 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Jenis</th>
-                        <th>Desa</th>
-                        <th>Lokasi</th>
-                    </tr>
-                </thead>
+                <table class="tabel-sarpras">
 
-                <tbody id="bodyTabelPrioritas"></tbody>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Jenis</th>
+                            <th>Desa</th>
+                            <th>Lokasi</th>
+                        </tr>
+                    </thead>
 
-            </table>
+                    <tbody id="bodyTabelPrioritas"></tbody>
+
+                </table>
+
+            </div>
 
             <!-- TANDA TANGAN -->
             <div class="area-ttd-camat">
@@ -2222,6 +2971,7 @@ function updateLaporanEksekutif(dataParameter) {
                     </p>
 
                 </div>
+
             </div>
             <!-- END TANDA TANGAN -->
 
@@ -2233,7 +2983,6 @@ function updateLaporanEksekutif(dataParameter) {
 
 </div>
 <!-- END laporanPage -->
-
 
 <!-- PENUTUP PAGE-CONTAINER -->
 </div>
@@ -2891,58 +3640,132 @@ function updatePetaSetelahTampil(pageId) {
                 if (typeof mapFull !== 'undefined' && mapFull) mapFull.invalidateSize();
             }, 320);
         }
-        /* ================= UTILITY PARSING DATA ================= */
-        function warna(k) {
-            if (k === "BA - Baik") return "#22c55e";
-            if (k === "RR - Rusak Ringan") return "#3b82f6";
-            if (k === "RS - Rusak Sedang") return "#f59e0b";
-            if (k === "RB - Rusak Berat") return "#ef4444";
-            return "#64748b";
-        }
+       /* ================= UTILITY PARSING DATA ================= */
+function warna(k) {
+    if (k === "BA - Baik") return "#22c55e";
+    if (k === "RR - Rusak Ringan") return "#3b82f6";
+    if (k === "RS - Rusak Sedang") return "#f59e0b";
+    if (k === "RB - Rusak Berat") return "#ef4444";
+    return "#64748b";
+}
 
-        function normalisasiDesa(nama) {
-            if (!nama) return "";
-            nama = nama.toString().toLowerCase().trim();
-            if (nama === "hunuth/dp" || nama === "hunuth dp" || nama === "hunuth") return "hunuth/durian patah";
-            if (nama === "hativedepan" || nama === "hative besar") return "hative besar";
-            return nama;
-        }
+function normalisasiDesa(nama) {
+    if (!nama) return "";
 
-        function showNotif() {
-            let n = document.getElementById("notif");
-            if (!n) return;
-            n.style.display = "block";
-            setTimeout(() => n.style.display = "none", 2000);
-        }
+    nama = nama
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
 
-        function ambilKoordinat(row) {
-            let lat = row["Latitude"] || row["latitude"] || row["LATITUDE"] || row["Lat"];
-            let lon = row["Longitude"] || row["longitude"] || row["LONGITUDE"] || row["Lon"];
-            if (!lat || !lon) return null;
-            lat = parseFloat(String(lat).replace(",", "."));
-            lon = parseFloat(String(lon).replace(",", "."));
-            if (isNaN(lat) || isNaN(lon)) return null;
-            return [lat, lon];
-        }
+    // Samakan variasi nama Rumah Tiga
+    const aliasRumahTiga = [
+        "rumah tiga",
+        "rumahtiga",
+        "rumah tiga ",
+        "rumah-tiga",
+        "rumah  tiga"
+    ];
 
-        function getFotoUrl(row) {
-            let foto = row["Foto"] || row["foto"] || row["Link Foto"] || row["URL Foto"] || row["Foto Sarpras"] || "";
-            if (!foto) return "";
-            if (foto.includes("open?id=")) {
-                return `https://drive.google.com/thumbnail?id=${foto.split("open?id=")[1]}&sz=w1000`;
-            }
-            if (foto.includes("/file/d/")) {
-                return `https://drive.google.com/thumbnail?id=${foto.split("/file/d/")[1].split("/")[0]}&sz=w1000`;
-            }
-            return foto;
-        }
+    if (aliasRumahTiga.includes(nama)) {
+        return "rumahtiga";
+    }
 
-        function formatTanggal(tanggal) {
-            if (!tanggal) return "-";
-            let d = new Date(tanggal);
-            if (isNaN(d)) return tanggal;
-            return d.toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" });
-        }
+    // Samakan variasi nama Hunuth
+    const aliasHunuth = [
+        "hunuth/dp",
+        "hunuth dp",
+        "hunuth",
+        "hunuth/durian patah",
+        "hunuth / durian patah",
+        "hunuth / dp"
+    ];
+
+    if (aliasHunuth.includes(nama)) {
+        return "hunuth/durian patah";
+    }
+
+    // Samakan variasi nama Hative Besar
+    if (
+        nama === "hativedepan" ||
+        nama === "hative depan" ||
+        nama === "hative besar"
+    ) {
+        return "hative besar";
+    }
+
+    return nama;
+}
+
+function showNotif() {
+    let n = document.getElementById("notif");
+    if (!n) return;
+
+    n.style.display = "block";
+    setTimeout(() => n.style.display = "none", 2000);
+}
+
+function ambilKoordinat(row) {
+    let lat =
+        row["Latitude"] ||
+        row["latitude"] ||
+        row["LATITUDE"] ||
+        row["Lat"];
+
+    let lon =
+        row["Longitude"] ||
+        row["longitude"] ||
+        row["LONGITUDE"] ||
+        row["Lon"];
+
+    if (lat == null || lon == null || lat === "" || lon === "") {
+        return null;
+    }
+
+    lat = parseFloat(String(lat).replace(",", "."));
+    lon = parseFloat(String(lon).replace(",", "."));
+
+    if (isNaN(lat) || isNaN(lon)) return null;
+
+    return [lat, lon];
+}
+
+function getFotoUrl(row) {
+    let foto =
+        row["Foto"] ||
+        row["foto"] ||
+        row["Link Foto"] ||
+        row["URL Foto"] ||
+        row["Foto Sarpras"] ||
+        "";
+
+    if (!foto) return "";
+
+    if (foto.includes("open?id=")) {
+        const id = foto.split("open?id=")[1].split("&")[0];
+        return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+    }
+
+    if (foto.includes("/file/d/")) {
+        const id = foto.split("/file/d/")[1].split("/")[0];
+        return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+    }
+
+    return foto;
+}
+
+function formatTanggal(tanggal) {
+    if (!tanggal) return "-";
+
+    let d = new Date(tanggal);
+    if (isNaN(d.getTime())) return tanggal;
+
+    return d.toLocaleDateString("id-ID", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
+}
 
         /* ================= RENDERING MARKERS ================= */
         function tampilkanMarkerDashboard(data) {
