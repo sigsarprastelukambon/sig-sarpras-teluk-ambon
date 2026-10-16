@@ -706,32 +706,60 @@ body.menu-collapsed .page-container {
     top: 70px;
     right: 0;
     bottom: 0;
+
     width: 300px;
+    max-width: 100%;
+
     background: linear-gradient(180deg, #0b192d, #111f38);
     padding: 22px;
+
+    /* Panel dapat digulir jika kontennya panjang */
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow-x: hidden;
     overflow-y: auto;
+
     border-left: 1px solid rgba(255, 255, 255, .06);
     z-index: 998;
     box-sizing: border-box;
+
+    scrollbar-width: thin;
+    overscroll-behavior: contain;
 }
 
 .right-panel h3 {
     font-size: 16px;
-    margin-bottom: 12px;
+    line-height: 1.5;
+    margin: 0 0 12px;
+
     display: flex;
     align-items: center;
     gap: 8px;
+
+    overflow-wrap: anywhere;
 }
 
 .detail-box {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+
     margin-top: 10px;
-    line-height: 1.8;
-    background: #13233d;
     padding: 15px;
+
+    line-height: 1.7;
+    font-size: 13px;
+
+    background: #13233d;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, .06);
-    font-size: 13px;
+
+    overflow: visible;
     overflow-wrap: anywhere;
+    word-break: normal;
+
     box-sizing: border-box;
 }
 
@@ -739,12 +767,32 @@ body.menu-collapsed .page-container {
 
 @media screen and (max-width: 900px) {
     .right-panel {
-        position: static;
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+
         width: 100%;
+        height: auto;
+        min-height: 0;
         max-height: none;
+
         padding: 16px;
+
+        overflow: visible;
+
         border-left: none;
         border-top: 1px solid rgba(255, 255, 255, .06);
+        box-sizing: border-box;
+    }
+
+    .detail-box {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+        overflow: visible;
+        box-sizing: border-box;
     }
 }
 
@@ -1999,7 +2047,183 @@ body.menu-collapsed .page-container {
         box-sizing: border-box;
     }
 
+/* =========================================
+   PERBAIKAN PANEL DETAIL SARPRAS
+   Dashboard dan Peta GIS
+========================================= */
+
+/* KONTEN DETAIL */
+.sarpras-detail-content {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }
+
+/* FOTO: TETAP RINGKAS DAN PROPORSIONAL */
+.sarpras-detail-content img.sarpras-detail-photo,
+.sarpras-detail-content img[alt="Foto Sarpras"] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 150px !important;
+    max-height: 150px !important;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    margin: 0 0 10px;
+    box-sizing: border-box;
+}
+
+/* JUDUL JENIS SARPRAS */
+.sarpras-detail-title {
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+/* TABEL INFORMASI */
+.sarpras-detail-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sarpras-detail-table tr {
+    width: 100%;
+}
+
+.sarpras-detail-table td {
+    padding: 5px 6px 5px 0;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    box-sizing: border-box;
+}
+
+.sarpras-detail-table .detail-label {
+    width: 42%;
+    min-width: 0;
+    padding-right: 8px;
+    font-weight: 700;
+}
+
+.sarpras-detail-table .detail-value {
+    width: 58%;
+    min-width: 0;
+}
+
+/* PANEL DETAIL PETA GIS
+   Jangan memotong isi panel dengan batas tinggi */
+#detailPeta {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0;
+    max-height: none !important;
+    overflow: visible !important;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+}
+
+/* JIKA DETAIL BERADA DI DALAM KARTU PETA */
+.peta-panel-kanan #detailPeta {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* PASTIKAN KARTU DETAIL TIDAK MEMOTONG KONTEN */
+.peta-panel-kanan > .chart-card {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-sizing: border-box;
+}
+
+/* TABLET DAN HP */
+@media screen and (max-width: 768px) {
+    .sarpras-detail-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .sarpras-detail-content img.sarpras-detail-photo,
+    .sarpras-detail-content img[alt="Foto Sarpras"] {
+        width: 100%;
+        height: 150px !important;
+        max-height: 150px !important;
+    }
+
+    .sarpras-detail-table {
+        font-size: 12px;
+        table-layout: fixed;
+    }
+
+    .sarpras-detail-table .detail-label {
+        width: 42%;
+        padding-right: 6px;
+    }
+
+    .sarpras-detail-table .detail-value {
+        width: 58%;
+    }
+
+    #detailPeta {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .peta-panel-kanan > .chart-card {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+
+/* LAYAR SANGAT SEMPIT */
+@media screen and (max-width: 360px) {
+    .sarpras-detail-content img.sarpras-detail-photo,
+    .sarpras-detail-content img[alt="Foto Sarpras"] {
+        height: 150px !important;
+        max-height: 150px !important;
+    }
+
+    .sarpras-detail-table {
+        font-size: 11px;
+    }
+
+    .sarpras-detail-table td {
+        padding: 4px 4px 4px 0;
+    }
+
+    .sarpras-detail-table .detail-label {
+        width: 42%;
+        padding-right: 5px;
+    }
+
+    .sarpras-detail-table .detail-value {
+        width: 58%;
+    }
+
+    #detailPeta {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -3766,250 +3990,690 @@ function formatTanggal(tanggal) {
         year: "numeric"
     });
 }
+/* ================= RENDERING MARKERS ================= */
 
-        /* ================= RENDERING MARKERS ================= */
-        function tampilkanMarkerDashboard(data) {
-            markerLayerDashboard.clearLayers();
-            let bounds = [];
-
-            data.forEach(row => {
-                let koordinat = ambilKoordinat(row);
-                if (!koordinat) return;
-                bounds.push(koordinat);
-
-                let marker = L.marker(koordinat, {
-                    icon: L.divIcon({
-                        className: "",
-                        html: `
-                            <div style="display:flex;flex-direction:column;align-items:center;">
-                                <div class="kode-label">${row["Kode Jenis"] || "-"}</div>
-                                <div style="width:18px;height:18px;background:${warna(row["Kondisi"])};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid white;box-shadow:0 0 8px rgba(0,0,0,.5);"></div>
-                            </div>
-                        `,
-                        iconSize: [40, 40],
-                        iconAnchor: [20, 20]
-                    })
-                });
-
-                let foto = getFotoUrl(row);
-                marker.bindPopup(`
-                    <div style="width:250px;color:white;font-size:13px;">
-                        <b style="font-size:14px;display:block;margin-bottom:5px;">${row["Jenis Sarpras"] || "-"}</b>
-                        ${foto ? `<img src="${foto}" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;" onerror="this.style.display='none'">` : ''}
-                        <b>ID:</b> ${row["ID Sarpras"] || "-"}<br>
-                        <b>Kondisi:</b> ${row["Kondisi"] || "-"}<br>
-                        <b>Lokasi:</b> ${row["Lokasi Detail"] || "-"}
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${koordinat[0]},${koordinat[1]}" target="_blank" style="display:block; text-align:center; margin-top:10px; background:#2563eb; color:white; padding:6px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:11px;">
-                            <i class="fas fa-route"></i> Rute Navigasi Google Maps
-                        </a>
-                    </div>
-                `);
-
-                marker.on("click", () => {
-                    document.getElementById("detail").innerHTML = `
-                        <div style="font-size:15px;font-weight:bold;margin-bottom:10px;">${row["Jenis Sarpras"] || "-"}</div>
-                        ${foto ? `<img src="${foto}" style="width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;" onerror="this.innerHTML='Foto gagal dimuat'">` : "<div style='opacity:.5;margin-bottom:5px;'>Foto tidak tersedia</div>"}
-                        <table style="width:100%;font-size:12px;border-collapse:collapse;line-height:1.6;">
-                            <tr><td><b>ID</b></td><td>: ${row["ID Sarpras"] || "-"}</td></tr>
-                            <tr><td><b>Desa</b></td><td>: ${row["Desa/Negeri/Kelurahan"] || "-"}</td></tr>
-                            <tr><td><b>RT/RW</b></td><td>: RT ${row["RT"] || "-"} / RW ${row["RW"] || "-"}</td></tr>
-                            <tr><td><b>Kondisi</b></td><td>: <span style="color:${warna(row["Kondisi"])};font-weight:bold;">${row["Kondisi"] || "-"}</span></td></tr>
-                            <tr><td><b>Anggaran</b></td><td>: ${row["Sumber Anggaran"] || "-"}</td></tr>
-                            <tr><td><b>Pembangunan</b></td><td>: ${row["Waktu Pembangunan"] || "-"}</td></tr>
-                            <tr><td><b>Opr. Update</b></td><td>: ${row["Nama Operator"] || "-"} (${formatTanggal(row["Timestamp"])})</td></tr>
-                        </table>
-                    `;
-                });
-                markerLayerDashboard.addLayer(marker);
-            });
+/* ================= FORMAT DETAIL SARPRAS ================= */
+function buatHTMLDetailSarpras(row, foto) {
+    const nilai = (value) => {
+        if (
+            value === null ||
+            value === undefined ||
+            String(value).trim() === ""
+        ) {
+            return "-";
         }
 
-        function tampilkanMarkerPetaFull(data) {
-            markerLayerFull.clearLayers();
-            let bounds = [];
-
-            data.forEach(row => {
-                let koordinat = ambilKoordinat(row);
-                if (!koordinat) return;
-                bounds.push(koordinat);
-
-                let marker = L.marker(koordinat, {
-                    icon: L.divIcon({
-                        className: "",
-                        html: `
-                            <div style="display:flex;flex-direction:column;align-items:center;">
-                                <div class="kode-label">${row["Kode Jenis"] || "-"}</div>
-                                <div style="width:18px;height:18px;background:${warna(row["Kondisi"])};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid white;box-shadow:0 0 8px rgba(0,0,0,.5);"></div>
-                            </div>
-                        `,
-                        iconSize: [40, 40],
-                        iconAnchor: [20, 20]
-                    })
-                });
-
-                let foto = getFotoUrl(row);
-                marker.bindPopup(`
-                    <div style="width:250px;color:white;font-size:13px;">
-                        <b style="font-size:14px;display:block;margin-bottom:5px;">${row["Jenis Sarpras"] || "-"}</b>
-                        ${foto ? `<img src="${foto}" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;" onerror="this.style.display='none'">` : ''}
-                        <b>ID:</b> ${row["ID Sarpras"] || "-"}<br>
-                        <b>Kondisi:</b> ${row["Kondisi"] || "-"}<br>
-                        <b>Lokasi:</b> ${row["Lokasi Detail"] || "-"}
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${koordinat[0]},${koordinat[1]}" target="_blank" style="display:block; text-align:center; margin-top:10px; background:#2563eb; color:white; padding:6px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:11px;">
-                            <i class="fas fa-route"></i> Rute Navigasi Google Maps
-                        </a>
-                    </div>
-                `);
-
-                marker.on("click", () => {
-                    document.getElementById("detailPeta").innerHTML = `
-                        <div style="font-size:15px;font-weight:bold;margin-bottom:10px;">${row["Jenis Sarpras"] || "-"}</div>
-                        ${foto ? `<img src="${foto}" style="width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:10px;" onerror="this.style.display='none'">` : "<div style='opacity:.5;margin-bottom:5px;'>Foto tidak tersedia</div>"}
-                        <b>ID :</b> ${row["ID Sarpras"] || "-"}<br>
-                        <b>Desa :</b> ${row["Desa/Negeri/Kelurahan"] || "-"}<br>
-                        <b>Lokasi Detail :</b> ${row["Lokasi Detail"] || "-"}<br>
-                        <b>Kondisi :</b> <span style="color:${warna(row["Kondisi"])};font-weight:bold;">${row["Kondisi"] || "-"}</span><br>
-                        <b>Sumber Anggaran :</b> ${row["Sumber Anggaran"] || "-"}
-                    `;
-                });
-                markerLayerFull.addLayer(marker);
-            });
-        }
-
-        /* ================= RENDERING TABEL & REKAP ================= */
-        function tampilkanDataTabular(data) {
-            let tbody = document.getElementById("bodyTabelSarpras");
-            if (!tbody) return;
-            
-            if (data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; opacity: 0.5; padding: 20px;">Tidak ada data yang cocok</td></tr>`;
-                return;
-            }
-
-            let html = "";
-            data.forEach((row, index) => {
-                html += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td style="font-weight: bold; color: #60a5fa;">${row["ID Sarpras"] || "-"}</td>
-                        <td>${row["Jenis Sarpras"] || "-"}</td>
-                        <td>${row["Desa/Negeri/Kelurahan"] || "-"}</td>
-                        <td>${row["Lokasi Detail"] || "-"}</td>
-                        <td>
-                            <span class="badge-kondisi" style="background: ${warna(row["Kondisi"]) + '25'}; color: ${warna(row["Kondisi"])}; border: 1px solid ${warna(row["Kondisi"])}">
-                                ${row["Kondisi"] || "-"}
-                            </span>
-                        </td>
-                        <td>${row["Sumber Anggaran"] || "-"}</td>
-                    </tr>
-                `;
-            });
-            tbody.innerHTML = html;
-        }
-
-        function filterDataTabel() {
-            let keyword = document.getElementById("searchBoxTabel").value.toLowerCase().trim();
-            let kondisi = document.getElementById("filterKondisiTabel").value;
-
-            let hasil = semuaData.filter(r => {
-                let id = (r["ID Sarpras"] || "").toLowerCase();
-                let jenis = (r["Jenis Sarpras"] || "").toLowerCase();
-                let desa = (r["Desa/Negeri/Kelurahan"] || "").toLowerCase();
-                let lokasi = (r["Lokasi Detail"] || "").toLowerCase();
-                let kData = r["Kondisi"] || "";
-
-                let matchKeyword = id.includes(keyword) || jenis.includes(keyword) || desa.includes(keyword) || lokasi.includes(keyword);
-                let matchKondisi = kondisi === "" || kData === kondisi;
-
-                return matchKeyword && matchKondisi;
-            });
-            tampilkanDataTabular(hasil);
-        }
-
-        function hitungStatistikLaporan(data) {
-    let ba = 0, rr = 0, rs = 0, rb = 0;
-    data.forEach(r => {
-        // Pastikan pengecekan kondisi sesuai dengan data yang Anda simpan
-        if (r["Kondisi"] === "BA - Baik") ba++;
-        else if (r["Kondisi"] === "RR - Rusak Ringan") rr++;
-        else if (r["Kondisi"] === "RS - Rusak Sedang") rs++;
-        else if (r["Kondisi"] === "RB - Rusak Berat") rb++;
-    });
-
-    let total = data.length;
-    let rasioBaik = total > 0 ? ((ba / total) * 100).toFixed(1) : 0;
-
-    // Mapping ID dan nilai yang ingin diisi
-    const updates = {
-        "repTanggal": new Date().toLocaleDateString("id-ID", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }) + " WIT",
-        "repTotal": total + " Unit",
-        "repBA": ba + " Unit",
-        "repRR": rr + " Unit",
-        "repRS": rs + " Unit",
-        "repRB": rb + " Unit",
-        "repPersen": rasioBaik + "% Infrastruktur Berstatus Baik"
+        return String(value);
     };
 
-    // Update elemen hanya jika elemen tersebut ditemukan di halaman
-    Object.keys(updates).forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.innerText = updates[id];
+    const baris = (label, value) => `
+        <tr>
+            <td class="detail-label">${label}</td>
+            <td class="detail-value">: ${value}</td>
+        </tr>
+    `;
+
+    /* FOTO SARPRAS */
+    const fotoHTML = foto
+        ? `
+            <img
+                src="${foto}"
+                alt="Foto Sarpras"
+                style="
+                    display:block;
+                    width:100%;
+                    height:150px;
+                    object-fit:cover;
+                    border-radius:10px;
+                    margin-bottom:10px;
+                "
+                onerror="
+                    this.style.display='none';
+                    this.nextElementSibling.style.display='block';
+                "
+            >
+            <div style="
+                display:none;
+                padding:10px;
+                margin-bottom:10px;
+                text-align:center;
+                color:#9ca3af;
+                font-size:12px;
+            ">Foto gagal dimuat</div>
+        `
+        : `
+            <div style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height:60px;
+                margin-bottom:10px;
+                border-radius:10px;
+                background:rgba(148,163,184,.12);
+                color:#9ca3af;
+                font-size:12px;
+            ">Foto tidak tersedia</div>
+        `;
+
+    /* KONDISI SARPRAS */
+    const kondisi = nilai(row["Kondisi"]);
+    const warnaKondisi = warna(row["Kondisi"]);
+
+    /* SATUAN */
+    const satuan = [];
+
+    const tambahSatuan = (kolom, satuanTeks = "") => {
+        const value = row[kolom];
+
+        if (
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== ""
+        ) {
+            satuan.push(
+                `${nilai(value)}${satuanTeks ? " " + satuanTeks : ""}`
+            );
         }
+    };
+
+    tambahSatuan("Panjang (m)", "m");
+    tambahSatuan("Unit", "Unit");
+    tambahSatuan("Luas (m²)", "m²");
+    tambahSatuan("Volume (m³)", "m³");
+
+    /*
+     * Tanda titik dua menggunakan kolom tetap.
+     * Semua nilai dimulai pada posisi yang sama.
+     */
+    const satuanHTML = satuan.length
+        ? satuan.map(item => `
+            <div style="
+                display:grid;
+                grid-template-columns:0px minmax(0, 1fr);
+                column-gap:3px;
+                margin-bottom:2px;
+                width:100%;
+                box-sizing:border-box;
+            ">
+                <span>:</span>
+                <span style="
+                    min-width:0;
+                    overflow-wrap:anywhere;
+                ">${item}</span>
+            </div>
+        `).join("")
+        : `
+            <div style="
+                display:grid;
+                grid-template-columns:0px minmax(0, 1fr);
+                column-gap:3px;
+            ">
+                <span>:</span>
+                <span>-</span>
+            </div>
+        `;
+
+    /* WAKTU UPDATE */
+    const waktuUpdate = row["Timestamp"]
+        ? (
+            typeof formatTanggal === "function"
+                ? nilai(formatTanggal(row["Timestamp"]))
+                : nilai(row["Timestamp"])
+        )
+        : "-";
+
+    /* TAMPILAN DETAIL SARPRAS */
+    return `
+        <div class="sarpras-detail-content"
+             style="
+                width:100%;
+                min-width:0;
+                box-sizing:border-box;
+             ">
+
+            ${fotoHTML}
+
+            <div class="sarpras-detail-title"
+                 style="
+                    font-size:15px;
+                    font-weight:700;
+                    line-height:1.5;
+                    overflow-wrap:anywhere;
+                    margin-bottom:10px;
+                 ">
+                ${nilai(row["Jenis Sarpras"])}
+            </div>
+
+            <table class="sarpras-detail-table"
+                   style="
+                        width:100%;
+                        max-width:100%;
+                        border-collapse:collapse;
+                        table-layout:fixed;
+                        font-size:12px;
+                        line-height:1.6;
+                   ">
+                <tbody>
+                    ${baris(
+                        "ID Sarpras",
+                        nilai(row["ID Sarpras"])
+                    )}
+
+                    ${baris(
+                        "Jenis Sarpras",
+                        nilai(row["Jenis Sarpras"])
+                    )}
+
+                    ${baris(
+                        "Des/Neg/Kel",
+                        nilai(row["Desa/Negeri/Kelurahan"])
+                    )}
+
+                    ${baris(
+                        "RT/RW",
+                        `RT ${nilai(row["RT"])} / RW ${nilai(row["RW"])}`
+                    )}
+
+                    <tr>
+                        <td class="detail-label"
+                            style="
+                                width:40%;
+                                padding:5px 6px 5px 0;
+                                vertical-align:top;
+                                overflow-wrap:anywhere;
+                            ">
+                            Kondisi
+                        </td>
+                        <td class="detail-value"
+                            style="
+                                width:60%;
+                                padding:5px 0;
+                                vertical-align:top;
+                                overflow-wrap:anywhere;
+                            ">
+                            : <span style="
+                                color:${warnaKondisi};
+                                font-weight:700;
+                            ">${kondisi}</span>
+                        </td>
+                    </tr>
+
+                    ${baris(
+                        "Sumber Anggaran",
+                        nilai(row["Sumber Anggaran"])
+                    )}
+
+                    ${baris(
+                        "Tahun",
+                        nilai(row["Waktu Pembangunan"])
+                    )}
+
+                    <tr>
+                        <td class="detail-label"
+                            style="
+                                width:40%;
+                                padding:5px 6px 5px 0;
+                                vertical-align:top;
+                                overflow-wrap:anywhere;
+                            ">
+                            Satuan
+                        </td>
+                        <td class="detail-value"
+                            style="
+                                width:60%;
+                                padding:5px 0;
+                                vertical-align:top;
+                                overflow-wrap:anywhere;
+                            ">
+                            ${satuanHTML}
+                        </td>
+                    </tr>
+
+                    ${baris(
+                        "Lokasi Detail",
+                        nilai(row["Lokasi Detail"])
+                    )}
+
+                    ${baris(
+                        "Nama Operator",
+                        nilai(row["Nama Operator"])
+                    )}
+
+                    ${baris(
+                        "Waktu Update",
+                        waktuUpdate
+                    )}
+                </tbody>
+            </table>
+
+        </div>
+    `;
+}
+/* ================= MARKER DASHBOARD ================= */
+function tampilkanMarkerDashboard(data) {
+    markerLayerDashboard.clearLayers();
+    let bounds = [];
+
+    data.forEach(row => {
+        let koordinat = ambilKoordinat(row);
+        if (!koordinat) return;
+        bounds.push(koordinat);
+
+        let marker = L.marker(koordinat, {
+            icon: L.divIcon({
+                className: "",
+                html: `
+                    <div style="display:flex;flex-direction:column;align-items:center;">
+                        <div class="kode-label">${row["Kode Jenis"] || "-"}</div>
+                        <div style="width:18px;height:18px;background:${warna(row["Kondisi"])};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid white;box-shadow:0 0 8px rgba(0,0,0,.5);"></div>
+                    </div>
+                `,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            })
+        });
+
+        let foto = getFotoUrl(row);
+
+        marker.bindPopup(`
+            <div style="width:250px;color:white;font-size:13px;">
+                <b style="font-size:14px;display:block;margin-bottom:5px;">
+                    ${row["Jenis Sarpras"] || "-"}
+                </b>
+
+                ${foto ? `
+                    <img
+                        src="${foto}"
+                        style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;"
+                        onerror="this.style.display='none'"
+                    >
+                ` : ""}
+
+                <b>ID:</b> ${row["ID Sarpras"] || "-"}<br>
+                <b>Kondisi:</b> ${row["Kondisi"] || "-"}<br>
+                <b>Lokasi:</b> ${row["Lokasi Detail"] || "-"}
+
+                <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=${koordinat[0]},${koordinat[1]}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="display:block;text-align:center;margin-top:10px;background:#2563eb;color:white;padding:6px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:11px;"
+                >
+                    <i class="fas fa-route"></i> Rute Navigasi Google Maps
+                </a>
+            </div>
+        `);
+
+        marker.on("click", () => {
+            document.getElementById("detail").innerHTML =
+                buatHTMLDetailSarpras(row, foto);
+        });
+
+        markerLayerDashboard.addLayer(marker);
     });
 }
 
-        function hitungKPI(data) {
-            let ba = 0, rr = 0, rs = 0, rb = 0;
-            data.forEach(r => {
-                if (r["Kondisi"] === "BA - Baik") ba++;
-                if (r["Kondisi"] === "RR - Rusak Ringan") rr++;
-                if (r["Kondisi"] === "RS - Rusak Sedang") rs++;
-                if (r["Kondisi"] === "RB - Rusak Berat") rb++;
-            });
-            document.getElementById("total").innerText = data.length;
-            document.getElementById("ba").innerText = ba;
-            document.getElementById("rr").innerText = rr;
-            document.getElementById("rs").innerText = rs;
-            document.getElementById("rb").innerText = rb;
+
+/* ================= MARKER PETA GIS FULL ================= */
+function tampilkanMarkerPetaFull(data) {
+    markerLayerFull.clearLayers();
+    let bounds = [];
+
+    data.forEach(row => {
+        let koordinat = ambilKoordinat(row);
+        if (!koordinat) return;
+        bounds.push(koordinat);
+
+        let marker = L.marker(koordinat, {
+            icon: L.divIcon({
+                className: "",
+                html: `
+                    <div style="display:flex;flex-direction:column;align-items:center;">
+                        <div class="kode-label">${row["Kode Jenis"] || "-"}</div>
+                        <div style="width:18px;height:18px;background:${warna(row["Kondisi"])};border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid white;box-shadow:0 0 8px rgba(0,0,0,.5);"></div>
+                    </div>
+                `,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            })
+        });
+
+        let foto = getFotoUrl(row);
+
+        marker.bindPopup(`
+            <div style="width:250px;color:white;font-size:13px;">
+                <b style="font-size:14px;display:block;margin-bottom:5px;">
+                    ${row["Jenis Sarpras"] || "-"}
+                </b>
+
+                ${foto ? `
+                    <img
+                        src="${foto}"
+                        style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;"
+                        onerror="this.style.display='none'"
+                    >
+                ` : ""}
+
+                <b>ID:</b> ${row["ID Sarpras"] || "-"}<br>
+                <b>Kondisi:</b> ${row["Kondisi"] || "-"}<br>
+                <b>Lokasi:</b> ${row["Lokasi Detail"] || "-"}
+
+                <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=${koordinat[0]},${koordinat[1]}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="display:block;text-align:center;margin-top:10px;background:#2563eb;color:white;padding:6px;border-radius:6px;text-decoration:none;font-weight:bold;font-size:11px;"
+                >
+                    <i class="fas fa-route"></i> Rute Navigasi Google Maps
+                </a>
+            </div>
+        `);
+
+        marker.on("click", () => {
+            document.getElementById("detailPeta").innerHTML =
+                buatHTMLDetailSarpras(row, foto);
+        });
+
+        markerLayerFull.addLayer(marker);
+    });
+}
+
+ /* ================= RENDERING TABEL & REKAP ================= */
+
+/* ---------- TAMPILKAN DATA TABEL ---------- */
+function tampilkanDataTabular(data) {
+    const tbody = document.getElementById("bodyTabelSarpras");
+    if (!tbody) return;
+
+    const dataTampil = Array.isArray(data) ? data : [];
+
+    if (dataTampil.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7"
+                    style="text-align:center;opacity:0.7;padding:20px;">
+                    Data tidak Ditemukan
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    const teks = (value) => {
+        if (value === null || value === undefined ||
+            String(value).trim() === "") {
+            return "-";
+        }
+        return String(value);
+    };
+
+    const escapeHTML = (value) => {
+        return teks(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    };
+
+    let html = "";
+
+    dataTampil.forEach((row, index) => {
+        const warnaKondisi = warna(row["Kondisi"]);
+
+        html += `
+            <tr>
+                <td>${index + 1}</td>
+
+                <td style="font-weight:bold;color:#60a5fa;">
+                    ${escapeHTML(row["ID Sarpras"])}
+                </td>
+
+                <td>${escapeHTML(row["Jenis Sarpras"])}</td>
+
+                <td>${escapeHTML(row["Desa/Negeri/Kelurahan"])}</td>
+
+                <td>${escapeHTML(row["Lokasi Detail"])}</td>
+
+                <td>
+                    <span class="badge-kondisi"
+                        style="
+                            background:${warnaKondisi}25;
+                            color:${warnaKondisi};
+                            border:1px solid ${warnaKondisi};
+                        ">
+                        ${escapeHTML(row["Kondisi"])}
+                    </span>
+                </td>
+
+                <td>${escapeHTML(row["Sumber Anggaran"])}</td>
+            </tr>
+        `;
+    });
+
+    tbody.innerHTML = html;
+}
+
+
+/* ---------- FILTER TABEL DATA SARPRAS ---------- */
+function filterDataTabel() {
+    const elemenCari = document.getElementById("searchBoxTabel");
+    const elemenKondisi = document.getElementById("filterKondisiTabel");
+
+    if (!elemenCari || !elemenKondisi) {
+        console.error(
+            "Elemen searchBoxTabel atau filterKondisiTabel tidak ditemukan."
+        );
+        return;
+    }
+
+    const keyword = String(elemenCari.value ?? "")
+        .toLowerCase()
+        .trim();
+
+    const kondisi = String(elemenKondisi.value ?? "")
+        .toLowerCase()
+        .trim();
+
+    const dataSumber = Array.isArray(semuaData) ? semuaData : [];
+
+    const hasil = dataSumber.filter(row => {
+        const id = String(row["ID Sarpras"] ?? "").toLowerCase();
+        const jenis = String(row["Jenis Sarpras"] ?? "").toLowerCase();
+        const desa = String(row["Desa/Negeri/Kelurahan"] ?? "").toLowerCase();
+        const lokasi = String(row["Lokasi Detail"] ?? "").toLowerCase();
+        const kondisiData = String(row["Kondisi"] ?? "").toLowerCase();
+        const anggaran = String(row["Sumber Anggaran"] ?? "").toLowerCase();
+
+        const teksPencarian = [
+            id,
+            jenis,
+            desa,
+            lokasi,
+            kondisiData,
+            anggaran
+        ].join(" ");
+
+        const cocokKeyword =
+            !keyword || teksPencarian.includes(keyword);
+
+        const cocokKondisi =
+            !kondisi || kondisiData.trim() === kondisi;
+
+        return cocokKeyword && cocokKondisi;
+    });
+
+    tampilkanDataTabular(hasil);
+}
+
+
+/* ---------- STATISTIK LAPORAN ---------- */
+function hitungStatistikLaporan(data) {
+    const dataHitung = Array.isArray(data) ? data : [];
+
+    let ba = 0;
+    let rr = 0;
+    let rs = 0;
+    let rb = 0;
+
+    dataHitung.forEach(row => {
+        const kondisi = String(row["Kondisi"] ?? "")
+            .toUpperCase()
+            .trim();
+
+        if (kondisi.includes("BA - BAIK")) ba++;
+        else if (kondisi.includes("RR - RUSAK RINGAN")) rr++;
+        else if (kondisi.includes("RS - RUSAK SEDANG")) rs++;
+        else if (kondisi.includes("RB - RUSAK BERAT")) rb++;
+    });
+
+    const total = dataHitung.length;
+    const rasioBaik = total > 0
+        ? ((ba / total) * 100).toFixed(1)
+        : "0.0";
+
+    const sekarang = new Date();
+
+    const tanggal = sekarang.toLocaleString("id-ID", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Asia/Makassar"
+    });
+
+    const updates = {
+        repTanggal: tanggal + " WIT",
+        repTotal: total + " Unit",
+        repBA: ba + " Unit",
+        repRR: rr + " Unit",
+        repRS: rs + " Unit",
+        repRB: rb + " Unit",
+        repPersen: rasioBaik + "% Infrastruktur Berstatus Baik"
+    };
+
+    Object.entries(updates).forEach(([id, nilai]) => {
+        const elemen = document.getElementById(id);
+        if (elemen) elemen.innerText = nilai;
+    });
+}
+
+
+/* ---------- KPI DASHBOARD ---------- */
+function hitungKPI(data) {
+    const dataHitung = Array.isArray(data) ? data : [];
+
+    let ba = 0;
+    let rr = 0;
+    let rs = 0;
+    let rb = 0;
+
+    dataHitung.forEach(row => {
+        const kondisi = String(row["Kondisi"] ?? "")
+            .toUpperCase()
+            .trim();
+
+        if (kondisi.includes("BA - BAIK")) ba++;
+        else if (kondisi.includes("RR - RUSAK RINGAN")) rr++;
+        else if (kondisi.includes("RS - RUSAK SEDANG")) rs++;
+        else if (kondisi.includes("RB - RUSAK BERAT")) rb++;
+    });
+
+    const isi = (id, nilai) => {
+        const elemen = document.getElementById(id);
+        if (elemen) elemen.innerText = nilai;
+    };
+
+    isi("total", dataHitung.length);
+    isi("ba", ba);
+    isi("rr", rr);
+    isi("rs", rs);
+    isi("rb", rb);
+}
+
+
+/* ---------- PRIORITAS PENANGANAN DESA ---------- */
+function hitungPrioritasDesa(data) {
+    const dataHitung = Array.isArray(data) ? data : [];
+    const desaMap = {};
+
+    dataHitung.forEach(row => {
+        const desa = String(
+            row["Desa/Negeri/Kelurahan"] ?? "Tidak Teridentifikasi"
+        ).trim() || "Tidak Teridentifikasi";
+
+        if (!desaMap[desa]) {
+            desaMap[desa] = {
+                RB: 0,
+                RS: 0,
+                RR: 0
+            };
         }
 
-        function hitungPrioritasDesa(data) {
-            let desaMap = {};
-            data.forEach(r => {
-                let desa = r["Desa/Negeri/Kelurahan"] || "Tidak Teridentifikasi";
-                if (!desaMap[desa]) desaMap[desa] = { RB: 0, RS: 0, RR: 0 };
-                
-                let k = r["Kondisi"] || "";
-                if (k === "RB - Rusak Berat") desaMap[desa].RB++;
-                else if (k === "RS - Rusak Sedang") desaMap[desa].RS++;
-                else if (k === "RR - Rusak Ringan") desaMap[desa].RR++;
-            });
+        const kondisi = String(row["Kondisi"] ?? "")
+            .toUpperCase()
+            .trim();
 
-            let ranking = Object.entries(desaMap).sort((a, b) => {
-                if (b[1].RB !== a[1].RB) return b[1].RB - a[1].RB;
-                if (b[1].RS !== a[1].RS) return b[1].RS - a[1].RS;
-                return b[1].RR - a[1].RR;
-            }).slice(0, 3);
+        if (kondisi.includes("RB - RUSAK BERAT")) {
+            desaMap[desa].RB++;
+        } else if (kondisi.includes("RS - RUSAK SEDANG")) {
+            desaMap[desa].RS++;
+        } else if (kondisi.includes("RR - RUSAK RINGAN")) {
+            desaMap[desa].RR++;
+        }
+    });
 
-            let html = "";
-            if(ranking.length === 0) {
-                html = "Tidak ada data prioritas penanganan.";
-            } else {
-                ranking.forEach((item, index) => {
-                    html += `
-                        <div style="margin-bottom: 10px; padding: 10px; background: #0f172a; border-radius: 12px; border-left: 4px solid #ef4444;">
-                            <div style="font-weight: bold; font-size: 13px;">#${index + 1} - ${item[0]}</div>
-                            <div style="font-size: 11px; margin-top: 4px; opacity: 0.9;">
-                                Rusak Berat (RB): <span style="color:#ef4444;font-weight:bold;">${item[1].RB}</span> | 
-                                Rusak Sedang (RS): <span style="color:#f59e0b;font-weight:bold;">${item[1].RS}</span>
-                            </div>
-                        </div>`;
-                });
+    const ranking = Object.entries(desaMap)
+        .sort((a, b) => {
+            if (b[1].RB !== a[1].RB) {
+                return b[1].RB - a[1].RB;
             }
-            document.getElementById("prioritas").innerHTML = html;
-        }
 
+            if (b[1].RS !== a[1].RS) {
+                return b[1].RS - a[1].RS;
+            }
+
+            return b[1].RR - a[1].RR;
+        })
+        .slice(0, 3);
+
+    const elemenPrioritas = document.getElementById("prioritas");
+    if (!elemenPrioritas) return;
+
+    if (ranking.length === 0) {
+        elemenPrioritas.innerHTML =
+            "Tidak ada data prioritas penanganan.";
+        return;
+    }
+
+    elemenPrioritas.innerHTML = ranking.map((item, index) => `
+        <div style="
+            margin-bottom:10px;
+            padding:10px;
+            background:#0f172a;
+            border-radius:12px;
+            border-left:4px solid #ef4444;
+        ">
+            <div style="font-weight:bold;font-size:13px;">
+                #${index + 1} - ${item[0]}
+            </div>
+
+            <div style="font-size:11px;margin-top:4px;opacity:0.9;">
+                Rusak Berat (RB):
+                <span style="color:#ef4444;font-weight:bold;">
+                    ${item[1].RB}
+                </span>
+                |
+                Rusak Sedang (RS):
+                <span style="color:#f59e0b;font-weight:bold;">
+                    ${item[1].RS}
+                </span>
+            </div>
+        </div>
+    `).join("");
+}
 /* ================= MANAGEMENT CHART.JS ================= */
 
 function updateCharts(data) {
@@ -4874,76 +5538,201 @@ const urutanJenis = filterUrutanJenisChart?.value || "desc";
         console.warn("GeoJSON Event: " + err.message);
     }
 }
-       /* ================= SOLUSI FIX: FILTRASI TERPADU DENGAN ZOOM DETAIL OTOMATIS ================= */
-        function eksekusiFilter(isDashboard, jenisAksi) {
-            let elemenDesa = document.getElementById(isDashboard ? "filterDesa" : "filterDesaPeta");
-            let elemenKondisi = document.getElementById(isDashboard ? "filterKondisi" : "filterKondisiPeta");
-            let elemenCari = document.getElementById(isDashboard ? "searchBox" : "searchBoxPeta");
+/* ================= SOLUSI FIX: FILTRASI TERPADU DENGAN ZOOM DETAIL OTOMATIS ================= */
+async function eksekusiFilter(isDashboard, jenisAksi) {
+    const elemenDesa = document.getElementById(
+        isDashboard ? "filterDesa" : "filterDesaPeta"
+    );
 
-            if (jenisAksi === 'cari' && elemenCari.value.trim() !== "") {
-                elemenDesa.value = ""; 
-            } else if (jenisAksi === 'desa' && elemenDesa.value !== "") {
-                elemenCari.value = "";
-            }
+    const elemenKondisi = document.getElementById(
+        isDashboard ? "filterKondisi" : "filterKondisiPeta"
+    );
 
-            let desa = elemenDesa.value.toLowerCase().trim();
-            let kondisi = elemenKondisi.value.trim();
-            let cari = elemenCari.value.toLowerCase().trim();
+    const elemenCari = document.getElementById(
+        isDashboard ? "searchBox" : "searchBoxPeta"
+    );
 
-            let hasil = semuaData.filter(r => {
-                let namaDesa = (r["Desa/Negeri/Kelurahan"] || "").toLowerCase().trim();
-                let lokasi = (r["Lokasi Detail"] || "").toLowerCase().trim();
-                let id = (r["ID Sarpras"] || "").toLowerCase().trim();
-                let jenis = (r["Jenis Sarpras"] || "").toLowerCase().trim();
-                let kondisiData = (r["Kondisi"] || "").trim();
+    if (!elemenDesa || !elemenKondisi || !elemenCari) {
+        console.error("Elemen filter tidak ditemukan.");
+        return;
+    }
 
-                let matchCari = !cari || (namaDesa + " " + lokasi + " " + id + " " + jenis).includes(cari);
-                let matchDesa = !desa || normalisasiDesa(namaDesa) === normalisasiDesa(desa);
-                let matchKondisi = !kondisi || kondisiData === kondisi;
+    /* FILTER TERAKHIR YANG DIPILIH MENJADI FILTER AKTIF */
+    if (jenisAksi === "desa") {
+        elemenKondisi.value = "";
+        elemenCari.value = "";
+    } else if (jenisAksi === "kondisi") {
+        elemenDesa.value = "";
+        elemenCari.value = "";
+    } else if (jenisAksi === "cari") {
+        elemenDesa.value = "";
+        elemenKondisi.value = "";
+    }
 
-                return matchCari && matchDesa && matchKondisi;
-            });
+    const desa = String(elemenDesa.value ?? "").trim();
+    const kondisi = String(
+        elemenKondisi.value ?? ""
+    ).trim().toLowerCase();
+    const cari = String(
+        elemenCari.value ?? ""
+    ).trim().toLowerCase();
 
-            if (hasil.length === 0) {
-                showNotif();
-                return;
-            }
+    const dataSumber = Array.isArray(semuaData)
+        ? semuaData
+        : [];
 
-            // 1. Perbarui komponen data visual & spasial
-            tampilkanMarkerDashboard(hasil);
-            tampilkanMarkerPetaFull(hasil);
-            hitungKPI(hasil);
-            hitungPrioritasDesa(hasil);
-            updateCharts(hasil);
-            loadGeoJSON(hasil);
-            tampilkanStatistikGlobalPeta(hasil);
+    const hasil = dataSumber.filter(r => {
+        const namaDesa = String(
+            r["Desa/Negeri/Kelurahan"] ?? ""
+        ).toLowerCase().trim();
 
-            // 2. LOGIKA UTAMA: Kumpulkan koordinat titik sarpras hasil filter (Bukan poligon wilayah)
-            let kumpulanTitik = [];
-            hasil.forEach(row => {
-                let koordinat = ambilKoordinat(row);
-                if (koordinat) kumpulanTitik.push(koordinat);
-            });
+        const lokasi = String(
+            r["Lokasi Detail"] ?? ""
+        ).toLowerCase().trim();
 
-            // 3. Eksekusi Zoom Merapat Otomatis berdasarkan halaman aktif
-            if (kumpulanTitik.length > 0) {
-                let boundsObjek = L.latLngBounds(kumpulanTitik);
-                
-                if (isDashboard && mapDashboard) {
-                    mapDashboard.fitBounds(boundsObjek, { padding: [50, 50] });
-                    // Jika zoom otomatis terlalu jauh/tinggi, paksa masuk ke level detail dekat (16)
-                    if (mapDashboard.getZoom() < 16) {
-                        mapDashboard.setZoom(16);
-                    }
-                } else if (!isDashboard && mapFull) {
-                    mapFull.fitBounds(boundsObjek, { padding: [50, 50] });
-                    if (mapFull.getZoom() < 16) {
-                        mapFull.setZoom(16);
-                    }
+        const id = String(
+            r["ID Sarpras"] ?? ""
+        ).toLowerCase().trim();
+
+        const jenis = String(
+            r["Jenis Sarpras"] ?? ""
+        ).toLowerCase().trim();
+
+        const kondisiData = String(
+            r["Kondisi"] ?? ""
+        ).toLowerCase().trim();
+
+        const matchDesa =
+            !desa ||
+            normalisasiDesa(namaDesa) ===
+                normalisasiDesa(desa);
+
+        const matchKondisi =
+            !kondisi ||
+            kondisiData === kondisi;
+
+        const teksPencarian = [
+            namaDesa,
+            lokasi,
+            id,
+            jenis,
+            kondisiData
+        ].join(" ");
+
+        const matchCari =
+            !cari || teksPencarian.includes(cari);
+
+        return matchDesa && matchKondisi && matchCari;
+    });
+
+    /* PERBARUI KOMPONEN DENGAN HASIL FILTER */
+    tampilkanMarkerDashboard(hasil);
+    tampilkanMarkerPetaFull(hasil);
+    hitungKPI(hasil);
+    hitungPrioritasDesa(hasil);
+    updateCharts(hasil);
+
+    /* TUNGGU GEOJSON SELESAI DIMUAT */
+    await loadGeoJSON(hasil);
+
+    tampilkanStatistikGlobalPeta(hasil);
+
+    if (typeof tampilkanDataTabular === "function") {
+        tampilkanDataTabular(hasil);
+    }
+
+    /* NOTIFIKASI JIKA DATA TIDAK DITEMUKAN */
+    const notif = document.getElementById("notif");
+
+    if (hasil.length === 0) {
+        if (notif) {
+            notif.textContent = "Data tidak Ditemukan";
+            notif.style.display = "block";
+        } else {
+            showNotif();
+        }
+        return;
+    }
+
+    if (notif) {
+        notif.textContent = "Data tidak Ditemukan";
+        notif.style.display = "none";
+    }
+
+    /* KUMPULKAN KOORDINAT MARKER HASIL FILTER */
+    const kumpulanTitik = [];
+
+    hasil.forEach(row => {
+        const koordinat = ambilKoordinat(row);
+
+        if (koordinat) {
+            kumpulanTitik.push(koordinat);
+        }
+    });
+
+    const petaAktif = isDashboard
+        ? mapDashboard
+        : mapFull;
+
+    if (!petaAktif) return;
+
+    /* FILTER DESA: UTAMAKAN BATAS POLIGON DESA */
+    if (desa) {
+        const layerAktif = isDashboard
+            ? geojsonLayerDashboard
+            : geojsonLayerFull;
+
+        let boundsDesa = null;
+
+        if (layerAktif) {
+            layerAktif.eachLayer(layer => {
+                const props = layer.feature?.properties || {};
+
+                const namaPoligon = String(
+                    props.nama ||
+                    props.NAMOBJ ||
+                    props.desa ||
+                    ""
+                ).trim();
+
+                if (
+                    normalisasiDesa(namaPoligon) ===
+                    normalisasiDesa(desa)
+                ) {
+                    boundsDesa = layer.getBounds();
                 }
-            }
+            });
         }
 
+        if (boundsDesa && boundsDesa.isValid()) {
+            petaAktif.fitBounds(boundsDesa, {
+                padding: [25, 25],
+                maxZoom: 16
+            });
+        } else if (kumpulanTitik.length > 0) {
+            petaAktif.fitBounds(
+                L.latLngBounds(kumpulanTitik),
+                {
+                    padding: [25, 25],
+                    maxZoom: 16
+                }
+            );
+        }
+
+        return;
+    }
+
+    /* FILTER KONDISI ATAU PENCARIAN: TAMPILKAN SEBARAN HASIL */
+    if (kumpulanTitik.length > 0) {
+        petaAktif.fitBounds(
+            L.latLngBounds(kumpulanTitik),
+            {
+                padding: [40, 40],
+                maxZoom: 16
+            }
+        );
+    }
+}
         /* ================= SOLUSI FIX: RESET FILTER BALIK KE SELURUH WILAYAH ================= */
         function resetSemuaFilter() {
             document.getElementById("filterDesa").value = "";
