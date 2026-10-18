@@ -1593,6 +1593,9 @@ body.menu-collapsed .page-container {
         min-width: 0;
         box-sizing: border-box;
     }
+
+} /* PENUTUP @media NAVIGASI BAWAH HP */
+
 /* =====================================================
    RESPONSIVE MOBILE LAYOUT
    SIG SARPRAS TELUK AMBON
@@ -2047,6 +2050,8 @@ body.menu-collapsed .page-container {
         box-sizing: border-box;
     }
 
+} /* PENUTUP @media RESPONSIVE MOBILE LAYOUT */
+
 /* =========================================
    PERBAIKAN PANEL DETAIL SARPRAS
    Dashboard dan Peta GIS
@@ -2193,7 +2198,9 @@ body.menu-collapsed .page-container {
     }
 }
 
-/* LAYAR SANGAT SEMPIT */
+/* ==================================================
+   DETAIL SARPRAS — LAYAR SANGAT SEMPIT
+================================================== */
 @media screen and (max-width: 360px) {
     .sarpras-detail-content img.sarpras-detail-photo,
     .sarpras-detail-content img[alt="Foto Sarpras"] {
@@ -2221,6 +2228,152 @@ body.menu-collapsed .page-container {
     #detailPeta {
         max-height: none !important;
         overflow: visible !important;
+    }
+}
+
+/* ===== PERBAIKAN PERMANEN MENU AKSI SARPRAS ===== */
+
+/* Kolom aksi tabel sarpras */
+#bodyTabelSarpras .kolom-aksi-sarpras {
+    width: 60px !important;
+    min-width: 60px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    overflow: visible !important;
+}
+
+/* Pembungkus tombol hamburger dan dropdown */
+#bodyTabelSarpras .menu-aksi-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    overflow: visible !important;
+}
+
+/* Tombol hamburger: kotak biru neon transparan */
+#bodyTabelSarpras button.btn-menu-aksi {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    padding: 0 !important;
+
+    color: #000 !important;
+    background: rgba(0, 140, 255, 0.10) !important;
+    border: 1px solid rgba(0, 145, 255, 0.85) !important;
+    border-radius: 5px !important;
+
+    box-shadow:
+        0 0 5px rgba(0, 145, 255, 0.35),
+        inset 0 0 4px rgba(0, 145, 255, 0.10) !important;
+
+    cursor: pointer !important;
+    transition: background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Tiga garis hamburger tetap hitam */
+#bodyTabelSarpras button.btn-menu-aksi span {
+    display: block !important;
+    flex: 0 0 2px !important;
+    width: 15px !important;
+    height: 2px !important;
+    background: #000 !important;
+    border-radius: 2px !important;
+}
+
+/* Efek hover tombol hamburger */
+#bodyTabelSarpras button.btn-menu-aksi:hover {
+    background: rgba(0, 140, 255, 0.20) !important;
+    box-shadow:
+        0 0 8px rgba(0, 145, 255, 0.60),
+        inset 0 0 5px rgba(0, 145, 255, 0.15) !important;
+}
+
+/* Menu dropdown */
+#bodyTabelSarpras .menu-aksi-dropdown {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 4px) !important;
+    right: 0 !important;
+    z-index: 999999 !important;
+
+    min-width: 120px !important;
+    padding: 4px !important;
+
+    /* Latar dropdown biru transparan, bukan putih */
+    background: rgba(0, 35, 75, 0.94) !important;
+    color: #e8f5ff !important;
+
+    border: 1px solid rgba(0, 145, 255, 0.75) !important;
+    border-radius: 6px !important;
+
+    box-shadow:
+        0 0 8px rgba(0, 145, 255, 0.25),
+        0 4px 12px rgba(0, 0, 0, 0.20) !important;
+
+    text-align: left !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Tampilkan dropdown ketika dibuka */
+#bodyTabelSarpras .menu-aksi-dropdown.terbuka {
+    display: block !important;
+}
+
+/* Tombol Edit dan Update di dalam dropdown */
+#bodyTabelSarpras .menu-aksi-dropdown button {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 9px 10px !important;
+
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+
+    /* Tidak menggunakan latar putih */
+    background: rgba(0, 145, 255, 0.08) !important;
+    color: #e8f5ff !important;
+
+    text-align: left !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+/* Efek hover tombol Edit dan Update */
+#bodyTabelSarpras .menu-aksi-dropdown button:hover {
+    background: rgba(0, 145, 255, 0.22) !important;
+    border-color: rgba(0, 145, 255, 0.45) !important;
+    box-shadow: 0 0 6px rgba(0, 145, 255, 0.18) !important;
+}
+
+/* Efek ketika tombol Edit atau Update ditekan */
+#bodyTabelSarpras .menu-aksi-dropdown button:active {
+    background: rgba(0, 145, 255, 0.32) !important;
+}
+
+/* Tampilan tablet dan ponsel */
+@media screen and (max-width: 768px) {
+    #bodyTabelSarpras .kolom-aksi-sarpras {
+        width: 50px !important;
+        min-width: 50px !important;
+    }
+
+    #bodyTabelSarpras button.btn-menu-aksi {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
     }
 }
 
@@ -2927,8 +3080,6 @@ function updateLaporanEksekutif(dataParameter) {
         </div>
     </div>
 
-
-
 <!-- ================= HALAMAN DATA SARPRAS ================= -->
 <div id="dataPage" class="page-content">
 
@@ -3012,13 +3163,14 @@ function updateLaporanEksekutif(dataParameter) {
                     <th>Lokasi Detail</th>
                     <th>Kondisi</th>
                     <th>Anggaran</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
 
             <tbody id="bodyTabelSarpras">
                 <tr>
                     <td
-                        colspan="7"
+                        colspan="8"
                         style="text-align:center; opacity:0.5; padding:20px;">
                         Memuat data tabular...
                     </td>
@@ -3218,36 +3370,43 @@ function updateLaporanEksekutif(dataParameter) {
         
         <form onsubmit="submitDataBaru(event)">
             
-            <!-- 1. Jenis Sarpras -->
-            <div style="margin-bottom:12px;">
-                <label style="display:block; margin-bottom:4px; font-size:12px; color:#94a3b8;">1. Jenis Sarana & Prasarana</label>
-                <select id="inputJenis" required onchange="cekKondisionalAtribut()" style="width:100%; padding:9px; background:#0f172a; border:1px solid #334155; border-radius:6px; color:#fff;">
-                    <option value="">-- Pilih Jenis Sarpras --</option>
-                    <option value="Kantor Desa/Negeri">Kantor Desa/Negeri</option>
-                    <option value="Rumah Dinas Raja">Rumah Dinas Raja</option>
-                    <option value="Rumah Adat">Rumah Adat</option>
-                    <option value="Balai Dusun">Balai Dusun</option>
-                    <option value="Gasebo">Gasebo</option>
-                    <option value="Poskamling">Poskamling</option>
-                    <option value="Posyandu">Posyandu</option>
-                    <option value="Lampu Jalan">Lampu Jalan</option>
-                    <option value="Titik CCTV">Titik CCTV</option>
-                    <option value="Jalan Lingkungan">Jalan Lingkungan</option>
-                    <option value="Jalan Setapak">Jalan Setapak</option>
-                    <option value="Jalan Tani">Jalan Tani</option>
-                    <option value="Jalan Akses Pesisir">Jalan Akses Pesisir</option>
-                    <option value="Jalan Permukiman">Jalan Permukiman</option>
-                    <option value="Rumah Tidak Layak Huni">Rumah Tidak Layak Huni</option>
-                    <option value="Pipa Distribusi Air/Saluran">Pipa Distribusi Air/Saluran</option>
-                    <option value="Bak Penampung">Bak Penampung</option>
-                    <option value="Sumur Bor Umum">Sumur Bor Umum</option>
-                    <option value="Talud Pantai">Talud Pantai</option>
-                    <option value="Talud Sungai">Talud Sungai</option>
-                    <option value="Talud Penahan Tanah">Talud Penahan Tanah</option>
-                    <option value="Bronjong">Bronjong</option>
-                    <option value="Drainase/Riol">Drainase/Riol</option>
-                </select>
-            </div>
+           <!-- 1. Jenis Sarpras -->
+<div style="margin-bottom:12px;">
+    <label style="display:block; margin-bottom:4px; font-size:12px; color:#94a3b8;">
+        1. Jenis Sarana & Prasarana
+    </label>
+
+    <select
+        id="inputJenis"
+        required
+        style="width:100%; padding:9px; background:#0f172a; border:1px solid #334155; border-radius:6px; color:#fff;"
+    >
+        <option value="">-- Pilih Jenis Sarpras --</option>
+        <option value="Kantor Desa/Negeri">Kantor Desa/Negeri</option>
+        <option value="Rumah Dinas Raja">Rumah Dinas Raja</option>
+        <option value="Rumah Adat">Rumah Adat</option>
+        <option value="Balai Dusun">Balai Dusun</option>
+        <option value="Gasebo">Gasebo</option>
+        <option value="Poskamling">Poskamling</option>
+        <option value="Posyandu">Posyandu</option>
+        <option value="Lampu Jalan">Lampu Jalan</option>
+        <option value="Titik CCTV">Titik CCTV</option>
+        <option value="Jalan Lingkungan">Jalan Lingkungan</option>
+        <option value="Jalan Setapak">Jalan Setapak</option>
+        <option value="Jalan Tani">Jalan Tani</option>
+        <option value="Jalan Akses Pesisir">Jalan Akses Pesisir</option>
+        <option value="Jalan Permukiman">Jalan Permukiman</option>
+        <option value="Rumah Tidak Layak Huni">Rumah Tidak Layak Huni</option>
+        <option value="Pipa Distribusi Air/Saluran">Pipa Distribusi Air/Saluran</option>
+        <option value="Bak Penampung">Bak Penampung</option>
+        <option value="Sumur Bor Umum">Sumur Bor Umum</option>
+        <option value="Talud Pantai">Talud Pantai</option>
+        <option value="Talud Sungai">Talud Sungai</option>
+        <option value="Talud Penahan Tanah">Talud Penahan Tanah</option>
+        <option value="Bronjong">Bronjong</option>
+        <option value="Drainase/Riol">Drainase/Riol</option>
+    </select>
+</div>
 
             <!-- 2. Desa/Negeri/Kelurahan -->
             <div style="margin-bottom:12px;">
@@ -3358,7 +3517,8 @@ function updateLaporanEksekutif(dataParameter) {
                 </div>
             </div>
 
-            <!-- 14. Foto Kondisi -->
+            
+<!-- 14. Foto Kondisi -->
 <div style="margin-bottom:12px;">
     <label style="display:block; margin-bottom:6px; font-size:12px; color:#94a3b8;">
         14. Foto Kondisi
@@ -3397,17 +3557,46 @@ function updateLaporanEksekutif(dataParameter) {
         Belum ada foto dipilih.
     </div>
 
+    <!-- PRATINJAU FOTO LAMA: MODE EDIT / UPDATE -->
+    <div
+        id="previewFotoLamaContainer"
+        style="display:none; margin-top:10px; background:#0f172a; border:1px solid #475569; border-radius:8px; padding:10px;"
+    >
+        <div style="font-size:12px; color:#cbd5e1; margin-bottom:8px;">
+            📁 Foto Sarpras Saat Ini
+        </div>
+
+        <img
+            id="previewFotoLama"
+            src=""
+            alt="Foto Sarpras saat ini"
+            style="display:block; width:100%; max-height:220px; object-fit:contain; border-radius:6px;"
+        >
+
+        <div style="font-size:11px; color:#94a3b8; margin-top:8px;">
+            Foto lama akan dipertahankan jika Anda tidak memilih foto baru.
+        </div>
+    </div>
+    <!-- AKHIR PRATINJAU FOTO LAMA -->
+
+    <!-- PRATINJAU FOTO BARU SETELAH DIPILIH -->
     <div
         id="fotoPreviewWrap"
         style="display:none; margin-top:8px; text-align:center; background:#0f172a; border:1px solid #334155; border-radius:8px; padding:8px;"
     >
+        <div style="font-size:12px; color:#cbd5e1; margin-bottom:8px;">
+            🆕 Foto Baru yang Dipilih
+        </div>
+
         <img
             id="fotoPreview"
             alt="Preview foto sarpras"
             style="display:block; width:100%; max-height:220px; object-fit:contain; border-radius:6px;"
         >
     </div>
+    <!-- AKHIR PRATINJAU FOTO BARU -->
 </div>
+
 
             <!-- 15. Nama Operator -->
             <div style="margin-bottom:20px;">
@@ -3424,25 +3613,44 @@ function updateLaporanEksekutif(dataParameter) {
     </div>
 </div>
 
+
 <!-- Skrip Pendukung JavaScript untuk Modal -->
 <script>
-// Fungsi otomatis mengambil Koordinat GPS
+/* ================= MODE AKSI SARPRAS ================= */
+// Variabel dataSarprasUntukAksi dideklarasikan pada blok terpisah.
+// Jangan deklarasikan ulang variabel tersebut di sini.
+let modeAksiSarpras = "save";
+let idSarprasAsli = "";
+let fotoLamaSarpras = "";
+
+/* ================= GPS ================= */
+// Fungsi otomatis mengambil koordinat GPS.
 function ambilLokasiGPS() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            let lat = position.coords.latitude;
-            let lng = position.coords.longitude;
-            document.getElementById('inputKoordinat').value = lat + ", " + lng;
-            alert("Koordinat GPS berhasil diambil!");
-        }, function(error) {
-            alert("Gagal mengambil GPS. Pastikan izin lokasi aktif.");
-        });
-    } else {
+    if (!navigator.geolocation) {
         alert("Browser Anda tidak mendukung Geolocation.");
+        return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const inputKoordinat = document.getElementById("inputKoordinat");
+
+            if (inputKoordinat) {
+                inputKoordinat.value = `${lat}, ${lng}`;
+            }
+
+            alert("Koordinat GPS berhasil diambil!");
+        },
+        function(error) {
+            alert("Gagal mengambil GPS. Pastikan izin lokasi aktif.");
+        }
+    );
 }
 
-// Kamus singkatan kode jenis sarpras sesuai master_data
+/* ================= KODE JENIS SARPRAS ================= */
+// Kamus singkatan kode jenis sarpras sesuai master_data.
 const kodeJenisMap = {
     "Kantor Desa/Negeri": "KDN",
     "Rumah Dinas Raja": "RDR",
@@ -3469,7 +3677,8 @@ const kodeJenisMap = {
     "Drainase/Riol": "DRN"
 };
 
-// Kamus singkatan kode desa sesuai master_data
+/* ================= KODE DESA ================= */
+// Kamus singkatan kode desa sesuai master_data.
 const kodeDesaMap = {
     "Rumahtiga": "RMT",
     "Hative Besar": "HTB",
@@ -3481,43 +3690,118 @@ const kodeDesaMap = {
     "Tihu": "THU"
 };
 
-// Fungsi pembentukan ID otomatis dan tampilan input kondisional (Panjang/Luas)
+/* ================= ID DAN INPUT KONDISIONAL ================= */
 function updateIDDanKondisional() {
-    let jenis = document.getElementById('inputJenis').value;
-    let desa = document.getElementById('inputDesa').value;
-    let rw = document.getElementById('inputRW').value || "0";
-    let rt = document.getElementById('inputRT').value || "0";
-    let seri = document.getElementById('inputNoSeri').value;
-    
-    if(jenis && desa && seri) {
-        let kodeJ = kodeJenisMap[jenis] || "SRV";
-        let kodeD = kodeDesaMap[desa] || "DES";
-        // Format: KodeJenis-KodeDesa-RW-RT-NomorSeri (Contoh: CCTV-POK-4-6-1)
-        document.getElementById('inputID').value = `${kodeJ}-${kodeD}-${rw}-${rt}-${seri}`;
+    const inputJenis = document.getElementById("inputJenis");
+    const inputDesa = document.getElementById("inputDesa");
+    const inputRW = document.getElementById("inputRW");
+    const inputRT = document.getElementById("inputRT");
+    const inputNoSeri = document.getElementById("inputNoSeri");
+    const inputID = document.getElementById("inputID");
+
+    if (
+        !inputJenis ||
+        !inputDesa ||
+        !inputRW ||
+        !inputRT ||
+        !inputNoSeri ||
+        !inputID
+    ) {
+        return;
     }
 
-    // Aturan tampil input Panjang atau Luas
-    let jenisLinear = ['Jalan Lingkungan', 'Jalan Setapak', 'Jalan Tani', 'Jalan Akses Pesisir', 'Jalan Permukiman', 'Pipa Distribusi Air/Saluran', 'Talud Pantai', 'Talud Sungai', 'Talud Penahan Tanah', 'Bronjong', 'Drainase/Riol'];
-    let jenisBangunan = ['Kantor Desa/Negeri', 'Rumah Dinas Raja', 'Rumah Adat', 'Balai Dusun', 'Gasebo', 'Rumah Tidak Layak Huni', 'Bak Penampung'];
+    const jenis = inputJenis.value;
+    const desa = inputDesa.value;
+    const rw = inputRW.value || "0";
+    const rt = inputRT.value || "0";
+    const seri = inputNoSeri.value;
 
-    if(jenisLinear.includes(jenis)) {
-        document.getElementById('wrapperPanjang').style.display = 'block';
-        document.getElementById('wrapperLuas').style.display = 'none';
-    } else if(jenisBangunan.includes(jenis)) {
-        document.getElementById('wrapperPanjang').style.display = 'none';
-        document.getElementById('wrapperLuas').style.display = 'block';
+    // ID otomatis untuk mode Simpan dan Edit.
+    // Pada mode Update, ID asli tidak boleh berubah.
+    if (modeAksiSarpras === "update" && idSarprasAsli) {
+        inputID.value = idSarprasAsli;
+    } else if (jenis && desa && seri) {
+        const kodeJ = kodeJenisMap[jenis] || "SRV";
+        const kodeD = kodeDesaMap[desa] || "DES";
+
+        inputID.value = `${kodeJ}-${kodeD}-${rw}-${rt}-${seri}`;
     } else {
-        document.getElementById('wrapperPanjang').style.display = 'none';
-        document.getElementById('wrapperLuas').style.display = 'none';
+        inputID.value = "";
+    }
+
+    // Aturan tampilan input Panjang atau Luas.
+    const jenisLinear = [
+        "Jalan Lingkungan",
+        "Jalan Setapak",
+        "Jalan Tani",
+        "Jalan Akses Pesisir",
+        "Jalan Permukiman",
+        "Pipa Distribusi Air/Saluran",
+        "Talud Pantai",
+        "Talud Sungai",
+        "Talud Penahan Tanah",
+        "Bronjong",
+        "Drainase/Riol"
+    ];
+
+    const jenisBangunan = [
+        "Kantor Desa/Negeri",
+        "Rumah Dinas Raja",
+        "Rumah Adat",
+        "Balai Dusun",
+        "Gasebo",
+        "Rumah Tidak Layak Huni",
+        "Bak Penampung"
+    ];
+
+    const wrapperPanjang = document.getElementById("wrapperPanjang");
+    const wrapperLuas = document.getElementById("wrapperLuas");
+
+    if (wrapperPanjang) {
+        wrapperPanjang.style.display =
+            jenisLinear.includes(jenis) ? "block" : "none";
+    }
+
+    if (wrapperLuas) {
+        wrapperLuas.style.display =
+            jenisBangunan.includes(jenis) ? "block" : "none";
     }
 }
 
-// Event listener untuk memicu pembaruan ID secara real-time
-document.getElementById('inputJenis').addEventListener('change', updateIDDanKondisional);
-document.getElementById('inputDesa').addEventListener('change', updateIDDanKondisional);
-document.getElementById('inputRW').addEventListener('input', updateIDDanKondisional);
-document.getElementById('inputRT').addEventListener('input', updateIDDanKondisional);
-document.getElementById('inputNoSeri').addEventListener('change', updateIDDanKondisional);
+/* ================= EVENT LISTENER MODAL ================= */
+// Pasang listener dengan aman jika elemen sudah tersedia.
+function pasangListenerFormSarpras() {
+    const inputJenis = document.getElementById("inputJenis");
+    const inputDesa = document.getElementById("inputDesa");
+    const inputRW = document.getElementById("inputRW");
+    const inputRT = document.getElementById("inputRT");
+    const inputNoSeri = document.getElementById("inputNoSeri");
+
+    if (inputJenis) {
+        inputJenis.addEventListener("change", updateIDDanKondisional);
+    }
+
+    if (inputDesa) {
+        inputDesa.addEventListener("change", updateIDDanKondisional);
+    }
+
+    if (inputRW) {
+        inputRW.addEventListener("input", updateIDDanKondisional);
+    }
+
+    if (inputRT) {
+        inputRT.addEventListener("input", updateIDDanKondisional);
+    }
+
+    if (inputNoSeri) {
+        inputNoSeri.addEventListener("change", updateIDDanKondisional);
+    }
+
+    updateIDDanKondisional();
+}
+
+// Skrip ini berada setelah HTML modal, sehingga elemen biasanya sudah tersedia.
+pasangListenerFormSarpras();
 </script>
 
  
@@ -3539,7 +3823,7 @@ document.getElementById('inputNoSeri').addEventListener('change', updateIDDanKon
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
-    const URL_API = "https://script.google.com/macros/s/AKfycbwtHNjKn4bTtR5fDYU09amBlo2Pc_1dp3h_vBqZFs7joDB6I2Ov8cH30cx_LjhIBaxcmA/exec";
+    const URL_API = "https://script.google.com/macros/s/AKfycbwv4jXPP9O7RLePcufCxis7yTWoJuAlVRoTnqHjlvMs2OqBZJVXRjTtdlsLQlewPSDqxw/exec";
 
     /* ================= SINKRONISASI DATA LAPORAN EKSEKUTIF DINAMIS ================= */
 function muatDataLaporanEksekutif(dataAset) {
@@ -4378,35 +4662,37 @@ function tampilkanMarkerPetaFull(data) {
     });
 }
 
- /* ================= RENDERING TABEL & REKAP ================= */
+/* ================= DATA AKSI SARPRAS ================= */
+let dataSarprasUntukAksi = [];
+
+
+/* ================= RENDERING TABEL & REKAP ================= */
 
 /* ---------- TAMPILKAN DATA TABEL ---------- */
 function tampilkanDataTabular(data) {
     const tbody = document.getElementById("bodyTabelSarpras");
     if (!tbody) return;
 
+    // Pastikan data berbentuk array.
     const dataTampil = Array.isArray(data) ? data : [];
 
-    if (dataTampil.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="7"
-                    style="text-align:center;opacity:0.7;padding:20px;">
-                    Data tidak Ditemukan
-                </td>
-            </tr>
-        `;
-        return;
-    }
+    // Simpan data untuk aksi Edit dan Update.
+    dataSarprasUntukAksi = dataTampil;
 
+    // Helper menangani nilai kosong.
     const teks = (value) => {
-        if (value === null || value === undefined ||
-            String(value).trim() === "") {
+        if (
+            value === null ||
+            value === undefined ||
+            String(value).trim() === ""
+        ) {
             return "-";
         }
+
         return String(value);
     };
 
+    // Helper mencegah data merusak struktur HTML.
     const escapeHTML = (value) => {
         return teks(value)
             .replace(/&/g, "&amp;")
@@ -4416,10 +4702,38 @@ function tampilkanDataTabular(data) {
             .replace(/'/g, "&#39;");
     };
 
+    // Tampilkan pesan jika data kosong.
+    if (dataTampil.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="8"
+                    style="text-align:center;opacity:0.7;padding:20px;">
+                    Data tidak ditemukan
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
     let html = "";
 
     dataTampil.forEach((row, index) => {
-        const warnaKondisi = warna(row["Kondisi"]);
+        row = row || {};
+
+        const kondisi = teks(row["Kondisi"]);
+
+        // Gunakan fungsi warna yang tersedia.
+        const warnaKondisi =
+            typeof warna === "function"
+                ? warna(row["Kondisi"])
+                : "#64748b";
+
+        // Validasi nilai warna.
+        const warnaAman =
+            typeof warnaKondisi === "string" &&
+            /^#[0-9a-fA-F]{3,8}$/.test(warnaKondisi)
+                ? warnaKondisi
+                : "#64748b";
 
         html += `
             <tr>
@@ -4438,15 +4752,56 @@ function tampilkanDataTabular(data) {
                 <td>
                     <span class="badge-kondisi"
                         style="
-                            background:${warnaKondisi}25;
-                            color:${warnaKondisi};
-                            border:1px solid ${warnaKondisi};
+                            background:${warnaAman}25;
+                            color:${warnaAman};
+                            border:1px solid ${warnaAman};
                         ">
-                        ${escapeHTML(row["Kondisi"])}
+                        ${escapeHTML(kondisi)}
                     </span>
                 </td>
 
                 <td>${escapeHTML(row["Sumber Anggaran"])}</td>
+
+                <!-- MENU AKSI HAMBURGER -->
+                <td class="kolom-aksi-sarpras">
+                    <div class="menu-aksi-wrapper">
+
+                        <button
+                            type="button"
+                            class="btn-menu-aksi"
+                            aria-label="Buka menu aksi"
+                            aria-expanded="false"
+                            title="Menu aksi"
+                            onclick="toggleMenuAksiSarpras(this, event)">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+
+                        <div class="menu-aksi-dropdown">
+
+                            <button
+                                type="button"
+                                onclick="
+                                    editSarprasDariTabel(${index});
+                                    tutupMenuAksiSarpras(this);
+                                ">
+                                ✏️ Edit
+                            </button>
+
+                            <button
+                                type="button"
+                                onclick="
+                                    updateSarprasDariTabel(${index});
+                                    tutupMenuAksiSarpras(this);
+                                ">
+                                ↻ Update
+                            </button>
+
+                        </div>
+                    </div>
+                </td>
             </tr>
         `;
     });
@@ -4454,6 +4809,78 @@ function tampilkanDataTabular(data) {
     tbody.innerHTML = html;
 }
 
+
+/* ================= MENU AKSI SARPRAS ================= */
+
+/* ---------- BUKA / TUTUP MENU HAMBURGER ---------- */
+function toggleMenuAksiSarpras(button, event) {
+    if (event) {
+        event.stopPropagation();
+    }
+
+    const wrapper = button.closest(".menu-aksi-wrapper");
+    if (!wrapper) return;
+
+    const menu = wrapper.querySelector(".menu-aksi-dropdown");
+    if (!menu) return;
+
+    const akanDibuka = !menu.classList.contains("terbuka");
+
+    // Tutup seluruh menu yang sedang terbuka.
+    document.querySelectorAll(".menu-aksi-dropdown.terbuka")
+        .forEach(item => item.classList.remove("terbuka"));
+
+    document.querySelectorAll(".btn-menu-aksi")
+        .forEach(item => item.setAttribute("aria-expanded", "false"));
+
+    // Buka menu yang dipilih.
+    if (akanDibuka) {
+        menu.classList.add("terbuka");
+        button.setAttribute("aria-expanded", "true");
+    }
+}
+
+
+/* ---------- TUTUP MENU SETELAH MEMILIH AKSI ---------- */
+function tutupMenuAksiSarpras(element) {
+    const wrapper = element.closest(".menu-aksi-wrapper");
+    if (!wrapper) return;
+
+    const menu = wrapper.querySelector(".menu-aksi-dropdown");
+    const button = wrapper.querySelector(".btn-menu-aksi");
+
+    if (menu) {
+        menu.classList.remove("terbuka");
+    }
+
+    if (button) {
+        button.setAttribute("aria-expanded", "false");
+    }
+}
+
+
+/* ---------- TUTUP MENU SAAT KLIK DI LUAR ---------- */
+document.addEventListener("click", function(event) {
+    if (event.target.closest(".menu-aksi-wrapper")) return;
+
+    document.querySelectorAll(".menu-aksi-dropdown.terbuka")
+        .forEach(menu => menu.classList.remove("terbuka"));
+
+    document.querySelectorAll(".btn-menu-aksi")
+        .forEach(button => button.setAttribute("aria-expanded", "false"));
+});
+
+
+/* ---------- TUTUP MENU DENGAN TOMBOL ESC ---------- */
+document.addEventListener("keydown", function(event) {
+    if (event.key !== "Escape") return;
+
+    document.querySelectorAll(".menu-aksi-dropdown.terbuka")
+        .forEach(menu => menu.classList.remove("terbuka"));
+
+    document.querySelectorAll(".btn-menu-aksi")
+        .forEach(button => button.setAttribute("aria-expanded", "false"));
+});
 
 /* ---------- FILTER TABEL DATA SARPRAS ---------- */
 function filterDataTabel() {
@@ -5895,132 +6322,341 @@ function tampilkanPrioritas(data) {
         </tr>`;
     });
 }
-        // ===================================================================
-// 2 HUBUNGAN BARU: ISI TABEL PRIORITAS III & GAMBAR MARKER PETA LAPORAN
 // ===================================================================
+// 2. HUBUNGAN BARU: ISI TABEL PRIORITAS III & MARKER PETA LAPORAN
+// ===================================================================
+
 function tampilkanMarkerPetaLaporan(dataAset) {
     if (!mapLaporan || !markerLayerLaporan) {
         console.error("Map atau Marker Layer Laporan belum siap!");
         return;
     }
-    
+
     markerLayerLaporan.clearLayers();
 
-    // Pastikan fungsi getFotoUrl tersedia di file Anda (jika belum ada, fungsi darurat ada di bawah)
-    const getFotoUrlChoosen = typeof getFotoUrl === 'function' ? getFotoUrl : function(r) { return r["Foto Sarpras"] || r["Foto"] || ""; };
+    const data = Array.isArray(dataAset) ? dataAset : [];
 
-    dataAset.forEach(row => {
-        let lat = parseFloat(row["Latitude"]); 
-        let lng = parseFloat(row["Longitude"]);
-        
-        // 1. Logika penentuan warna berdasarkan kondisi
-        let k = row["Kondisi"] || "";
-        let warna = "blue"; // Default
-        if (k.includes("BA")) warna = "green";        // Baik
-        else if (k.includes("RR")) warna = "blue";    // Rusak Ringan
-        else if (k.includes("RS")) warna = "orange";  // Rusak Sedang
-        else if (k.includes("RB")) warna = "red";     // Rusak Berat
+    const getFotoUrlChoosen =
+        typeof getFotoUrl === "function"
+            ? getFotoUrl
+            : function (row) {
+                return row["Foto Sarpras"] || row["Foto"] || "";
+            };
 
-        // 2. Membuat ikon kustom
-        let customIcon = L.icon({
-            iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${warna}.png`,
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    data.forEach(function (row) {
+        const lat = parseFloat(row["Latitude"]);
+        const lng = parseFloat(row["Longitude"]);
+
+        if (Number.isNaN(lat) || Number.isNaN(lng)) {
+            return;
+        }
+
+        const kondisi = String(row["Kondisi"] || "").toUpperCase();
+
+        let warna = "blue";
+
+        if (kondisi.includes("BA")) {
+            warna = "green";
+        } else if (kondisi.includes("RR")) {
+            warna = "blue";
+        } else if (kondisi.includes("RS")) {
+            warna = "orange";
+        } else if (kondisi.includes("RB")) {
+            warna = "red";
+        }
+
+        const customIcon = L.icon({
+            iconUrl:
+                "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-" +
+                warna +
+                ".png",
+            shadowUrl:
+                "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             popupAnchor: [1, -34]
         });
-        
-        if (!isNaN(lat) && !isNaN(lng)) {
-            let foto = getFotoUrlChoosen(row);
 
-            // 3. Membuat marker dengan popup lengkap sesuai referensi
-            let marker = L.marker([lat, lng], { icon: customIcon })
-                .bindPopup(`
-                    <div style="width:250px;color:white;font-size:13px;">
-                        <b style="font-size:14px;display:block;margin-bottom:5px;">${row["Jenis Sarpras"] || "-"}</b>
-                        ${foto ? `<img src="${foto}" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:8px;" onerror="this.style.display='none'">` : ''}
-                        <b>ID:</b> ${row["ID Sarpras"] || "-"}<br>
-                        <b>Kondisi:</b> ${row["Kondisi"] || "-"}<br>
-                        <b>Lokasi:</b> ${row["Lokasi Detail"] || "-"}
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank" style="display:block; text-align:center; margin-top:10px; background:#2563eb; color:white; padding:6px; border-radius:6px; text-decoration:none; font-weight:bold; font-size:11px;">
-                            <i class="fas fa-route"></i> Rute Navigasi Google Maps
-                        </a>
-                    </div>
-                `);
-            
-            // 4. Label di atas marker
-            marker.bindTooltip(row["Kode Jenis"] || row["ID Sarpras"] || "Sarpras", {
-                permanent: true,    
-                direction: 'top',    
-                className: 'label-laporan', 
-                offset: [0, -35]     
-            }).openTooltip();
+        const foto = getFotoUrlChoosen(row);
 
-            markerLayerLaporan.addLayer(marker);
+        const jenis = String(row["Jenis Sarpras"] || "-");
+        const id = String(row["ID Sarpras"] || "-");
+        const statusKondisi = String(row["Kondisi"] || "-");
+        const lokasi = String(row["Lokasi Detail"] || "-");
+
+        const popup = document.createElement("div");
+        popup.style.width = "250px";
+        popup.style.color = "white";
+        popup.style.fontSize = "13px";
+
+        const judul = document.createElement("b");
+        judul.style.fontSize = "14px";
+        judul.style.display = "block";
+        judul.style.marginBottom = "5px";
+        judul.textContent = jenis;
+        popup.appendChild(judul);
+
+        if (foto) {
+            const gambar = document.createElement("img");
+            gambar.src = foto;
+            gambar.alt = "Foto sarpras";
+            gambar.style.width = "100%";
+            gambar.style.height = "120px";
+            gambar.style.objectFit = "cover";
+            gambar.style.borderRadius = "8px";
+            gambar.style.marginBottom = "8px";
+            gambar.onerror = function () {
+                gambar.style.display = "none";
+            };
+            popup.appendChild(gambar);
         }
+
+        const detail = document.createElement("div");
+        detail.innerHTML = "";
+
+        const barisID = document.createElement("div");
+        barisID.textContent = "ID: " + id;
+        popup.appendChild(barisID);
+
+        const barisKondisi = document.createElement("div");
+        barisKondisi.textContent = "Kondisi: " + statusKondisi;
+        popup.appendChild(barisKondisi);
+
+        const barisLokasi = document.createElement("div");
+        barisLokasi.textContent = "Lokasi: " + lokasi;
+        popup.appendChild(barisLokasi);
+
+        const tautanRute = document.createElement("a");
+        tautanRute.href =
+            "https://www.google.com/maps/dir/?api=1&destination=" +
+            encodeURIComponent(lat + "," + lng);
+        tautanRute.target = "_blank";
+        tautanRute.rel = "noopener noreferrer";
+        tautanRute.textContent = "📍 Rute Navigasi Google Maps";
+        tautanRute.style.display = "block";
+        tautanRute.style.textAlign = "center";
+        tautanRute.style.marginTop = "10px";
+        tautanRute.style.background = "#2563eb";
+        tautanRute.style.color = "white";
+        tautanRute.style.padding = "6px";
+        tautanRute.style.borderRadius = "6px";
+        tautanRute.style.textDecoration = "none";
+        tautanRute.style.fontWeight = "bold";
+        tautanRute.style.fontSize = "11px";
+        popup.appendChild(tautanRute);
+
+        const marker = L.marker([lat, lng], {
+            icon: customIcon
+        }).bindPopup(popup);
+
+        marker.bindTooltip(
+            row["Kode Jenis"] || row["ID Sarpras"] || "Sarpras",
+            {
+                permanent: true,
+                direction: "top",
+                className: "label-laporan",
+                offset: [0, -35]
+            }
+        );
+
+        markerLayerLaporan.addLayer(marker);
     });
 
-    if (markerLayerLaporan.getLayers().length > 0) {
-        let group = new L.featureGroup(markerLayerLaporan.getLayers());
-        mapLaporan.fitBounds(group.getBounds(), { padding: [50, 50] });
-    }
-    
-    console.log("Marker Laporan berhasil diproses: ", markerLayerLaporan.getLayers().length);
-}
-    
-window.onbeforeprint = function() {
-    setTimeout(function() {
-        let wilayahTerdampak = [];
-        let semuaWilayah = [];
+    const semuaMarker = markerLayerLaporan.getLayers();
 
-        mapLaporan.eachLayer(function(layer) {
-            if (layer instanceof L.Polygon && layer.feature && layer.feature.properties) {
+    if (semuaMarker.length > 0) {
+        const group = new L.featureGroup(semuaMarker);
+        mapLaporan.fitBounds(group.getBounds(), {
+            padding: [50, 50]
+        });
+    }
+
+    console.log(
+        "Marker Laporan berhasil diproses:",
+        markerLayerLaporan.getLayers().length
+    );
+}
+
+
+// ===================================================================
+// PENGATURAN PETA SAAT CETAK
+// ===================================================================
+
+window.onbeforeprint = function () {
+    setTimeout(function () {
+        if (!mapLaporan || typeof L === "undefined") {
+            return;
+        }
+
+        const wilayahTerdampak = [];
+        const semuaWilayah = [];
+
+        mapLaporan.eachLayer(function (layer) {
+            if (
+                layer instanceof L.Polygon &&
+                layer.feature &&
+                layer.feature.properties
+            ) {
                 semuaWilayah.push(layer);
-                let status = (layer.feature.properties.status || "").toUpperCase();
-                if (status.includes("RB") || status === "RUSAK BERAT") {
+
+                const status = String(
+                    layer.feature.properties.status || ""
+                ).toUpperCase();
+
+                if (
+                    status.includes("RB") ||
+                    status === "RUSAK BERAT"
+                ) {
                     wilayahTerdampak.push(layer);
                 }
             }
         });
 
         if (wilayahTerdampak.length > 0) {
-            let group = new L.FeatureGroup(wilayahTerdampak);
-            mapLaporan.fitBounds(group.getBounds().pad(0.05), { 
-                padding: [10, 10],   
-                maxZoom: 17,        
+            const group = new L.FeatureGroup(wilayahTerdampak);
+
+            mapLaporan.fitBounds(group.getBounds().pad(0.05), {
+                padding: [10, 10],
+                maxZoom: 17,
                 animate: false
             });
         } else if (semuaWilayah.length > 0) {
-            let groupSemua = new L.FeatureGroup(semuaWilayah);
-            mapLaporan.fitBounds(groupSemua.getBounds().pad(0.05), { 
-                padding: [10, 10],   
-                maxZoom: 15,        
+            const groupSemua = new L.FeatureGroup(semuaWilayah);
+
+            mapLaporan.fitBounds(groupSemua.getBounds().pad(0.05), {
+                padding: [10, 10],
+                maxZoom: 15,
                 animate: false
             });
         }
     }, 800);
 };
+
+
+// ===================================================================
+// RESET FORM TAMBAH SARPRAS BARU
+// ===================================================================
+
+function resetFormTambahSarpras() {
+    const modal = document.getElementById("modalInputSarpras");
+
+    if (!modal) {
+        return;
+    }
+
+    const form = modal.querySelector("form");
+
+    if (form) {
+        form.reset();
+    }
+
+    // Reset mode aksi supaya tidak meneruskan data Edit/Update.
+    modeAksiSarpras = "save";
+    idSarprasAsli = "";
+    fotoLamaSarpras = "";
+
+    // Bersihkan state foto baru.
+    fotoHasilKompresi = {
+        base64: "",
+        name: "",
+        type: ""
+    };
+
+    const inputFoto = document.getElementById("inputFoto");
+    if (inputFoto) {
+        inputFoto.value = "";
+        inputFoto.removeAttribute("capture");
+    }
+
+    const statusFoto = document.getElementById("fotoStatus");
+    if (statusFoto) {
+        statusFoto.textContent = "Belum ada foto dipilih.";
+    }
+
+    const previewBaru = document.getElementById("fotoPreview");
+    if (previewBaru) {
+        previewBaru.removeAttribute("src");
+    }
+
+    const previewWrap = document.getElementById("fotoPreviewWrap");
+    if (previewWrap) {
+        previewWrap.style.display = "none";
+    }
+
+    // Sembunyikan pratinjau foto lama jika elemen tersedia.
+    const fotoLamaWrap = document.getElementById("fotoLamaPreviewWrap");
+    if (fotoLamaWrap) {
+        fotoLamaWrap.style.display = "none";
+    }
+
+    const fotoLamaPreview = document.getElementById("fotoLamaPreview");
+    if (fotoLamaPreview) {
+        fotoLamaPreview.removeAttribute("src");
+    }
+
+    // Buka kembali field identitas untuk mode Tambah.
+    [
+        "inputID",
+        "inputJenis",
+        "inputDesa",
+        "inputRW",
+        "inputRT",
+        "inputNoSeri"
+    ].forEach(function (id) {
+        const elemen = document.getElementById(id);
+
+        if (elemen) {
+            elemen.readOnly = false;
+            elemen.disabled = false;
+        }
+    });
+
+    // Reset label tombol submit.
+    const tombolSimpan = modal.querySelector(
+        'button[type="submit"], input[type="submit"]'
+    );
+
+    if (tombolSimpan) {
+        if (tombolSimpan.tagName === "INPUT") {
+            tombolSimpan.value = "💾 Simpan Data";
+        } else {
+            tombolSimpan.textContent = "💾 Simpan Data";
+        }
+
+        tombolSimpan.disabled = false;
+        tombolSimpan.style.opacity = "1";
+        tombolSimpan.style.cursor = "pointer";
+        tombolSimpan.style.background = "#2563eb";
+        tombolSimpan.style.color = "#ffffff";
+        tombolSimpan.style.border = "none";
+        tombolSimpan.style.filter = "none";
+    }
+
+    // Pulihkan tombol batal jika sebelumnya dinonaktifkan.
+    const tombolBatal = modal.querySelector('button[type="button"]');
+
+    if (tombolBatal) {
+        tombolBatal.disabled = false;
+        tombolBatal.style.opacity = "1";
+        tombolBatal.style.cursor = "pointer";
+    }
+
+    if (typeof updateIDDanKondisional === "function") {
+        updateIDDanKondisional();
+    }
+}
+
+
+// ===================================================================
+// BUKA MODAL TAMBAH SARPRAS BARU
+// ===================================================================
+
 function openInputModal() {
-    /*
-     * CEK SESSION OPERATOR
-     */
-    const token =
-        sessionStorage.getItem('operator_token');
+    const token = sessionStorage.getItem("operator_token");
+    const username = sessionStorage.getItem("operator_username");
+    const role = sessionStorage.getItem("operator_role");
 
-    const username =
-        sessionStorage.getItem('operator_username');
-
-    const role =
-        sessionStorage.getItem('operator_role');
-
-    /*
-     * PUBLIK TIDAK BOLEH MEMBUKA FORM
-     */
-    if (
-        !token ||
-        !username ||
-        role !== 'OPERATOR'
-    ) {
+    if (!token || !username || role !== "OPERATOR") {
         alert(
             "❌ Akses ditolak.\n\n" +
             "Fitur Tambah Sarpras Baru hanya dapat digunakan oleh Operator."
@@ -6028,14 +6664,7 @@ function openInputModal() {
         return;
     }
 
-    /*
-     * SESSION OPERATOR TERSEDIA
-     * BUKA MODAL INPUT
-     */
-    const modal =
-        document.getElementById(
-            'modalInputSarpras'
-        );
+    const modal = document.getElementById("modalInputSarpras");
 
     if (!modal) {
         console.error(
@@ -6044,16 +6673,32 @@ function openInputModal() {
         return;
     }
 
-    modal.style.display = 'flex';
+    // KUNCI PERBAIKAN: bersihkan form sebelum menampilkannya.
+    resetFormTambahSarpras();
+
+    modal.style.display = "flex";
 }
 
+
+// ===================================================================
+// TUTUP MODAL
+// ===================================================================
 
 function closeInputModal() {
-    document.getElementById(
-        'modalInputSarpras'
-    ).style.display = 'none';
+    const modal = document.getElementById("modalInputSarpras");
+
+    if (modal) {
+        modal.style.display = "none";
+    }
+
+    // Reset state supaya Edit/Update tidak terbawa ke sesi berikutnya.
+    resetFormTambahSarpras();
 }
 
+
+// ===================================================================
+// STATE FOTO DAN PROSES PENYIMPANAN
+// ===================================================================
 
 let sedangMenyimpanData = false;
 
@@ -6063,54 +6708,72 @@ let fotoHasilKompresi = {
     type: ""
 };
 
+
+// ===================================================================
+// BUKA KAMERA
+// ===================================================================
+
 function bukaKamera() {
-    const input = document.getElementById('inputFoto');
+    const input = document.getElementById("inputFoto");
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
-    input.setAttribute('capture', 'environment');
-    input.value = '';
+    input.setAttribute("capture", "environment");
+    input.value = "";
     input.click();
 }
+
+
+// ===================================================================
+// BUKA GALERI
+// ===================================================================
 
 function bukaGaleri() {
-    const input = document.getElementById('inputFoto');
+    const input = document.getElementById("inputFoto");
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
-    input.removeAttribute('capture');
-    input.value = '';
+    input.removeAttribute("capture");
+    input.value = "";
     input.click();
 }
+
+
+// ===================================================================
+// PROSES DAN KOMPRESI FOTO
+// ===================================================================
 
 function prosesFotoInput(input) {
     const file = input.files && input.files[0];
 
-    if (!file) return;
-
-    if (!file.type || !file.type.startsWith('image/')) {
-        alert("❌ File yang dipilih harus berupa foto/gambar.");
-        input.value = '';
+    if (!file) {
         return;
     }
 
-    const status = document.getElementById('fotoStatus');
-    const previewWrap = document.getElementById('fotoPreviewWrap');
-    const preview = document.getElementById('fotoPreview');
+    if (!file.type || !file.type.startsWith("image/")) {
+        alert("❌ File yang dipilih harus berupa foto/gambar.");
+        input.value = "";
+        return;
+    }
+
+    const status = document.getElementById("fotoStatus");
+    const previewWrap = document.getElementById("fotoPreviewWrap");
+    const preview = document.getElementById("fotoPreview");
 
     if (status) {
-        status.textContent =
-            '⏳ Memproses dan mengompresi foto...';
+        status.textContent = "⏳ Memproses dan mengompresi foto...";
     }
 
     const reader = new FileReader();
 
-    reader.onload = function(e) {
-
+    reader.onload = function (e) {
         const img = new Image();
 
-        img.onload = function() {
-
+        img.onload = function () {
             const maxWidth = 1600;
             const maxHeight = 1600;
 
@@ -6123,70 +6786,48 @@ function prosesFotoInput(input) {
                 maxHeight / height
             );
 
-            width = Math.max(
-                1,
-                Math.round(width * scale)
-            );
+            width = Math.max(1, Math.round(width * scale));
+            height = Math.max(1, Math.round(height * scale));
 
-            height = Math.max(
-                1,
-                Math.round(height * scale)
-            );
-
-            const canvas =
-                document.createElement('canvas');
-
+            const canvas = document.createElement("canvas");
             canvas.width = width;
             canvas.height = height;
 
-            const ctx =
-                canvas.getContext(
-                    '2d',
-                    {alpha:false}
-                );
+            const ctx = canvas.getContext("2d", {
+                alpha: false
+            });
 
-            ctx.drawImage(
-                img,
-                0,
-                0,
-                width,
-                height
-            );
+            if (!ctx) {
+                if (status) {
+                    status.textContent = "❌ Browser gagal memproses foto.";
+                }
+
+                alert("❌ Browser tidak dapat memproses foto ini.");
+                return;
+            }
+
+            ctx.drawImage(img, 0, 0, width, height);
 
             let quality = 0.78;
+            let compressedData = canvas.toDataURL("image/jpeg", quality);
 
-            let compressedData =
-                canvas.toDataURL(
-                    'image/jpeg',
-                    quality
-                );
-
-            const targetBytes =
-                1024 * 1024;
-
+            const targetBytes = 1024 * 1024;
             let percobaan = 0;
 
             while (
-                dataUrlBytes_(compressedData) >
-                    targetBytes &&
+                dataUrlBytes_(compressedData) > targetBytes &&
                 quality > 0.55 &&
                 percobaan < 4
             ) {
                 quality -= 0.06;
-
-                compressedData =
-                    canvas.toDataURL(
-                        'image/jpeg',
-                        quality
-                    );
-
+                compressedData = canvas.toDataURL("image/jpeg", quality);
                 percobaan++;
             }
 
             fotoHasilKompresi = {
                 base64: compressedData,
                 name: buatNamaFotoKompresi_(file.name),
-                type: 'image/jpeg'
+                type: "image/jpeg"
             };
 
             if (preview) {
@@ -6194,28 +6835,21 @@ function prosesFotoInput(input) {
             }
 
             if (previewWrap) {
-                previewWrap.style.display = 'block';
+                previewWrap.style.display = "block";
             }
 
-            const ukuranAsli =
-                formatUkuranFile_(file.size);
-
-            const ukuranHasil =
-                formatUkuranFile_(
-                    dataUrlBytes_(compressedData)
-                );
+            const ukuranAsli = formatUkuranFile_(file.size);
+            const ukuranHasil = formatUkuranFile_(
+                dataUrlBytes_(compressedData)
+            );
 
             if (status) {
                 status.textContent =
-                    '✅ Foto siap. ' +
-                    ukuranAsli +
-                    ' → ' +
-                    ukuranHasil;
+                    "✅ Foto siap. " + ukuranAsli + " → " + ukuranHasil;
             }
         };
 
-        img.onerror = function() {
-
+        img.onerror = function () {
             fotoHasilKompresi = {
                 base64: "",
                 name: "",
@@ -6223,8 +6857,7 @@ function prosesFotoInput(input) {
             };
 
             if (status) {
-                status.textContent =
-                    '❌ Foto tidak dapat diproses.';
+                status.textContent = "❌ Foto tidak dapat diproses.";
             }
 
             alert(
@@ -6236,8 +6869,7 @@ function prosesFotoInput(input) {
         img.src = e.target.result;
     };
 
-    reader.onerror = function() {
-
+    reader.onerror = function () {
         fotoHasilKompresi = {
             base64: "",
             name: "",
@@ -6245,74 +6877,383 @@ function prosesFotoInput(input) {
         };
 
         if (status) {
-            status.textContent =
-                '❌ Gagal membaca foto.';
+            status.textContent = "❌ Gagal membaca foto.";
         }
 
-        alert(
-            "❌ Gagal membaca file foto."
-        );
+        alert("❌ Gagal membaca file foto.");
     };
 
     reader.readAsDataURL(file);
 }
 
+
+// ===================================================================
+// HELPER UKURAN FOTO
+// ===================================================================
+
 function dataUrlBytes_(dataUrl) {
+    if (!dataUrl) {
+        return 0;
+    }
 
-    if (!dataUrl) return 0;
+    const base64 = dataUrl.split(",")[1] || "";
 
-    const base64 =
-        dataUrl.split(',')[1] || '';
-
-    return Math.floor(
-        base64.length * 3 / 4
-    );
+    return Math.floor(base64.length * 3 / 4);
 }
 
-function formatUkuranFile_(bytes) {
 
+function formatUkuranFile_(bytes) {
     if (!bytes || bytes < 1024) {
-        return (bytes || 0) + ' B';
+        return (bytes || 0) + " B";
     }
 
     if (bytes < 1024 * 1024) {
-        return (
-            bytes / 1024
-        ).toFixed(0) + ' KB';
+        return (bytes / 1024).toFixed(0) + " KB";
     }
 
-    return (
-        bytes / (1024 * 1024)
-    ).toFixed(2) + ' MB';
+    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
 }
+
 
 function buatNamaFotoKompresi_(namaAsli) {
+    const nama = String(namaAsli || "foto_sarpras")
+        .replace(/\.[^/.]+$/, "")
+        .replace(/[^a-zA-Z0-9_-]/g, "_");
 
-    const nama =
-        String(
-            namaAsli || 'foto_sarpras'
-        )
-        .replace(/\.[^/.]+$/, '')
-        .replace(
-            /[^a-zA-Z0-9_-]/g,
-            '_'
-        );
-
-    return nama + '_kompres.jpg';
+    return nama + "_kompres.jpg";
 }
+/* =====================================================
+   MODE FORMULIR SARPRAS
+   ===================================================== */
+
+/* =====================================================
+   HELPER: MENGAMBIL NILAI DARI BERBAGAI FORMAT DATA
+   ===================================================== */
+
+function nilaiSarpras(data, ...namaKolom) {
+    for (const nama of namaKolom) {
+        if (
+            data &&
+            data[nama] !== undefined &&
+            data[nama] !== null &&
+            data[nama] !== ""
+        ) {
+            return data[nama];
+        }
+    }
+
+    return "";
+}
+
+
+/* =====================================================
+   HELPER: MENGISI NILAI KE INPUT FORMULIR
+   ===================================================== */
+
+function isiNilaiForm(idElemen, nilai) {
+    const elemen = document.getElementById(idElemen);
+
+    if (!elemen) {
+        return;
+    }
+
+    elemen.value =
+        nilai === null || nilai === undefined
+            ? ""
+            : String(nilai);
+}
+
+
+/* =====================================================
+   HELPER: MEMBUKA MODAL EDIT / UPDATE
+   ===================================================== */
+
+function bukaModalAksiSarpras(data, mode) {
+    if (!data) {
+        alert("Data sarpras tidak ditemukan.");
+        return;
+    }
+
+    if (window.operatorLogin !== true) {
+        alert("Silakan login sebagai operator terlebih dahulu.");
+        return;
+    }
+
+    if (mode !== "edit" && mode !== "update") {
+        alert("Mode aksi tidak valid.");
+        return;
+    }
+
+    const modal = document.getElementById("modalInputSarpras");
+
+    if (!modal) {
+        alert(
+            'Modal dengan id="modalInputSarpras" tidak ditemukan. ' +
+            "Pastikan ID modal sesuai dengan HTML."
+        );
+        return;
+    }
+
+    const idData = String(
+        nilaiSarpras(
+            data,
+            "id",
+            "ID Sarpras",
+            "idSarpras"
+        ) || ""
+    ).trim();
+
+    if (!idData) {
+        alert("ID Sarpras tidak ditemukan pada data yang dipilih.");
+        return;
+    }
+
+    /* SIMPAN MODE DAN IDENTITAS ASLI */
+    modeAksiSarpras = mode;
+    idSarprasAsli = idData;
+
+    fotoLamaSarpras = String(
+        nilaiSarpras(
+            data,
+            "foto",
+            "Foto Sarpras",
+            "fotoSarpras"
+        ) || ""
+    ).trim();
+
+    /* ISI FORMULIR DENGAN DATA YANG DIPILIH */
+    isiFormModalSarpras(data);
+
+    /* KUNCI IDENTITAS HANYA SAAT MODE UPDATE */
+    const identitasSarpras = [
+        "inputID",
+        "inputJenis",
+        "inputDesa",
+        "inputRW",
+        "inputRT",
+        "inputNoSeri"
+    ];
+
+    identitasSarpras.forEach(id => {
+        const elemen = document.getElementById(id);
+
+        if (!elemen) return;
+
+        // Pulihkan kondisi awal terlebih dahulu.
+        elemen.readOnly = false;
+        elemen.disabled = false;
+
+        if (mode === "update") {
+            // Mencegah perubahan identitas saat Update.
+            elemen.readOnly = true;
+            elemen.disabled = true;
+        }
+    });
+
+    /* TAMPILKAN FOTO LAMA JIKA URL FOTO TERSEDIA */
+    const previewWrap = document.getElementById("fotoPreviewWrap");
+    const previewImg = document.getElementById("fotoPreview");
+    const fotoStatus = document.getElementById("fotoStatus");
+
+    if (previewWrap && previewImg) {
+        if (fotoLamaSarpras) {
+            previewImg.src = fotoLamaSarpras;
+            previewImg.alt = "Foto kondisi sarpras sebelumnya";
+            previewWrap.style.display = "block";
+
+            if (fotoStatus) {
+                fotoStatus.textContent =
+                    "Foto lama tersedia. Pilih foto baru hanya jika ingin menggantinya.";
+            }
+
+            // Jika gambar gagal dimuat, sembunyikan pratinjau.
+            previewImg.onerror = function () {
+                previewWrap.style.display = "none";
+
+                if (fotoStatus) {
+                    fotoStatus.textContent =
+                        "Foto lama tidak dapat ditampilkan. Foto lama tetap dipertahankan jika tidak memilih foto baru.";
+                }
+            };
+        } else {
+            previewImg.removeAttribute("src");
+            previewWrap.style.display = "none";
+
+            if (fotoStatus) {
+                fotoStatus.textContent =
+                    "Tidak ada foto lama yang tersedia. Pilih foto jika ingin menambahkan foto.";
+            }
+        }
+    }
+
+    /* TAMPILKAN MODAL */
+    modal.style.display = "flex";
+
+    /* SESUAIKAN TEKS TOMBOL SIMPAN */
+    const tombolSimpan = modal.querySelector(
+        'button[type="submit"], input[type="submit"]'
+    );
+
+    if (tombolSimpan) {
+        const teksTombol =
+            mode === "edit"
+                ? "✏️ Simpan Perubahan"
+                : "🔄 Update Kondisi";
+
+        if (tombolSimpan.tagName === "INPUT") {
+            tombolSimpan.value = teksTombol;
+        } else {
+            tombolSimpan.textContent = teksTombol;
+        }
+    }
+}
+
+
+/* =====================================================
+   FUNGSI PEMBUKA MODAL EDIT
+   ===================================================== */
+
+function editSarprasDariTabel(index) {
+    const data =
+        typeof dataSarprasUntukAksi !== "undefined"
+            ? dataSarprasUntukAksi[index]
+            : null;
+
+    bukaModalAksiSarpras(data, "edit");
+}
+
+
+/* =====================================================
+   FUNGSI PEMBUKA MODAL UPDATE
+   ===================================================== */
+
+function updateSarprasDariTabel(index) {
+    const data =
+        typeof dataSarprasUntukAksi !== "undefined"
+            ? dataSarprasUntukAksi[index]
+            : null;
+
+    bukaModalAksiSarpras(data, "update");
+}
+
+/* =====================================================
+   FUNGSI PENGISIAN FORMULIR SARPRAS
+   ===================================================== */
+
+function isiFormModalSarpras(data) {
+    if (!data) return;
+
+    const ambil = (...kolom) => nilaiSarpras(data, ...kolom);
+
+    // Identitas dan lokasi
+    isiNilaiForm("inputJenis", ambil("jenis", "Jenis Sarpras"));
+    isiNilaiForm("inputDesa", ambil("desa", "Desa/Negeri/Kelurahan"));
+    isiNilaiForm("inputRW", ambil("rw", "RW"));
+    isiNilaiForm("inputRT", ambil("rt", "RT"));
+    isiNilaiForm("inputNoSeri", ambil("noSeri", "Nomor Seri"));
+    isiNilaiForm("inputID", ambil("id", "ID Sarpras", "idSarpras"));
+    isiNilaiForm("inputLokasiDetail", ambil("lokasiDetail", "Lokasi Detail", "lokasi"));
+
+    // Koordinat
+    const latitude = ambil("latitude", "Latitude", "lat");
+    const longitude = ambil("longitude", "Longitude", "lng", "lon");
+    const koordinatTersimpan = ambil("koordinat", "Koordinat");
+
+    let koordinat = "";
+
+    if (latitude !== "" && longitude !== "") {
+        koordinat = `${latitude}, ${longitude}`;
+    } else if (koordinatTersimpan !== "") {
+        koordinat = String(koordinatTersimpan);
+    }
+
+    isiNilaiForm("inputKoordinat", koordinat);
+
+    // Kondisi dan ukuran
+    isiNilaiForm("inputKondisi", ambil("kondisi", "Kondisi"));
+    isiNilaiForm("inputPanjang", ambil("panjang", "Panjang (m)"));
+    isiNilaiForm("inputLuas", ambil("luas", "Luas (m²)", "Luas (m2)"));
+    isiNilaiForm("inputUnit", ambil("unit", "Unit"));
+    isiNilaiForm("inputTahun", ambil("tahun", "Waktu Pembangunan"));
+    isiNilaiForm("inputAnggaran", ambil("anggaran", "Sumber Anggaran"));
+    isiNilaiForm("inputOperator", ambil("operator", "Nama Operator"));
+
+    // Tampilkan foto lama, jika URL foto tersedia.
+    const fotoLama = String(
+        fotoLamaSarpras ||
+        ambil("foto", "Foto Sarpras", "fotoSarpras", "Foto") ||
+        ""
+    ).trim();
+
+    const previewWrap = document.getElementById("fotoPreviewWrap");
+    const previewImg = document.getElementById("fotoPreview");
+    const fotoStatusEl = document.getElementById("fotoStatus");
+
+    if (previewImg && previewWrap) {
+        if (fotoLama) {
+            previewImg.src = fotoLama;
+            previewWrap.style.display = "block";
+
+            if (fotoStatusEl) {
+                fotoStatusEl.textContent =
+                    "Foto lama ditampilkan. Pilih foto baru jika ingin menggantinya.";
+            }
+
+            previewImg.onerror = function () {
+                previewWrap.style.display = "none";
+
+                if (fotoStatusEl) {
+                    fotoStatusEl.textContent =
+                        "URL foto lama tersedia, tetapi gambar gagal ditampilkan.";
+                }
+            };
+        } else {
+            previewImg.removeAttribute("src");
+            previewWrap.style.display = "none";
+
+            if (fotoStatusEl) {
+                fotoStatusEl.textContent =
+                    "Belum ada foto lama. Anda dapat memilih foto baru.";
+            }
+        }
+    }
+
+    // Kosongkan pilihan file sebelumnya.
+    const inputFoto = document.getElementById("inputFoto");
+    if (inputFoto) inputFoto.value = "";
+
+    // Hapus hasil kompresi sebelumnya agar tidak mengirim foto yang salah.
+    if (typeof fotoHasilKompresi !== "undefined") {
+        fotoHasilKompresi = null;
+    }
+
+    // Perbarui ID/tampilan kondisional bila fungsi tersedia.
+    if (typeof updateIDDanKondisional === "function") {
+        updateIDDanKondisional();
+    }
+}
+
+
+/* =====================================================
+   FUNGSI SIMPAN / EDIT / UPDATE SARPRAS
+   ===================================================== */
 
 function submitDataBaru(event) {
     event.preventDefault();
 
     if (sedangMenyimpanData) return;
 
-    /*
-     * CEK SESSION OPERATOR
-     */
-    const operatorToken =
-        sessionStorage.getItem(
-            'operator_token'
-        );
+    const mode =
+        typeof modeAksiSarpras !== "undefined" && modeAksiSarpras
+            ? modeAksiSarpras
+            : "save";
+
+    if (!["save", "edit", "update"].includes(mode)) {
+        alert("❌ Mode aksi sarpras tidak valid.");
+        return;
+    }
+
+    const operatorToken = sessionStorage.getItem("operator_token");
 
     if (!operatorToken) {
         alert(
@@ -6322,393 +7263,243 @@ function submitDataBaru(event) {
         return;
     }
 
-    let form = event.target;
+    const form = event.target;
+    const tombolSimpan = form.querySelector('button[type="submit"], input[type="submit"]');
+    const tombolBatal = form.querySelector('button[type="button"]');
 
-    let tombolSimpan =
-        form.querySelector(
-            'button[type="submit"]'
-        );
+    const originalId =
+        typeof idSarprasAsli !== "undefined"
+            ? String(idSarprasAsli || "").trim()
+            : "";
 
-    let tombolBatal =
-        form.querySelector(
-            'button[type="button"]'
+    if (mode !== "save" && !originalId) {
+        alert(
+            "❌ ID Sarpras asli tidak ditemukan.\n\n" +
+            "Tutup formulir, lalu pilih data dari tabel kembali."
         );
+        return;
+    }
+
+    const ambilInput = (id) => {
+        const el = document.getElementById(id);
+        return el ? String(el.value || "").trim() : "";
+    };
+
+    const jenis = ambilInput("inputJenis");
+    const desa = ambilInput("inputDesa");
+
+    // Simpan nilai ID sebelum mengirim data.
+    const idForm = ambilInput("inputID");
+
+    // Pada UPDATE, identitas harus tetap sama dengan data asli.
+    if (mode === "update" && idForm !== originalId) {
+        alert(
+            "❌ ID Sarpras tidak boleh berubah saat Update.\n" +
+            "Gunakan Edit jika ingin mengubah identitas."
+        );
+        return;
+    }
+
+    const namaOperator = ambilInput("inputOperator");
+
+    if (!namaOperator) {
+        alert("❌ Nama Operator wajib diisi.");
+        return;
+    }
+
+    const fileInput = document.getElementById("inputFoto");
+    const file =
+        fileInput && fileInput.files && fileInput.files.length
+            ? fileInput.files[0]
+            : null;
+
+    const teksTombolAwal =
+        mode === "edit"
+            ? "✏️ Simpan Perubahan"
+            : mode === "update"
+                ? "🔄 Update Kondisi"
+                : "💾 Simpan Data";
+
+    function resetTombol() {
+        sedangMenyimpanData = false;
+
+        if (tombolSimpan) {
+            tombolSimpan.disabled = false;
+
+            if (tombolSimpan.tagName === "INPUT") {
+                tombolSimpan.value = teksTombolAwal;
+            } else {
+                tombolSimpan.textContent = teksTombolAwal;
+            }
+
+            tombolSimpan.style.opacity = "1";
+            tombolSimpan.style.cursor = "pointer";
+        }
+
+        if (tombolBatal) {
+            tombolBatal.disabled = false;
+            tombolBatal.style.opacity = "1";
+            tombolBatal.style.cursor = "pointer";
+        }
+    }
 
     sedangMenyimpanData = true;
 
     if (tombolSimpan) {
         tombolSimpan.disabled = true;
-        tombolSimpan.textContent =
-            '⏳ Menyimpan...';
-        tombolSimpan.style.opacity =
-            '0.6';
-        tombolSimpan.style.cursor =
-            'not-allowed';
+
+        if (tombolSimpan.tagName === "INPUT") {
+            tombolSimpan.value = "Memproses...";
+        } else {
+            tombolSimpan.textContent = "⏳ Memproses...";
+        }
+
+        tombolSimpan.style.opacity = "0.6";
+        tombolSimpan.style.cursor = "not-allowed";
     }
 
     if (tombolBatal) {
         tombolBatal.disabled = true;
-        tombolBatal.style.opacity =
-            '0.5';
-        tombolBatal.style.cursor =
-            'not-allowed';
+        tombolBatal.style.opacity = "0.5";
+        tombolBatal.style.cursor = "not-allowed";
     }
 
-    let jenis =
-        document.getElementById(
-            'inputJenis'
-        ).value;
+    function kirimData(base64Data, fileName, fileType) {
+        const payload = {
+            action: mode,
+            originalId: mode === "save" ? "" : originalId,
+            token: operatorToken,
 
-    let desa =
-        document.getElementById(
-            'inputDesa'
-        ).value;
+            id: ambilInput("inputID"),
+            noSeri: ambilInput("inputNoSeri"),
+            jenis: jenis,
+            kodeJenis: kodeJenisMap[jenis] || "",
+            desa: desa,
+            kodeDesa: kodeDesaMap[desa] || "",
+            rw: ambilInput("inputRW"),
+            rt: ambilInput("inputRT"),
 
-    let kodeJ =
-        kodeJenisMap[jenis] || "";
+            lokasiDetail: ambilInput("inputLokasiDetail"),
+            koordinat: ambilInput("inputKoordinat"),
+            kondisi: ambilInput("inputKondisi"),
+            panjang: ambilInput("inputPanjang"),
+            luas: ambilInput("inputLuas"),
+            unit: ambilInput("inputUnit") || 1,
+            tahun: ambilInput("inputTahun"),
+            anggaran: ambilInput("inputAnggaran"),
+            operator: namaOperator,
 
-    let kodeD =
-        kodeDesaMap[desa] || "";
+            // Jika tidak ada foto baru, backend harus mempertahankan foto lama.
+            fotoBase64: base64Data || "",
+            fotoName: fileName || "",
+            fotoType: fileType || ""
+        };
 
-    let fileInput =
-        document.getElementById(
-            'inputFoto'
-        );
+        if (mode !== "save" && !payload.originalId) {
+            resetTombol();
+            alert("❌ ID Sarpras asli tidak tersedia.");
+            return;
+        }
 
-    let file =
-        fileInput.files[0];
+        if (mode === "update" && payload.id !== payload.originalId) {
+            resetTombol();
+            alert("❌ ID Sarpras tidak boleh berubah saat Update.");
+            return;
+        }
 
-/*
- * NAMA OPERATOR DIAMBIL DARI FORM
- */
-let namaOperator =
-    document.getElementById(
-        'inputOperator'
-    ).value.trim();
+        // URL harus berupa string biasa, bukan tautan Markdown.
+        const scriptURL =
+            "https://script.google.com/macros/s/AKfycbwv4jXPP9O7RLePcufCxis7yTWoJuAlVRoTnqHjlvMs2OqBZJVXRjTtdlsLQlewPSDqxw/exec";
 
-/*
- * CEK NAMA OPERATOR
- */
-if (!namaOperator) {
-    sedangMenyimpanData = false;
-
-    if (tombolSimpan) {
-        tombolSimpan.disabled = false;
-        tombolSimpan.textContent =
-            '💾 Simpan Data';
-        tombolSimpan.style.opacity =
-            '1';
-        tombolSimpan.style.cursor =
-            'pointer';
-    }
-
-    if (tombolBatal) {
-        tombolBatal.disabled = false;
-        tombolBatal.style.opacity =
-            '1';
-        tombolBatal.style.cursor =
-            'pointer';
-    }
-
-    alert(
-        "❌ Nama Operator wajib diisi."
-    );
-
-    return;
-}
-
-
-function resetTombol() {
-    sedangMenyimpanData = false;
-
-    if (tombolSimpan) {
-        tombolSimpan.disabled = false;
-        tombolSimpan.textContent =
-            '💾 Simpan Data';
-        tombolSimpan.style.opacity =
-            '1';
-        tombolSimpan.style.cursor =
-            'pointer';
-    }
-
-    if (tombolBatal) {
-        tombolBatal.disabled = false;
-        tombolBatal.style.opacity =
-            '1';
-        tombolBatal.style.cursor =
-            'pointer';
-    }
-}
-
-
-function kirimData(
-    base64Data,
-    fileName,
-    fileType
-) {
-    const payload = {
-
-        /*
-         * AKSI
-         */
-        action: "save",
-
-        /*
-         * TOKEN SESSION OPERATOR
-         */
-        token: operatorToken,
-
-        /*
-         * DATA SARPRAS
-         */
-        id:
-            document.getElementById(
-                'inputID'
-            ).value,
-
-        noSeri:
-            document.getElementById(
-                'inputNoSeri'
-            ).value,
-
-        jenis:
-            jenis,
-
-        kodeJenis:
-            kodeJ,
-
-        desa:
-            desa,
-
-        kodeDesa:
-            kodeD,
-
-        rw:
-            document.getElementById(
-                'inputRW'
-            ).value,
-
-        rt:
-            document.getElementById(
-                'inputRT'
-            ).value,
-
-        lokasiDetail:
-            document.getElementById(
-                'inputLokasiDetail'
-            ).value,
-
-        koordinat:
-            document.getElementById(
-                'inputKoordinat'
-            ).value,
-
-        kondisi:
-            document.getElementById(
-                'inputKondisi'
-            ).value,
-
-        panjang:
-            document.getElementById(
-                'inputPanjang'
-            ).value || "",
-
-        luas:
-            document.getElementById(
-                'inputLuas'
-            ).value || "",
-
-        unit:
-            document.getElementById(
-                'inputUnit'
-            ).value || 1,
-
-        tahun:
-            document.getElementById(
-                'inputTahun'
-            ).value,
-
-        anggaran:
-            document.getElementById(
-                'inputAnggaran'
-            ).value,
-
-        /*
-         * NAMA OPERATOR DARI FORM
-         */
-        operator:
-            namaOperator,
-
-        /*
-         * FOTO
-         */
-        fotoBase64:
-            base64Data,
-
-        fotoName:
-            fileName,
-
-        fotoType:
-            fileType
-    };
-
-
-    const scriptURL =
-        'https://script.google.com/macros/s/AKfycbwtHNjKn4bTtR5fDYU09amBlo2Pc_1dp3h_vBqZFs7joDB6I2Ov8cH30cx_LjhIBaxcmA/exec';
-
-
-    fetch(
-        scriptURL,
-        {
-            method: 'POST',
+        fetch(scriptURL, {
+            method: "POST",
             body: JSON.stringify(payload)
-        }
-    )
-
-    .then(response => {
-
-        if (!response.ok) {
-            throw new Error(
-                'Server HTTP ' +
-                response.status
-            );
-        }
-
-        return response.json();
-    })
-
-    .then(data => {
-
-        if (
-            data.status === "success"
-        ) {
-
-            if (tombolSimpan) {
-                tombolSimpan.textContent =
-                    '✅ Tersimpan';
-
-                tombolSimpan.style.background =
-                    '#16a34a';
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Server HTTP " + response.status);
             }
 
-            alert(
-                "Data berhasil disimpan dan foto berhasil diproses."
-            );
+            return response.json();
+        })
+        .then((hasil) => {
+            if (hasil.status !== "success") {
+                const pesanServer = String(hasil.message || "");
 
-            if (
-                typeof closeInputModal ===
-                'function'
-            ) {
+                if (
+                    pesanServer.includes("Session") ||
+                    pesanServer.includes("Akses ditolak")
+                ) {
+                    sessionStorage.removeItem("operator_token");
+                    sessionStorage.removeItem("operator_username");
+                    sessionStorage.removeItem("operator_role");
+                }
+
+                throw new Error(
+                    hasil.message || "Data gagal diproses oleh server."
+                );
+            }
+
+            const pesanBerhasil =
+                mode === "edit"
+                    ? "Data sarpras berhasil diedit."
+                    : mode === "update"
+                        ? "Riwayat kondisi berhasil ditambahkan dan data terkini diperbarui."
+                        : "Data sarpras berhasil disimpan.";
+
+            const pesanFoto =
+                hasil.fotoStatus === "gagal"
+                    ? "\n\n⚠️ Data tersimpan, tetapi foto baru gagal diunggah."
+                    : hasil.fotoStatus === "tidak_diubah"
+                        ? "\nFoto lama dipertahankan atau tidak ada foto baru."
+                        : "";
+
+            alert(pesanBerhasil + pesanFoto);
+
+            if (typeof closeInputModal === "function") {
                 closeInputModal();
             }
 
             location.reload();
+        })
+        .catch((error) => {
+            console.error("Error proses sarpras:", error);
+            resetTombol();
 
-        } else {
-
-            /*
-             * SESSION INVALID / EXPIRED
-             */
-            if (
-                data.message &&
-                (
-                    data.message.indexOf(
-                        "Session"
-                    ) !== -1 ||
-                    data.message.indexOf(
-                        "Akses ditolak"
-                    ) !== -1
-                )
-            ) {
-
-                /*
-                 * HAPUS SESSION OPERATOR
-                 */
-                sessionStorage.removeItem(
-                    'operator_token'
-                );
-
-                sessionStorage.removeItem(
-                    'operator_username'
-                );
-
-                sessionStorage.removeItem(
-                    'operator_role'
-                );
-
-                throw new Error(
-                    "Session operator sudah tidak valid. Silakan login kembali."
-                );
-            }
-
-            throw new Error(
-                data.message ||
-                "Data gagal disimpan dari server."
+            alert(
+                "❌ Proses gagal.\n\n" +
+                error.message
             );
-        }
-    })
+        });
+    }
 
-    .catch(error => {
-
-        console.error(
-            'Error:',
-            error
-        );
-
-        resetTombol();
-
-        alert(
-            "❌ Data gagal disimpan.\n\n" +
-            error.message
-        );
-    });
-}
-    /*
-     * JIKA ADA FOTO
-     * FOTO SUDAH DIPROSES DAN DIKOMPRESI
-     * SAAT FOTO DIPILIH / DIAMBIL
-     */
+    // Jika pengguna memilih foto baru, kirim hasil kompresinya.
     if (file) {
-
-        /*
-         * CEK HASIL KOMPRESI
-         */
-        if (!fotoHasilKompresi.base64) {
-
+        if (
+            typeof fotoHasilKompresi === "undefined" ||
+            !fotoHasilKompresi ||
+            !fotoHasilKompresi.base64
+        ) {
             resetTombol();
 
             alert(
                 "❌ Foto belum selesai diproses.\n\n" +
-                "Tunggu sampai status foto menjadi 'Foto siap', " +
-                "kemudian klik Simpan Data kembali."
+                "Tunggu hingga foto selesai dikompresi, lalu coba kembali."
             );
-
             return;
         }
 
-        /*
-         * KIRIM FOTO HASIL KOMPRESI
-         */
         kirimData(
             fotoHasilKompresi.base64,
-            fotoHasilKompresi.name,
-            fotoHasilKompresi.type
+            fotoHasilKompresi.name || file.name,
+            fotoHasilKompresi.type || file.type
         );
-
     } else {
-
-        /*
-         * TANPA FOTO
-         * DATA TETAP DIKIRIM SEPERTI SEBELUMNYA
-         */
-        kirimData(
-            "",
-            "",
-            ""
-        );
+        // Tidak memilih foto baru: kirim payload tanpa foto baru.
+        // Backend wajib mempertahankan URL foto yang sudah tersimpan.
+        kirimData("", "", "");
     }
 }
-
 
 /* ================= RUN ENGINE SYSTEM ================= */
 window.addEventListener("DOMContentLoaded", () => {
