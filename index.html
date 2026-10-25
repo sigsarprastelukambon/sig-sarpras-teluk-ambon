@@ -1802,6 +1802,28 @@ body.menu-collapsed .page-container {
         overflow-wrap: anywhere;
     }
 
+    
+/* Perbaikan tabel Data Sarpras untuk tablet dan iPad */
+@media screen and (min-width: 769px) and (max-width: 1100px) {
+  #tabelUtamaSarpras {
+    width: 850px !important;
+    min-width: 850px !important;
+    max-width: none !important;
+    table-layout: fixed !important;
+  }
+}
+
+/* Pastikan tabel bisa digeser ke samping pada layar sentuh */
+#tabelUtamaSarpras {
+  flex-shrink: 0;
+}
+
+#tabelUtamaSarpras th,
+#tabelUtamaSarpras td {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
 
     /* =================================================
        3. DATA SARPRAS — PENCARIAN DAN TOMBOL
@@ -2198,6 +2220,7 @@ body.menu-collapsed .page-container {
     }
 }
 
+
 /* ==================================================
    DETAIL SARPRAS — LAYAR SANGAT SEMPIT
 ================================================== */
@@ -2231,7 +2254,9 @@ body.menu-collapsed .page-container {
     }
 }
 
-/* ===== PERBAIKAN PERMANEN MENU AKSI SARPRAS ===== */
+/* ==================================================
+   PERBAIKAN PERMANEN MENU AKSI SARPRAS
+================================================== */
 
 /* Kolom aksi tabel sarpras */
 #bodyTabelSarpras .kolom-aksi-sarpras {
@@ -2352,6 +2377,18 @@ body.menu-collapsed .page-container {
 }
 
 /* Efek hover tombol Edit dan Update */
+/* Tombol Hapus dibedakan dengan warna merah, Edit/Update tetap sama */
+#bodyTabelSarpras .menu-aksi-dropdown button.btn-hapus-sarpras {
+    color: #fecaca !important;
+    background: rgba(220, 38, 38, 0.12) !important;
+}
+
+#bodyTabelSarpras .menu-aksi-dropdown button.btn-hapus-sarpras:hover {
+    color: #ffffff !important;
+    background: rgba(220, 38, 38, 0.32) !important;
+    border-color: rgba(248, 113, 113, 0.65) !important;
+}
+
 #bodyTabelSarpras .menu-aksi-dropdown button:hover {
     background: rgba(0, 145, 255, 0.22) !important;
     border-color: rgba(0, 145, 255, 0.45) !important;
@@ -2374,6 +2411,500 @@ body.menu-collapsed .page-container {
         width: 32px !important;
         height: 32px !important;
         min-width: 32px !important;
+    }
+}
+
+
+
+
+/* =========================================================
+   SCROLL HORIZONTAL TABEL — HP, IPAD / TABLET, DAN LAPTOP
+   Fokus hanya pada area tabel; tidak mengubah layout dashboard.
+========================================================= */
+
+/* Data Sarpras: pembungkus tabel menjadi area geser horizontal */
+#dataPage .chart-card:has(> #tabelUtamaSarpras),
+#dataPage .chart-card:has(> table#tabelUtamaSarpras) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+}
+
+#dataPage #tabelUtamaSarpras {
+    display: table !important;
+    width: 1100px !important;
+    min-width: 1100px !important;
+    max-width: none !important;
+    table-layout: auto !important;
+    border-collapse: collapse;
+}
+
+#dataPage #tabelUtamaSarpras th,
+#dataPage #tabelUtamaSarpras td {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    vertical-align: top;
+}
+
+/* Laporan: setiap pembungkus tabel dapat digeser secara mandiri */
+#dokumenLaporan .tabel-laporan-scroll,
+#laporanPage .tabel-laporan-scroll,
+#dokumenLaporan .report-table-container,
+#laporanPage .report-table-container {
+    display: block !important;
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+}
+
+#dokumenLaporan .tabel-laporan-scroll > table,
+#laporanPage .tabel-laporan-scroll > table,
+#dokumenLaporan .report-table-container > table,
+#laporanPage .report-table-container > table {
+    width: max-content !important;
+    min-width: 650px !important;
+    max-width: none !important;
+    table-layout: auto !important;
+}
+
+/* Berlaku untuk seluruh ukuran tablet/iPad, termasuk lebar 768px */
+@media screen and (min-width: 601px) and (max-width: 1100px) {
+    #dataPage .chart-card:has(> #tabelUtamaSarpras),
+    #dataPage .chart-card:has(> table#tabelUtamaSarpras) {
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+        padding: 8px !important;
+    }
+
+    #dataPage #tabelUtamaSarpras {
+        width: 1100px !important;
+        min-width: 1100px !important;
+        table-layout: auto !important;
+    }
+
+    #dataPage #tabelUtamaSarpras th,
+    #dataPage #tabelUtamaSarpras td {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        line-height: 1.45 !important;
+    }
+}
+
+
+
+/* =====================================================
+   TAMPILAN TABLET SEPERTI HP
+   Dashboard satu kolom + navigasi bawah
+   Berlaku untuk tablet 601px sampai 1100px
+   Tidak mengubah layout laptop lebar atau HP yang sudah ada
+===================================================== */
+@media screen and (min-width: 601px) and (max-width: 1100px) {
+    /* Sidebar berubah menjadi navigasi bawah seperti HP */
+    #sidebarContainer.sidebar {
+        position: fixed !important;
+        top: auto !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 68px !important;
+        padding: 6px 10px !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        gap: 4px !important;
+        background: #081a33 !important;
+        border-top: 1px solid rgba(59, 130, 246, 0.45) !important;
+        border-right: none !important;
+        overflow: visible !important;
+        z-index: 20000 !important;
+    }
+
+    #sidebarContainer #toggleSidebarBtn {
+        display: none !important;
+    }
+
+    #sidebarContainer .sidebar-item {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        height: 54px !important;
+        margin: 0 !important;
+        padding: 4px 2px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 3px !important;
+        border: 1px solid transparent !important;
+        border-radius: 10px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        transform: none !important;
+        overflow: visible !important;
+    }
+
+    #sidebarContainer .sidebar-item::before {
+        display: none !important;
+    }
+
+    #sidebarContainer .sidebar-icon {
+        display: flex !important;
+        width: auto !important;
+        min-width: 0 !important;
+        height: 24px !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        font-size: 18px !important;
+        flex-shrink: 0 !important;
+    }
+
+    #sidebarContainer .sidebar-text {
+        display: block !important;
+        flex: initial !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+
+    #sidebarContainer .sidebar-item.active {
+        background: rgba(37, 99, 235, 0.2) !important;
+        border-color: rgba(96, 165, 250, 0.35) !important;
+        box-shadow: none !important;
+    }
+
+    #sidebarContainer .sidebar-item.active .sidebar-icon {
+        background: transparent !important;
+        color: #60a5fa !important;
+    }
+
+    #sidebarContainer #menuLogout {
+        display: none !important;
+    }
+
+    /* Area halaman menggunakan seluruh lebar di atas navigasi bawah */
+    .page-container,
+    body.menu-collapsed .page-container {
+        left: 0 !important;
+        width: 100% !important;
+        bottom: 68px !important;
+        padding: 10px !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    .page-content {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Penting: hilangkan ruang kanan yang disisihkan untuk panel desktop */
+    #dashboardPage {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* KPI ditampilkan vertikal seperti versi HP */
+    #dashboardPage .kpi {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        gap: 12px !important;
+    }
+
+    #dashboardPage .kpi-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        min-width: 0 !important;
+        width: 100% !important;
+        min-height: 76px !important;
+        padding: 14px 12px !important;
+        text-align: left !important;
+    }
+
+    #dashboardPage .kpi-card h2 {
+        font-size: 26px !important;
+    }
+
+    #dashboardPage .kpi-card p {
+        font-size: 12px !important;
+    }
+
+    /* Grafik dashboard satu kolom; cegah grafik terjepit */
+    #dashboardPage .chart-grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        gap: 16px !important;
+    }
+
+    #dashboardPage .chart-card,
+    #dashboardPage .dashboard-chart-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 320px !important;
+        max-height: none !important;
+        padding: 14px !important;
+        overflow: visible !important;
+        box-sizing: border-box !important;
+    }
+
+    #dashboardPage .chart-card canvas,
+    #dashboardPage .dashboard-chart-card canvas {
+        max-width: 100% !important;
+    }
+
+    /* Panel kanan dashboard (prioritas/detail) ikut alur halaman,
+       tidak menyisakan kolom sempit di samping grafik */
+    #dashboardPage > .dashboard-side-panel,
+    #dashboardPage .dashboard-side-panel,
+    #dashboardPage .dashboard-right-panel {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* Filter, kontrol, dan kartu lain tidak boleh memaksa lebar halaman */
+    #dashboardPage .chart-heading,
+    #dashboardPage .chart-heading-text,
+    #dashboardPage .chart-filter-control,
+    #dashboardPage .donut-layout,
+    #dashboardPage .donut-table-legend {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    #dashboardPage .donut-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    #dashboardPage .donut-canvas-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+
+
+
+/* =====================================================
+   KOREKSI TERARAH DASHBOARD TABLET
+   Panel Prioritas/Detail tidak boleh menimpa grafik
+   Berlaku untuk tablet dan iPad 601px–1100px
+===================================================== */
+@media screen and (min-width: 601px) and (max-width: 1100px) {
+    /* Nama kelas yang benar di HTML adalah .right-panel */
+    #dashboardPage .right-panel {
+        position: static !important;
+        inset: auto !important;
+        float: none !important;
+
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+
+        margin: 16px 0 0 !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+
+        border-left: none !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        z-index: auto !important;
+    }
+
+    #dashboardPage .right-panel .detail-box {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-wrap: anywhere;
+    }
+}
+
+
+
+/* =====================================================
+   KOREKSI TABEL LAPORAN — PENUHI AREA KIRI KE KANAN
+   Tabel lebar tetap dapat digeser pada layar sempit
+===================================================== */
+#dokumenLaporan {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#dokumenLaporan .tabel-laporan-scroll {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain !important;
+    touch-action: pan-x pan-y !important;
+}
+
+#dokumenLaporan .tabel-laporan-scroll > #tabelAnalisisPerubahan,
+#dokumenLaporan .tabel-laporan-scroll > .tabel-sarpras,
+#dokumenLaporan .tabel-laporan-scroll > .tabel-laporan-fiks {
+    display: table !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: none !important;
+    table-layout: auto !important;
+    border-collapse: collapse !important;
+    box-sizing: border-box !important;
+}
+
+#dokumenLaporan .tabel-laporan-scroll th,
+#dokumenLaporan .tabel-laporan-scroll td {
+    box-sizing: border-box !important;
+}
+
+/* Pada HP, tabel yang kolomnya banyak tetap bisa digeser */
+@media screen and (max-width: 600px) {
+    #dokumenLaporan .tabel-laporan-scroll > #tabelAnalisisPerubahan {
+        width: 600px !important;
+        min-width: 600px !important;
+    }
+
+    #dokumenLaporan .tabel-laporan-scroll > .tabel-sarpras {
+        width: 600px !important;
+        min-width: 600px !important;
+    }
+}
+
+
+
+/* =====================================================
+   JUDUL KOLOM TABEL DI TENGAH
+   Data Sarpras dan seluruh tabel pada halaman Laporan
+===================================================== */
+#dataPage #tabelUtamaSarpras thead th,
+#laporanPage table thead th,
+#dokumenLaporan table thead th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+
+/* =====================================================
+   KOREKSI DESKTOP / LAPTOP — TABEL DATA SARPRAS PENUH
+   Tablet dan HP tetap memakai scroll horizontal
+===================================================== */
+@media screen and (min-width: 1101px) {
+    #dataPage .chart-card:has(#tabelUtamaSarpras) {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: auto !important;
+    }
+
+    #dataPage #tabelUtamaSarpras {
+        display: table !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        table-layout: auto !important;
+        border-collapse: collapse !important;
+    }
+
+    #dataPage #tabelUtamaSarpras th,
+    #dataPage #tabelUtamaSarpras td {
+        box-sizing: border-box !important;
+        padding: 10px 8px !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        overflow-wrap: anywhere !important;
+        vertical-align: middle !important;
+    }
+
+    /* ID tetap terbaca, tetapi tidak mengambil ruang berlebihan */
+    #dataPage #tabelUtamaSarpras th:nth-child(2),
+    #dataPage #tabelUtamaSarpras td:nth-child(2) {
+        min-width: 95px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(3),
+    #dataPage #tabelUtamaSarpras td:nth-child(3) {
+        min-width: 110px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(4),
+    #dataPage #tabelUtamaSarpras td:nth-child(4) {
+        min-width: 95px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(5),
+    #dataPage #tabelUtamaSarpras td:nth-child(5) {
+        min-width: 95px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(6),
+    #dataPage #tabelUtamaSarpras td:nth-child(6) {
+        min-width: 140px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(7),
+    #dataPage #tabelUtamaSarpras td:nth-child(7) {
+        min-width: 85px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(8),
+    #dataPage #tabelUtamaSarpras td:nth-child(8) {
+        min-width: 95px;
+    }
+
+    #dataPage #tabelUtamaSarpras th:nth-child(9),
+    #dataPage #tabelUtamaSarpras td:nth-child(9) {
+        min-width: 60px;
+        text-align: center;
     }
 }
 
@@ -3159,6 +3690,7 @@ function updateLaporanEksekutif(dataParameter) {
                     <th>No</th>
                     <th>ID Sarpras</th>
                     <th>Jenis Sarpras</th>
+                    <th>Ukuran / Volume</th>
                     <th>Desa/Negeri</th>
                     <th>Lokasi Detail</th>
                     <th>Kondisi</th>
@@ -3170,7 +3702,7 @@ function updateLaporanEksekutif(dataParameter) {
             <tbody id="bodyTabelSarpras">
                 <tr>
                     <td
-                        colspan="8"
+                        colspan="9"
                         style="text-align:center; opacity:0.5; padding:20px;">
                         Memuat data tabular...
                     </td>
@@ -3386,6 +3918,7 @@ function updateLaporanEksekutif(dataParameter) {
         <option value="Rumah Dinas Raja">Rumah Dinas Raja</option>
         <option value="Rumah Adat">Rumah Adat</option>
         <option value="Balai Dusun">Balai Dusun</option>
+        <option value="Gapura">Gapura</option>
         <option value="Gasebo">Gasebo</option>
         <option value="Poskamling">Poskamling</option>
         <option value="Posyandu">Posyandu</option>
@@ -3396,6 +3929,7 @@ function updateLaporanEksekutif(dataParameter) {
         <option value="Jalan Tani">Jalan Tani</option>
         <option value="Jalan Akses Pesisir">Jalan Akses Pesisir</option>
         <option value="Jalan Permukiman">Jalan Permukiman</option>
+        <option value="Jembatan">Jembatan</option>
         <option value="Rumah Tidak Layak Huni">Rumah Tidak Layak Huni</option>
         <option value="Pipa Distribusi Air/Saluran">Pipa Distribusi Air/Saluran</option>
         <option value="Bak Penampung">Bak Penampung</option>
@@ -3484,12 +4018,12 @@ function updateLaporanEksekutif(dataParameter) {
 
             <!-- 9, 10, 11. Panjang, Luas, Unit (Kondisional) -->
             <div id="wrapperPanjang" style="margin-bottom:12px; display:none;">
-                <label style="display:block; margin-bottom:4px; font-size:12px; color:#94a3b8;">9. Panjang (meter) — <i>Hanya untuk jalan/talud/drainase</i></label>
+                <label style="display:block; margin-bottom:4px; font-size:12px; color:#94a3b8;">9. Panjang (meter) — <i>Hanya untuk jalan/jembatan/talud/drainase</i></label>
                 <input type="number" id="inputPanjang" placeholder="Contoh: 150" style="width:100%; padding:9px; background:#0f172a; border:1px solid #334155; border-radius:6px; color:#fff;">
             </div>
 
             <div id="wrapperLuas" style="margin-bottom:12px; display:none;">
-                <label style="display:block; margin-bottom:4px; font-size:12px; color:#94a3b8;">10. Luas (m²) — <i>Hanya untuk bangunan/gedung</i></label>
+                <label id="labelLuas" style="display:block; margin-bottom:4px; font-size:12px; color:#94a3b8;">10. Luas (m²) — <i>Hanya untuk bangunan/gedung</i></label>
                 <input type="number" id="inputLuas" placeholder="Contoh: 200" style="width:100%; padding:9px; background:#0f172a; border:1px solid #334155; border-radius:6px; color:#fff;">
             </div>
 
@@ -3656,6 +4190,7 @@ const kodeJenisMap = {
     "Rumah Dinas Raja": "RDR",
     "Rumah Adat": "RAD",
     "Balai Dusun": "BLD",
+    "Gapura": "GPR",
     "Gasebo": "GSB",
     "Poskamling": "PKM",
     "Posyandu": "PSY",
@@ -3666,6 +4201,7 @@ const kodeJenisMap = {
     "Jalan Tani": "JTN",
     "Jalan Akses Pesisir": "JAP",
     "Jalan Permukiman": "JPM",
+    "Jembatan": "JBT",
     "Rumah Tidak Layak Huni": "RTLH",
     "Pipa Distribusi Air/Saluran": "PDA",
     "Bak Penampung": "BPA",
@@ -3736,6 +4272,7 @@ function updateIDDanKondisional() {
         "Jalan Tani",
         "Jalan Akses Pesisir",
         "Jalan Permukiman",
+        "Jembatan",
         "Pipa Distribusi Air/Saluran",
         "Talud Pantai",
         "Talud Sungai",
@@ -3766,6 +4303,18 @@ function updateIDDanKondisional() {
         wrapperLuas.style.display =
             jenisBangunan.includes(jenis) ? "block" : "none";
     }
+    // Ubah label luas menjadi volume khusus Bak Penampung
+const labelLuas = document.getElementById("labelLuas");
+
+if (labelLuas) {
+    if (jenis === "Bak Penampung") {
+        labelLuas.innerHTML =
+            '10. Volume (m³) — <i>Kapasitas bak penampung</i>';
+    } else {
+        labelLuas.innerHTML =
+            '10. Luas (m²) — <i>Hanya untuk bangunan/gedung</i>';
+    }
+}
 }
 
 /* ================= EVENT LISTENER MODAL ================= */
@@ -3823,7 +4372,7 @@ pasangListenerFormSarpras();
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
-    const URL_API = "https://script.google.com/macros/s/AKfycbwv4jXPP9O7RLePcufCxis7yTWoJuAlVRoTnqHjlvMs2OqBZJVXRjTtdlsLQlewPSDqxw/exec";
+    const URL_API = "https://script.google.com/macros/s/AKfycbw-To4hxGj2J2TRW8lRFfjoJVbg6wokxjQEu1dhqefWPuRclukf5PIvkUGFFvaDpzuLWA/exec";
 
     /* ================= SINKRONISASI DATA LAPORAN EKSEKUTIF DINAMIS ================= */
 function muatDataLaporanEksekutif(dataAset) {
@@ -4345,6 +4894,7 @@ function buatHTMLDetailSarpras(row, foto) {
 
     /* SATUAN */
     const satuan = [];
+    const jenisSarpras = String(row["Jenis Sarpras"] || "").trim();
 
     const tambahSatuan = (kolom, satuanTeks = "") => {
         const value = row[kolom];
@@ -4362,8 +4912,25 @@ function buatHTMLDetailSarpras(row, foto) {
 
     tambahSatuan("Panjang (m)", "m");
     tambahSatuan("Unit", "Unit");
-    tambahSatuan("Luas (m²)", "m²");
-    tambahSatuan("Volume (m³)", "m³");
+
+    // Bak Penampung: nilai daripada kolom lama dipaparkan sebagai m³.
+    if (jenisSarpras === "Bak Penampung") {
+        const volumeBak = row["Luas (m²)"];
+
+        if (
+            volumeBak !== undefined &&
+            volumeBak !== null &&
+            String(volumeBak).trim() !== ""
+        ) {
+            satuan.push(`${nilai(volumeBak)} m³`);
+        } else {
+            tambahSatuan("Volume (m³)", "m³");
+        }
+    } else {
+        // Sarpras lain kekal menggunakan m².
+        tambahSatuan("Luas (m²)", "m²");
+        tambahSatuan("Volume (m³)", "m³");
+    }
 
     /*
      * Tanda titik dua menggunakan kolom tetap.
@@ -4692,6 +5259,48 @@ function tampilkanDataTabular(data) {
         return String(value);
     };
 
+    // Format ukuran utama dan jumlah unit untuk tabel.
+    const formatUkuranVolume = (row) => {
+        const jenis = String(row["Jenis Sarpras"] || "").trim();
+
+        const adaNilai = (value) =>
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== "";
+
+        const unit = row["Unit"];
+        const panjang = row["Panjang (m)"];
+        const luas = row["Luas (m²)"];
+        const volume = row["Volume (m³)"];
+
+        let ukuran = "";
+
+        if (jenis === "Bak Penampung") {
+            // Nilai bak masih tersimpan pada kolom Luas (m²).
+            const nilaiVolume = adaNilai(luas) ? luas : volume;
+
+            if (adaNilai(nilaiVolume)) {
+                ukuran = `${teks(nilaiVolume)} m³`;
+            }
+        } else if (adaNilai(panjang)) {
+            ukuran = `${teks(panjang)} m`;
+        } else if (adaNilai(luas)) {
+            ukuran = `${teks(luas)} m²`;
+        } else if (adaNilai(volume)) {
+            ukuran = `${teks(volume)} m³`;
+        }
+
+        const jumlahUnit = adaNilai(unit)
+            ? `${teks(unit)} Unit`
+            : "";
+
+        if (ukuran && jumlahUnit) {
+            return `${ukuran} · ${jumlahUnit}`;
+        }
+
+        return ukuran || jumlahUnit || "";
+    };
+
     // Helper mencegah data merusak struktur HTML.
     const escapeHTML = (value) => {
         return teks(value)
@@ -4744,6 +5353,8 @@ function tampilkanDataTabular(data) {
                 </td>
 
                 <td>${escapeHTML(row["Jenis Sarpras"])}</td>
+                
+                <td>${escapeHTML(formatUkuranVolume(row))}</td>
 
                 <td>${escapeHTML(row["Desa/Negeri/Kelurahan"])}</td>
 
@@ -4799,6 +5410,16 @@ function tampilkanDataTabular(data) {
                                 ↻ Update
                             </button>
 
+                            <button
+                                type="button"
+                                class="btn-hapus-sarpras"
+                                onclick="
+                                    hapusSarprasDariTabel(${index});
+                                    tutupMenuAksiSarpras(this);
+                                ">
+                                🗑️ Hapus
+                            </button>
+
                         </div>
                     </div>
                 </td>
@@ -4807,6 +5428,102 @@ function tampilkanDataTabular(data) {
     });
 
     tbody.innerHTML = html;
+}
+
+
+/* =====================================================
+   HAPUS SARPRAS — FRONTEND
+   Backend Apps Script harus mendukung action: "delete"
+   dan menghapus data utama + seluruh riwayat berdasarkan ID.
+===================================================== */
+async function hapusSarprasDariTabel(index) {
+    const data = Array.isArray(dataSarprasUntukAksi)
+        ? dataSarprasUntukAksi[index]
+        : null;
+
+    if (!data) {
+        alert("Data Sarpras tidak ditemukan. Muat ulang halaman lalu coba kembali.");
+        return;
+    }
+
+    const ambilID = (row) => String(
+        row["ID Sarpras"] ?? row.idSarpras ?? row.id ?? ""
+    ).trim();
+    const id = ambilID(data);
+
+    if (!id) {
+        alert("ID Sarpras tidak tersedia. Data tidak dapat dihapus dengan aman.");
+        return;
+    }
+
+    const token = sessionStorage.getItem("operator_token");
+    if (!token) {
+        alert("Sesi operator tidak ditemukan. Silakan login kembali.");
+        return;
+    }
+
+    const konfirmasi = window.confirm(
+        "KONFIRMASI HAPUS PERMANEN\n\n" +
+        "ID Sarpras: " + id + "\n\n" +
+        "Data utama dan seluruh riwayat Update dengan ID yang sama akan dihapus permanen.Tindakan ini tidak dapat dibatalkan.\n" +
+        "Apakah Anda yakin ingin melanjutkan?"
+    );
+    if (!konfirmasi) return;
+
+    const tombolAksi = document.querySelectorAll(
+        "#bodyTabelSarpras .btn-hapus-sarpras"
+    );
+    tombolAksi.forEach(tombol => {
+        tombol.disabled = true;
+        tombol.style.opacity = "0.6";
+        tombol.style.cursor = "wait";
+    });
+
+    try {
+        const scriptURL =
+            "https://script.google.com/macros/s/AKfycbw-To4hxGj2J2TRW8lRFfjoJVbg6wokxjQEu1dhqefWPuRclukf5PIvkUGFFvaDpzuLWA/exec";
+
+        const response = await fetch(scriptURL, {
+            method: "POST",
+            body: JSON.stringify({
+                action: "delete",
+                id: id,
+                originalId: id,
+                token: token
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("Server HTTP " + response.status);
+        }
+
+        const hasil = await response.json();
+        if (!hasil || hasil.status !== "success") {
+            throw new Error(
+                hasil && hasil.message
+                    ? hasil.message
+                    : "Backend belum mengonfirmasi penghapusan."
+            );
+        }
+
+        alert(
+            "Data Sarpras " + id +
+            " berhasil dihapus beserta data terkait yang ditangani server."
+        );
+        location.reload();
+    } catch (error) {
+        console.error("Gagal menghapus Sarpras:", error);
+        tombolAksi.forEach(tombol => {
+            tombol.disabled = false;
+            tombol.style.opacity = "1";
+            tombol.style.cursor = "pointer";
+        });
+        alert(
+            "Penghapusan gagal atau belum didukung oleh backend.\n\n" +
+            error.message +
+            "\n\nTidak ada status berhasil yang diasumsikan. Periksa kode Google Apps Script untuk memastikan action 'delete' menghapus sheet utama dan seluruh riwayat Update."
+        );
+    }
 }
 
 
@@ -6008,6 +6725,24 @@ async function eksekusiFilter(isDashboard, jenisAksi) {
         ? semuaData
         : [];
 
+    /*
+     * Jika teks pencarian sama persis dengan salah satu nama desa,
+     * perlakukan sebagai filter wilayah (bukan pencarian bebas ke
+     * kolom lokasi, ID, jenis, atau kondisi). Berlaku untuk Dashboard
+     * dan Peta GIS karena keduanya memakai eksekusiFilter().
+     */
+    const daftarDesaFilter = Array.from(
+        document.querySelectorAll("#filterDesa option, #filterDesaPeta option")
+    )
+        .map(option => String(option.value || "").trim())
+        .filter(Boolean);
+
+    const desaCocokPencarian = cari
+        ? daftarDesaFilter.find(nama =>
+            normalisasiDesa(nama) === normalisasiDesa(cari)
+        ) || ""
+        : "";
+
     const hasil = dataSumber.filter(r => {
         const namaDesa = String(
             r["Desa/Negeri/Kelurahan"] ?? ""
@@ -6046,8 +6781,12 @@ async function eksekusiFilter(isDashboard, jenisAksi) {
             kondisiData
         ].join(" ");
 
-        const matchCari =
-            !cari || teksPencarian.includes(cari);
+        const matchCari = !cari
+            ? true
+            : desaCocokPencarian
+                ? normalisasiDesa(namaDesa) ===
+                    normalisasiDesa(desaCocokPencarian)
+                : teksPencarian.includes(cari);
 
         return matchDesa && matchKondisi && matchCari;
     });
@@ -7409,7 +8148,7 @@ function submitDataBaru(event) {
 
         // URL harus berupa string biasa, bukan tautan Markdown.
         const scriptURL =
-            "https://script.google.com/macros/s/AKfycbwv4jXPP9O7RLePcufCxis7yTWoJuAlVRoTnqHjlvMs2OqBZJVXRjTtdlsLQlewPSDqxw/exec";
+            "https://script.google.com/macros/s/AKfycbw-To4hxGj2J2TRW8lRFfjoJVbg6wokxjQEu1dhqefWPuRclukf5PIvkUGFFvaDpzuLWA/exec";
 
         fetch(scriptURL, {
             method: "POST",

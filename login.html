@@ -6,113 +6,540 @@
     <title>Login - SIG Sarpras Teluk Ambon</title>
 
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-image: url('https://pin.it/5hRWPibK3');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        :root {
+            --navy: #06285c;
+            --navy-deep: #031a43;
+            --blue: #0879ef;
+            --cyan: #13c5f5;
+            --muted: #6b82a2;
+            --line: rgba(139, 184, 232, .42);
         }
 
-        body::before {
+        * { box-sizing: border-box; }
+        html { min-height: 100%; }
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
+            margin: 0;
+            position: relative;
+            isolation: isolate;
+            overflow-x: hidden;
+            font-family: "Segoe UI", Inter, Roboto, Arial, sans-serif;
+            color: #fff;
+            background-color: #06346b;
+            background-image:
+                linear-gradient(112deg, rgba(0, 47, 112, .56) 0%, rgba(0, 70, 142, .12) 40%, rgba(0, 48, 118, .30) 100%),
+                linear-gradient(180deg, rgba(0, 49, 115, .04) 35%, rgba(0, 23, 68, .30) 100%),
+                url("pemandangan-teluk-ambon.jpg");
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+
+        body::after {
             content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 74% 15%, rgba(27, 174, 255, .22), transparent 28%),
+                linear-gradient(180deg, rgba(2, 16, 43, .06), rgba(2, 16, 43, .34));
+        }
+
+        /* Geometri visual mengikuti referensi: bidang diagonal kiri atas dan kurva biru kiri bawah. */
+        .brand-shapes {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .brand-shapes .diagonal-wash {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: -12%; left: -4%;
+            width: 49vw; height: 63vh;
+            background: linear-gradient(135deg, rgba(32,157,255,.48), rgba(0,83,178,.20) 48%, transparent 72%);
+            clip-path: polygon(0 0, 100% 0, 61% 58%, 0 100%);
+            opacity: .82;
+        }
+        .brand-shapes .bottom-swoop {
+            position: absolute;
+            left: 0; bottom: 0;
+            width: min(54vw, 880px);
+            height: min(31vh, 300px);
+            background: linear-gradient(150deg, #078dd9 0%, #034b9e 33%, #03265f 68%, #031b4c 100%);
+            clip-path: path("M 0 0 C 120 105, 300 126, 490 170 C 650 205, 760 238, 880 300 L 0 300 Z");
+            opacity: .98;
+            filter: drop-shadow(0 -3px 8px rgba(0,185,255,.28));
+        }
+        .brand-shapes .bottom-swoop::after { content: ""; }
+        .brand-shapes .swoop-edge {
+            position: absolute;
+            left: -2%; bottom: min(29vh, 278px);
+            width: min(56vw, 900px); height: 5px;
+            background: linear-gradient(90deg, #16caff, #1484f4 72%, transparent);
+            border-radius: 50%;
+            transform: rotate(17deg);
+            transform-origin: left center;
+            box-shadow: 0 0 14px rgba(0,190,255,.28);
+        }
+
+        .site-header {
+            position: absolute;
+            top: 25px;
+            left: clamp(20px, 3.2vw, 54px);
+            right: clamp(20px, 3.2vw, 54px);
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+        .brand-mark {
+            width: 66px;
+            height: 76px;
+            flex: 0 0 66px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border-radius: 0;
+            background: transparent;
+            filter: drop-shadow(0 5px 14px rgba(0,0,0,.24));
+        }
+        .brand-mark img {
+            display: block;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            object-fit: contain;
+            object-position: center;
         }
+        .brand-copy { padding-right: 24px; border-right: 1px solid rgba(255,255,255,.3); }
+        .brand-name { font-size: clamp(14px, 1.15vw, 19px); font-weight: 800; letter-spacing: .25px; }
+        .brand-subtitle { margin-top: 4px; color: rgba(255,255,255,.83); font-size: 14px; }
+
+        .online-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 17px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 999px;
+            color: #fff;
+            background: rgba(3, 34, 81, .56);
+            box-shadow: 0 8px 25px rgba(0,0,0,.1);
+            backdrop-filter: blur(14px);
+            font-size: 13px;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+        .online-dot {
+            position: relative;
+            display: inline-block;
+            flex: 0 0 9px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #19e58a;
+            box-shadow: 0 0 0 0 rgba(25,229,138,.55), 0 0 13px rgba(25,229,138,.8);
+            animation: onlinePulse 1.8s ease-out infinite;
+        }
+        .online-dot::after {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            border: 1px solid rgba(25,229,138,.72);
+            border-radius: 50%;
+            animation: onlineHalo 1.8s ease-out infinite;
+        }
+        @keyframes onlinePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(25,229,138,.45), 0 0 10px rgba(25,229,138,.55); }
+            50% { box-shadow: 0 0 0 5px rgba(25,229,138,.12), 0 0 19px rgba(25,229,138,1); }
+        }
+        @keyframes onlineHalo {
+            0% { transform: scale(.72); opacity: .95; }
+            100% { transform: scale(1.75); opacity: 0; }
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 1;
+            width: min(100% - 64px, 1490px);
+            min-height: 100vh;
+            min-height: 100dvh;
+            margin: 0 auto;
+            padding: 120px 0 38px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(390px, .82fr);
+            align-items: center;
+            gap: clamp(35px, 5.1vw, 82px);
+        }
+
+        .intro-panel { position: relative; min-width: 0; padding: 18px 0 8px; }
+        .map-pin-large {
+            width: 65px; height: 65px;
+            display: grid; place-items: center;
+            margin-bottom: 10px;
+            color: #fff;
+            filter: drop-shadow(0 7px 18px rgba(0,0,0,.2));
+        }
+        .map-pin-large svg { width: 100%; height: 100%; }
+        .intro-panel h1 {
+            margin: 0;
+            font-size: clamp(42px, 5.2vw, 78px);
+            line-height: .99;
+            font-weight: 900;
+            letter-spacing: -2.8px;
+            text-transform: uppercase;
+            text-shadow: 0 5px 24px rgba(0,0,0,.12);
+        }
+        .intro-panel h1 .accent { color: #17baff; }
+        .intro-panel h2 {
+            margin: 10px 0 17px;
+            font-size: clamp(23px, 2.4vw, 36px);
+            line-height: 1.1;
+            letter-spacing: -.6px;
+            font-weight: 750;
+        }
+        .intro-lead {
+            max-width: 550px;
+            margin: 0;
+            color: rgba(255,255,255,.91);
+            font-size: clamp(15px, 1.25vw, 19px);
+            line-height: 1.65;
+            font-weight: 400;
+        }
+        .accent-line {
+            width: 82px; height: 4px; margin: 24px 0 27px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #18d0ff, #2676ff);
+            box-shadow: 0 0 18px rgba(24,208,255,.26);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            max-width: 720px;
+        }
+        .feature-card {
+            min-width: 0;
+            padding: 17px 10px 15px;
+            border: 1px solid rgba(177,220,255,.2);
+            border-radius: 19px;
+            background: linear-gradient(155deg, rgba(10,64,128,.66), rgba(3,30,76,.62));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 12px 25px rgba(0,15,47,.12);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .feature-icon {
+            width: 42px; height: 42px;
+            display: grid; place-items: center;
+            margin: 0 auto 11px;
+            border: 1px solid rgba(164,218,255,.28);
+            border-radius: 13px;
+            background: rgba(39,147,255,.2);
+            color: #fff;
+        }
+        .feature-icon svg { width: 25px; height: 25px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .feature-card strong { display: block; font-size: 13px; line-height: 1.35; font-weight: 750; }
+        .feature-card span { display: block; margin-top: 7px; color: rgba(255,255,255,.72); font-size: 11px; line-height: 1.45; }
+
+        .intro-bottom {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 27px;
+            color: rgba(255,255,255,.88);
+            font-size: 13px;
+            letter-spacing: .2px;
+        }
+        .coordinate-mark { color: #4ccaff; font-size: 19px; }
+        .coordinates { margin-left: auto; color: rgba(255,255,255,.75); font-size: 11px; letter-spacing: .5px; }
 
         .login-card {
             position: relative;
-            z-index: 1;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            width: 350px;
+            width: 100%;
+            min-width: 0;
+            overflow: hidden;
+            padding: clamp(30px, 3.2vw, 50px) clamp(26px, 3.5vw, 56px) 32px;
+            border: 1px solid rgba(255,255,255,.72);
+            border-radius: 30px;
+            background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(231,243,255,.91));
+            color: var(--navy);
+            box-shadow: 0 25px 80px rgba(0,18,53,.31), inset 0 1px 0 rgba(255,255,255,.95);
+            backdrop-filter: blur(22px);
             text-align: center;
         }
-
-        .login-card h2 {
-            color: #1e293b;
-            margin-bottom: 8px;
+        .login-card::before {
+            content: "";
+            position: absolute;
+            top: -70px; right: -45px;
+            width: 230px; height: 230px;
+            pointer-events: none;
+            opacity: .22;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%230b80e9' stroke-width='1'%3E%3Cpath d='M120 -20 C40 10 30 55 75 83 S145 120 102 153 50 210 92 260'/%3E%3Cpath d='M140 -20 C60 10 50 55 95 83 S165 120 122 153 70 210 112 260'/%3E%3Cpath d='M160 -20 C80 10 70 55 115 83 S185 120 142 153 90 210 132 260'/%3E%3Cpath d='M180 -20 C100 10 90 55 135 83 S205 120 162 153 110 210 152 260'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: contain;
         }
-
-        .login-card p {
-            color: #64748b;
-            margin-bottom: 24px;
-            font-size: 14px;
-            line-height: 1.5;
+        .login-card::after {
+            content: "";
+            position: absolute;
+            left: -20%; right: -20%; bottom: -74px;
+            height: 105px;
+            pointer-events: none;
+            background: linear-gradient(100deg, rgba(37,151,255,.12), rgba(0,100,230,.3));
+            transform: rotate(-3deg);
         }
+        .login-inner { position: relative; z-index: 1; }
+        .login-emblem {
+            width: 78px; height: 90px;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px;
+            padding: 3px;
+            background: transparent;
+        }
+        .login-emblem img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .login-card h3 { margin: 0 0 7px; color: #082d62; font-size: clamp(25px, 2.2vw, 34px); line-height: 1.15; font-weight: 850; letter-spacing: -.8px; }
+        .login-kicker { margin: 0 0 22px; color: #0878ed; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+        .login-card p { margin: 0 0 27px; color: #6c82a1; font-size: 14px; line-height: 1.6; }
 
+        .field { position: relative; margin-bottom: 14px; text-align: left; }
+        .field-icon {
+            position: absolute; top: 50%; left: 17px;
+            width: 20px; height: 20px;
+            transform: translateY(-50%);
+            color: #1676d6;
+            pointer-events: none;
+        }
+        .field-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
         input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            box-sizing: border-box;
+            display: block; width: 100%; min-height: 57px;
+            margin: 0; padding: 15px 16px 15px 51px;
+            border: 1px solid #cbdff8; border-radius: 14px;
+            outline: none; background: rgba(239,246,255,.88);
+            color: #18385d; font: inherit; font-size: 14px;
+            transition: border-color .2s, box-shadow .2s, background .2s;
         }
+        input::placeholder { color: #8399b6; }
+        input:focus { border-color: #2386f0; background: #fff; box-shadow: 0 0 0 4px rgba(8,121,239,.12); }
 
         button {
-            width: 100%;
-            padding: 12px;
-            background: #0056b3;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 10px;
-            transition: background 0.3s;
+            width: 100%; min-height: 58px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+            margin-top: 7px; padding: 15px 18px;
+            border: 0; border-radius: 14px;
+            background: linear-gradient(105deg, #0789fa, #0754d7);
+            color: #fff; cursor: pointer; font: inherit; font-size: 16px; font-weight: 800;
+            box-shadow: 0 12px 25px rgba(5,93,211,.23);
+            transition: transform .2s, box-shadow .2s, filter .2s;
+        }
+        button svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 16px 30px rgba(5,93,211,.3); filter: saturate(1.08); }
+        button:focus-visible { outline: 3px solid #8ccaff; outline-offset: 3px; }
+        button:disabled { opacity: .7; cursor: not-allowed; box-shadow: none; }
+
+        .or-divider { display: flex; align-items: center; gap: 13px; margin: 23px 0 18px; color: #8296b1; font-size: 12px; }
+        .or-divider::before, .or-divider::after { content: ""; height: 1px; flex: 1; background: #d3e1f1; }
+        .login-foot { position: relative; z-index: 1; color: #7b90ad; font-size: 12px; line-height: 1.7; }
+        .login-foot strong { display: block; color: #264a79; font-size: 13px; font-weight: 800; }
+
+        @media (max-width: 1050px) {
+.page-shell { width: min(100% - 44px, 760px); padding-top: 120px; padding-bottom: 34px; grid-template-columns: 1fr; gap: 28px; }
+            .intro-panel { padding: 8px 4px 0; }
+            .intro-panel h1 { font-size: clamp(38px, 7vw, 58px); }
+            .map-pin-large { width: 48px; height: 48px; margin-bottom: 8px; }
+            .intro-panel h2 { font-size: 25px; margin: 7px 0 10px; }
+            .intro-lead { font-size: 15px; max-width: 640px; }
+            .accent-line { margin: 16px 0 17px; }
+            .feature-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; }
+            .feature-card { padding: 13px 8px; }
+            .feature-card span { display: none; }
+            .intro-bottom { margin-top: 15px; }
+            .login-card { max-width: 580px; margin: 0 auto; padding: 30px 38px 26px; border-radius: 25px; }
+            .login-emblem { width: 61px; height: 70px; margin-bottom: 12px; }
+            .login-card h3 { font-size: 27px; }
+            .login-kicker { margin-bottom: 14px; }
+            .login-card p { margin-bottom: 19px; }
+            input { min-height: 51px; }
+            button { min-height: 53px; }
+            .or-divider { margin: 17px 0 12px; }
         }
 
-        button:hover {
-            background: #004494;
+        @media (max-width: 560px) {
+body { background-attachment: scroll; }
+            .brand-shapes .diagonal-wash { width: 82vw; height: 38vh; }
+            .brand-shapes .bottom-swoop { width: 100vw; height: 130px; clip-path: ellipse(90% 100% at 0% 100%); opacity: .72; }
+            .brand-shapes .swoop-edge { display: none; }
+            .site-header { top: 14px; left: 15px; right: 15px; gap: 10px; }
+            .brand { gap: 9px; }
+            .brand-mark { width: 44px; height: 54px; flex-basis: 44px; padding: 2px; }
+            .brand-copy { padding-right: 0; border-right: 0; }
+            .brand-name { max-width: 185px; font-size: 12px; line-height: 1.3; }
+            .brand-subtitle { margin-top: 2px; font-size: 10px; }
+            .online-status { gap: 7px; padding: 8px 10px; font-size: 10px; }
+            .online-dot { width: 7px; height: 7px; }
+            .page-shell { width: calc(100% - 30px); padding: 91px 0 22px; gap: 23px; }
+            .intro-panel { padding: 0 3px; }
+            .map-pin-large { width: 38px; height: 38px; margin-bottom: 5px; }
+            .intro-panel h1 { font-size: clamp(34px, 10vw, 46px); letter-spacing: -1.7px; }
+            .intro-panel h2 { font-size: 21px; margin: 5px 0 8px; }
+            .intro-lead { font-size: 12px; line-height: 1.5; max-width: 420px; }
+            .accent-line { width: 55px; height: 3px; margin: 12px 0; }
+            .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+            .feature-card { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 12px; text-align: left; }
+            .feature-icon { width: 32px; height: 32px; flex: 0 0 32px; margin: 0; border-radius: 9px; }
+            .feature-icon svg { width: 20px; height: 20px; }
+            .feature-card strong { font-size: 11px; }
+            .intro-bottom { gap: 7px; margin-top: 11px; font-size: 10px; }
+            .coordinates { font-size: 9px; }
+            .login-card { padding: 24px 19px 21px; border-radius: 21px; }
+            .login-emblem { width: 49px; height: 58px; margin-bottom: 8px; }
+            .login-card h3 { font-size: 24px; }
+            .login-kicker { font-size: 9px; letter-spacing: 1.5px; margin: 7px 0 12px; }
+            .login-card p { font-size: 12px; margin-bottom: 17px; }
+            .field { margin-bottom: 11px; }
+            input { min-height: 48px; padding: 12px 12px 12px 44px; border-radius: 11px; font-size: 13px; }
+            .field-icon { left: 14px; width: 17px; height: 17px; }
+            button { min-height: 49px; border-radius: 11px; font-size: 14px; }
+            .or-divider { margin: 15px 0 10px; }
+            .login-foot, .login-foot strong { font-size: 11px; }
+        }
+
+        @media (max-width: 360px) {
+            .online-status { padding: 7px 8px; font-size: 9px; }
+            .brand-name { max-width: 150px; }
+            .feature-card { padding: 8px; }
+            .feature-card strong { font-size: 10px; }
+            .intro-bottom { flex-wrap: wrap; }
+            .coordinates { margin-left: 0; width: 100%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
         }
     </style>
 </head>
 
 <body>
-
-    <div class="login-card">
-
-        <h2>SIG SARPRAS</h2>
-
-        <p>
-            Kecamatan Teluk Ambon<br>
-            Silakan masukkan username dan password
-        </p>
-
-        <input
-            type="text"
-            id="username"
-            placeholder="Username"
-        >
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Password"
-        >
-
-        <button
-            id="loginButton"
-            onclick="doLogin()"
-        >
-            Sign In
-        </button>
-
+    <div class="brand-shapes" aria-hidden="true">
+        <span class="diagonal-wash"></span>
+        <span class="bottom-swoop"></span>
+        <span class="swoop-edge"></span>
     </div>
+    <header class="site-header">
+        <div class="brand">
+            <div class="brand-mark">
+                <img src="logo-pemkot.png" alt="Lambang Pemerintah Kota Ambon">
+            </div>
+            <div class="brand-copy">
+                <div class="brand-name">PEMERINTAH KOTA AMBON</div>
+                <div class="brand-subtitle">Kecamatan Teluk Ambon</div>
+            </div>
+        </div>
+        <div class="online-status"><span class="online-dot"></span>Sistem Online</div>
+    </header>
+
+    <main class="page-shell">
+        <section class="intro-panel" aria-label="Informasi SIG Sarpras">
+            <div class="map-pin-large" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img">
+                    <defs>
+                        <linearGradient id="pinGradient" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#18d5ff"/>
+                            <stop offset="1" stop-color="#0872ef"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 3C17.6 3 6 14.6 6 29c0 19.1 26 32 26 32s26-12.9 26-32C58 14.6 46.4 3 32 3Z" fill="url(#pinGradient)"/>
+                    <circle cx="32" cy="28" r="11" fill="#fff"/>
+                    <circle cx="32" cy="28" r="5.2" fill="#0a5ebd"/>
+                </svg>
+            </div>
+            <h1>SIG <span class="accent">SARPRAS</span></h1>
+            <h2>Teluk Ambon</h2>
+            <p class="intro-lead">Sistem Informasi Geografis Data Sarana dan Prasarana Kecamatan Teluk Ambon.</p>
+            <div class="accent-line"></div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>
+                    </div>
+                    <div><strong>Peta Interaktif</strong><span>Visualisasi data geospasial</span></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+                    </div>
+                    <div><strong>Data Sarana Prasarana</strong><span>Informasi lengkap dan akurat</span></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 20V11h4v9M10 20V5h4v15M16 20V8h4v12Z"/></svg>
+                    </div>
+                    <div><strong>Monitoring &amp; Evaluasi</strong><span>Mendukung perencanaan</span></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 3 21 6v6c0 5-3.8 8-9 10-5.2-2-9-5-9-10V6z"/><path d="m8 12 2.5 2.5L16 9"/></svg>
+                    </div>
+                    <div><strong>Akses Mudah</strong><span>Informasi yang mudah diakses</span></div>
+                </div>
+            </div>
+
+            <div class="intro-bottom">
+                <span class="coordinate-mark" aria-hidden="true">⌖</span>
+                <span>Teluk Ambon — Untuk Pembangunan yang Lebih Baik</span>
+                <span class="coordinates">3.6890° S&nbsp; 128.1918° E</span>
+            </div>
+        </section>
+
+        <section class="login-card" aria-labelledby="loginTitle">
+            <div class="login-inner">
+                <div class="login-emblem">
+                    <img src="logo-pemkot.png" alt="Lambang Pemerintah Kota Ambon">
+                </div>
+                <h3 id="loginTitle">Selamat Datang</h3>
+                <div class="login-kicker">di SIG Sarpras Teluk Ambon</div>
+                <p>Silakan masuk ke akun Anda<br>untuk melanjutkan ke sistem</p>
+
+                <form id="loginForm">
+                    <div class="field">
+                        <span class="field-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        </span>
+                        <input type="text" id="username" name="username" placeholder="Username" autocomplete="username" aria-label="Username" required>
+                    </div>
+                    <div class="field">
+                        <span class="field-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>
+                        </span>
+                        <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" aria-label="Password" required>
+                    </div>
+                    <button type="submit" id="loginButton">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3"/><path d="M13 4h5a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-5"/></svg>
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="or-divider">atau</div>
+                <div class="login-foot">
+                    <strong>SIG Sarpras Teluk Ambon</strong>
+                    Kecamatan Teluk Ambon
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            doLogin();
+        });
 
         function doLogin() {
 
@@ -144,7 +571,7 @@
              * URL WEB APP GOOGLE APPS SCRIPT
              */
             const scriptURL =
-    'https://script.google.com/macros/s/AKfycbwv4jXPP9O7RLePcufCxis7yTWoJuAlVRoTnqHjlvMs2OqBZJVXRjTtdlsLQlewPSDqxw/exec';
+    'https://script.google.com/macros/s/AKfycbw-To4hxGj2J2TRW8lRFfjoJVbg6wokxjQEu1dhqefWPuRclukf5PIvkUGFFvaDpzuLWA/exec';
 
             /*
              * NONAKTIFKAN TOMBOL
