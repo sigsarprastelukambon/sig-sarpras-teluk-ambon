@@ -421,6 +421,457 @@ body { background-attachment: scroll; }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
         }
+
+        /* Desain akses publik/pengelola */
+        .page-shell {
+            width: min(100% - 48px, 1180px);
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 135px 0 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .intro-panel {
+            width: 100%;
+            max-width: 940px;
+            padding: 20px 0 10px;
+            text-align: center;
+        }
+        .map-pin-large { display: none; }
+        .intro-panel h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            letter-spacing: -2px;
+        }
+        .intro-panel h2 {
+            margin: 12px 0 14px;
+            font-size: clamp(25px, 3vw, 36px);
+        }
+        .intro-lead {
+            max-width: 760px;
+            margin: 0 auto;
+            font-size: clamp(15px, 1.5vw, 19px);
+            line-height: 1.7;
+        }
+        .accent-line { margin: 24px auto 30px; }
+        .access-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 250px));
+            justify-content: center;
+            gap: 22px;
+            margin: 0 auto;
+        }
+        .access-card {
+            min-height: 165px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin: 0;
+            padding: 22px 18px;
+            border: 1px solid rgba(177,220,255,.28);
+            border-radius: 20px;
+            background: linear-gradient(155deg, rgba(10,64,128,.82), rgba(3,30,76,.78));
+            color: #fff;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 14px 32px rgba(0,15,47,.22);
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+        .access-card:hover {
+            border-color: rgba(77,202,255,.85);
+            background: linear-gradient(155deg, rgba(12,88,164,.92), rgba(3,37,91,.9));
+        }
+        .access-icon {
+            width: 46px; height: 46px;
+            display: grid; place-items: center;
+            border: 1px solid rgba(164,218,255,.34);
+            border-radius: 14px;
+            background: rgba(39,147,255,.2);
+        }
+        .access-icon svg {
+            width: 25px; height: 25px;
+            stroke: currentColor; fill: none; stroke-width: 1.8;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        .access-title { font-size: 19px; font-weight: 800; }
+        .access-description { color: rgba(255,255,255,.76); font-size: 12px; line-height: 1.45; font-weight: 500; }
+        .intro-bottom {
+            justify-content: center;
+            margin-top: 32px;
+        }
+        .coordinates { margin-left: 0; }
+        .login-card {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(440px, calc(100vw - 30px));
+            max-height: calc(100dvh - 36px);
+            overflow-y: auto;
+            padding: 34px 32px 28px;
+            border: 1px solid rgba(255,255,255,.24);
+            border-radius: 24px;
+            background: linear-gradient(145deg, rgba(8,39,83,.97), rgba(4,25,59,.97));
+            color: #fff;
+            box-shadow: 0 25px 90px rgba(0,0,0,.45);
+            backdrop-filter: blur(22px);
+        }
+        .login-card.is-open {
+            display: block;
+            animation: modalIn .2s ease-out;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; margin-top: 8px; }
+            to { opacity: 1; margin-top: 0; }
+        }
+        .login-card::before, .login-card::after { display: none; }
+        .login-card h3 { color: #fff; padding-right: 28px; }
+        .login-kicker { color: #39c8ff; }
+        .login-card p, .login-foot { color: rgba(231,242,255,.72); }
+        .login-foot strong { color: #fff; }
+        .field input { background: rgba(238,246,255,.97); color: #18385d; }
+        .or-divider { color: rgba(231,242,255,.58); }
+        .or-divider::before, .or-divider::after { background: rgba(211,225,241,.22); }
+        .modal-close {
+            position: absolute;
+            top: 0; right: 0;
+            width: 36px; min-height: 36px;
+            margin: 0; padding: 0;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 50%;
+            background: rgba(255,255,255,.08);
+            box-shadow: none;
+            color: #fff;
+            font-size: 25px;
+            line-height: 1;
+        }
+        .modal-close:hover { background: rgba(255,255,255,.16); }
+        .login-inner { position: relative; }
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(1,13,34,.62);
+            backdrop-filter: blur(5px);
+        }
+        .modal-backdrop.is-open { display: block; }
+        body.modal-active { overflow: hidden; }
+        @media (max-width: 1050px) {
+            .page-shell { width: min(100% - 40px, 900px); padding-top: 125px; }
+            .intro-panel { padding: 12px 0; }
+            .feature-grid { display: none; }
+            .intro-bottom { justify-content: center; }
+            .login-card { max-width: none; margin: 0; }
+        }
+        @media (max-width: 560px) {
+            .page-shell { width: calc(100% - 30px); padding: 105px 0 30px; }
+            .intro-panel h1 { font-size: clamp(35px, 10vw, 48px); letter-spacing: -1.4px; }
+            .intro-panel h2 { font-size: 23px; }
+            .intro-lead { font-size: 13px; max-width: 400px; }
+            .accent-line { margin: 18px auto 22px; }
+            .access-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .access-card { min-height: 142px; padding: 15px 9px; border-radius: 15px; gap: 7px; }
+            .access-icon { width: 38px; height: 38px; border-radius: 11px; }
+            .access-title { font-size: 16px; }
+            .access-description { font-size: 10px; }
+            .intro-bottom { flex-wrap: wrap; margin-top: 22px; font-size: 10px; }
+            .coordinates { width: auto; margin-left: 0; font-size: 9px; }
+            .login-card { padding: 30px 20px 23px; }
+            .login-card h3 { font-size: 24px; }
+        }
+
+
+        /* Komposisi portal mengikuti referensi desain pengguna */
+        .page-shell {
+            width: min(100% - 48px, 1120px);
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 112px 0 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .intro-panel {
+            width: 100%;
+            max-width: 850px;
+            padding: 0;
+            text-align: center;
+        }
+        .map-pin-large { display: block; width: 62px; height: 72px; margin: 0 auto 8px; }
+        .map-pin-large svg { width: 100%; height: 100%; filter: drop-shadow(0 8px 14px rgba(0,160,255,.25)); }
+        .intro-panel h1 { font-size: clamp(48px, 5vw, 76px); letter-spacing: -2.6px; }
+        .intro-panel h2 { margin: 0 0 8px; font-size: clamp(28px, 3vw, 42px); }
+        .intro-lead { max-width: 700px; margin: 0 auto; font-size: clamp(15px, 1.4vw, 19px); line-height: 1.65; }
+        .accent-line { margin: 20px auto 25px; width: 60px; }
+        .access-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: min(100%, 748px); margin: 0 auto; }
+        .access-card { min-height: 112px; flex-direction: row; justify-content: flex-start; text-align: left; gap: 16px; padding: 17px 20px; border-radius: 19px; }
+        .access-icon { flex: 0 0 68px; width: 68px; height: 68px; border-radius: 50%; }
+        .access-icon svg { width: 32px; height: 32px; }
+        .access-title { font-size: 17px; }
+        .access-description { font-size: 12px; }
+        .access-card::after { content: '→'; margin-left: auto; color: #16caff; font-size: 27px; font-weight: 400; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; width: min(100%, 748px); margin: 38px auto 0; }
+        .feature-card { min-height: 128px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; padding: 16px 10px; border: 1px solid rgba(31,151,255,.28); border-radius: 19px; background: linear-gradient(150deg, rgba(5,57,119,.70), rgba(3,31,76,.72)); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); backdrop-filter: blur(8px); }
+        .feature-icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: rgba(0,125,255,.48); color: #fff; }
+        .feature-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .feature-card strong { font-size: 13px; line-height: 1.25; }
+        .feature-card > span:last-child { color: rgba(236,245,255,.85); font-size: 11px; line-height: 1.35; }
+        .intro-bottom { justify-content: center; gap: 8px; margin-top: 22px; font-size: 12px; }
+        .coordinates { margin-left: 18px; }
+
+        /* Koreksi keseimbangan ruang atas dan bawah pada layar desktop.
+           Hanya menggeser kelompok konten landing page; fungsi lain tetap. */
+        @media (min-width: 1051px) {
+            .intro-panel { transform: translateY(-30px); }
+        }
+
+        @media (max-width: 1050px) {
+            .page-shell { width: min(100% - 40px, 850px); padding-top: 120px; padding-bottom: 32px; }
+            .intro-panel { padding: 0; }
+            .feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 748px; }
+            .intro-bottom { justify-content: center; }
+        }
+        @media (max-width: 600px) {
+            .page-shell { width: calc(100% - 28px); padding: 105px 0 24px; }
+            .map-pin-large { width: 45px; height: 52px; margin-bottom: 6px; }
+            .intro-panel h1 { font-size: clamp(34px, 10vw, 48px); letter-spacing: -1.5px; }
+            .intro-panel h2 { font-size: 24px; margin-top: 2px; }
+            .intro-lead { font-size: 13px; line-height: 1.55; max-width: 360px; }
+            .accent-line { margin: 16px auto 20px; }
+            .access-grid { grid-template-columns: 1fr; gap: 10px; }
+            .access-card { min-height: 92px; padding: 13px 15px; gap: 12px; }
+            .access-icon { flex-basis: 52px; width: 52px; height: 52px; }
+            .access-icon svg { width: 26px; height: 26px; }
+            .access-title { font-size: 16px; }
+            .access-description { font-size: 11px; }
+            .feature-grid { grid-template-columns: 1fr; gap: 9px; margin-top: 18px; }
+            .feature-card { min-height: 82px; display: grid; grid-template-columns: 42px 1fr; justify-content: start; justify-items: start; column-gap: 12px; row-gap: 3px; padding: 12px 14px; text-align: left; }
+            .feature-icon { grid-row: span 2; width: 40px; height: 40px; }
+            .feature-icon svg { width: 22px; height: 22px; }
+            .feature-card strong { align-self: end; font-size: 12px; }
+            .feature-card > span:last-child { font-size: 10px; }
+            .intro-bottom { flex-wrap: wrap; margin-top: 17px; font-size: 10px; }
+            .coordinates { width: auto; margin-left: 0; font-size: 9px; }
+            .site-header { top: 12px; left: 12px; right: 12px; }
+            .brand { gap: 7px; }
+            .brand-mark { width: 43px; height: 50px; flex-basis: 43px; }
+            .brand-copy { padding-right: 8px; }
+            .brand-name { font-size: 10px; }
+            .brand-subtitle { font-size: 9px; }
+            .online-status { padding: 7px 9px; font-size: 9px; }
+        }
+
+
+        /* Revisi akhir: hierarki teks dan susunan konsisten di desktop, tablet, dan HP */
+        .access-card {
+            display: grid !important;
+            grid-template-columns: clamp(42px, 5vw, 68px) minmax(0, 1fr) 18px;
+            grid-template-rows: auto auto;
+            grid-template-areas: "icon title arrow" "icon description arrow";
+            align-content: center;
+            align-items: center;
+            column-gap: clamp(8px, 1.2vw, 16px);
+            row-gap: 4px;
+            text-align: left;
+            min-width: 0;
+        }
+        .access-icon { grid-area: icon; margin: 0; }
+        .access-title { grid-area: title; align-self: end; font-size: clamp(16px, 1.25vw, 20px); line-height: 1.2; font-weight: 800; }
+        .access-description { grid-area: description; align-self: start; font-size: clamp(10px, .85vw, 13px); line-height: 1.35; }
+        .access-card::after { grid-area: arrow; margin-left: 0; font-size: clamp(18px, 1.7vw, 27px); }
+        .feature-card { min-width: 0; gap: 8px; }
+        .feature-card strong { font-size: clamp(13px, 1.05vw, 17px); line-height: 1.25; font-weight: 800; }
+        .feature-card > span:last-child { font-size: clamp(10px, .8vw, 13px); line-height: 1.35; }
+
+        @media (max-width: 1050px) {
+            .page-shell { width: calc(100% - 36px); padding-top: 105px; padding-bottom: 24px; }
+            .intro-panel h1 { font-size: clamp(38px, 6vw, 62px); }
+            .intro-panel h2 { font-size: clamp(25px, 3vw, 36px); }
+            .access-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 748px); gap: 12px; }
+            .access-card { min-height: 100px; padding: 13px 12px; }
+            .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 748px); gap: 10px; margin-top: 24px; }
+            .feature-card { min-height: 112px; padding: 12px 7px; }
+            .intro-bottom { justify-content: center; }
+        }
+        @media (max-width: 600px) {
+            .page-shell { width: calc(100% - 20px); padding: 88px 0 18px; min-height: 100dvh; }
+            .map-pin-large { width: 38px; height: 44px; margin-bottom: 4px; }
+            .intro-panel h1 { font-size: clamp(30px, 7.5vw, 44px); letter-spacing: -1px; }
+            .intro-panel h2 { font-size: clamp(21px, 5vw, 28px); margin-bottom: 5px; }
+            .intro-lead { max-width: 95%; font-size: clamp(10px, 2.8vw, 13px); line-height: 1.4; }
+            .accent-line { margin: 12px auto 14px; }
+            .access-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; width: 100%; }
+            .access-card { grid-template-columns: 30px minmax(0, 1fr) 10px; min-height: 92px; padding: 9px 7px; column-gap: 6px; row-gap: 4px; border-radius: 12px; }
+            .access-icon { width: 30px; height: 30px; flex-basis: 30px; border-radius: 50%; }
+            .access-icon svg { width: 18px; height: 18px; }
+            .access-title { font-size: clamp(12px, 3.2vw, 16px); }
+            .access-description { font-size: clamp(8px, 2.25vw, 11px); line-height: 1.3; }
+            .access-card::after { font-size: 16px; }
+            .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; margin-top: 14px; }
+            .feature-card { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 98px; padding: 9px 4px; gap: 6px; border-radius: 12px; text-align: center; }
+            .feature-icon { width: 32px; height: 32px; margin: 0; }
+            .feature-icon svg { width: 19px; height: 19px; }
+            .feature-card strong { font-size: clamp(9px, 2.5vw, 12px); line-height: 1.2; }
+            .feature-card > span:last-child { font-size: clamp(7px, 1.9vw, 10px); line-height: 1.25; }
+            .intro-bottom { flex-wrap: wrap; gap: 5px; margin-top: 12px; font-size: 9px; }
+            .coordinates { width: auto; margin-left: 5px; font-size: 8px; }
+            .site-header { top: 8px; left: 9px; right: 9px; }
+            .brand { gap: 6px; }
+            .brand-mark { width: 32px; height: 39px; flex-basis: 32px; }
+            .brand-name { font-size: clamp(8px, 2.3vw, 10px); }
+            .brand-subtitle { font-size: 8px; }
+            .online-status { padding: 6px 7px; font-size: 8px; }
+        }
+        @media (max-width: 360px) {
+            .page-shell { width: calc(100% - 14px); padding-top: 80px; }
+            .access-card { grid-template-columns: 25px minmax(0, 1fr) 8px; padding: 7px 5px; column-gap: 4px; }
+            .access-icon { width: 25px; height: 25px; flex-basis: 25px; }
+            .access-icon svg { width: 15px; height: 15px; }
+            .access-title { font-size: 11px; }
+            .access-description { font-size: 7px; }
+            .feature-card { min-height: 88px; }
+            .feature-card strong { font-size: 8px; }
+            .feature-card > span:last-child { font-size: 7px; }
+        }
+
+
+        /* Perbaikan ikon fitur: selalu terlihat dan benar-benar di tengah lingkaran */
+        .feature-icon {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex: 0 0 auto !important;
+            position: relative;
+            visibility: visible !important;
+            opacity: 1 !important;
+            box-sizing: border-box;
+            padding: 0 !important;
+            line-height: 0;
+            overflow: visible;
+        }
+        .feature-icon svg {
+            display: block !important;
+            position: static !important;
+            width: 58% !important;
+            height: 58% !important;
+            max-width: 26px;
+            max-height: 26px;
+            margin: 0 !important;
+            flex: 0 0 auto;
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        @media (max-width: 600px) {
+            .feature-icon { width: 32px !important; height: 32px !important; min-width: 32px; min-height: 32px; }
+            .feature-icon svg { width: 19px !important; height: 19px !important; }
+        }
+        @media (max-width: 360px) {
+            .feature-icon { width: 30px !important; height: 30px !important; min-width: 30px; min-height: 30px; }
+            .feature-icon svg { width: 18px !important; height: 18px !important; }
+        }
+
+
+        /* Koreksi kartu fitur pada tablet dan HP:
+           judul/deskripsi rata tengah dan deskripsi selalu terlihat. */
+        @media (max-width: 1050px) {
+            .feature-card {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .feature-card strong {
+                width: 100%;
+                text-align: center;
+                overflow-wrap: anywhere;
+            }
+            .feature-card > span:last-child {
+                display: block !important;
+                width: 100%;
+                text-align: center;
+                white-space: normal;
+                overflow-wrap: anywhere;
+                font-size: clamp(9px, 1.35vw, 12px);
+                line-height: 1.3;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .feature-card {
+                min-height: 118px;
+                padding: 10px 5px;
+                gap: 6px;
+            }
+            .feature-card strong {
+                font-size: clamp(9px, 2.6vw, 12px);
+                line-height: 1.2;
+            }
+            .feature-card > span:last-child {
+                font-size: clamp(8px, 2.1vw, 10px);
+                line-height: 1.25;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1050px) {
+            .feature-card {
+                min-height: 124px;
+                padding: 12px 8px;
+            }
+        }
+
+        /* Koreksi khusus tablet/iPad: beri ruang antara ikon, teks, dan panah */
+        @media (min-width: 601px) and (max-width: 1050px) {
+            .access-card {
+                display: grid !important;
+                grid-template-columns: 54px minmax(0, 1fr) 14px !important;
+                grid-template-rows: auto auto !important;
+                grid-template-areas: "icon title arrow" "icon description arrow" !important;
+                column-gap: 14px !important;
+                row-gap: 5px !important;
+                padding: 14px 16px !important;
+                text-align: left !important;
+                align-items: center !important;
+                box-sizing: border-box;
+                min-width: 0;
+            }
+            .access-card .access-icon {
+                grid-area: icon !important;
+                width: 48px;
+                height: 48px;
+                flex-basis: 48px;
+                justify-self: center;
+                margin: 0 !important;
+            }
+            .access-card .access-title {
+                grid-area: title !important;
+                display: block;
+                min-width: 0;
+                font-size: clamp(14px, 1.7vw, 18px);
+                line-height: 1.2;
+                overflow-wrap: break-word;
+                align-self: end;
+            }
+            .access-card .access-description {
+                grid-area: description !important;
+                display: block;
+                min-width: 0;
+                font-size: clamp(10px, 1.15vw, 12px);
+                line-height: 1.35;
+                white-space: normal;
+                overflow-wrap: break-word;
+                align-self: start;
+            }
+            .access-card::after {
+                grid-area: arrow !important;
+                justify-self: end;
+                margin: 0 !important;
+                font-size: 20px;
+            }
+        }
+
     </style>
 </head>
 
@@ -430,6 +881,7 @@ body { background-attachment: scroll; }
         <span class="bottom-swoop"></span>
         <span class="swoop-edge"></span>
     </div>
+    <div class="modal-backdrop" id="modalBackdrop"></div>
     <header class="site-header">
         <div class="brand">
             <div class="brand-mark">
@@ -463,30 +915,38 @@ body { background-attachment: scroll; }
             <p class="intro-lead">Sistem Informasi Geografis Data Sarana dan Prasarana Kecamatan Teluk Ambon.</p>
             <div class="accent-line"></div>
 
-            <div class="feature-grid">
+            <div class="access-grid" aria-label="Pilih jenis akses">
+                <button type="button" class="access-card" id="publicAccess">
+                    <span class="access-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+                    </span>
+                    <span class="access-title">Publik</span>
+                    <span class="access-description">Lihat dashboard dan peta sarpras</span>
+                </button>
+                <button type="button" class="access-card" id="managerAccess">
+                    <span class="access-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>
+                    </span>
+                    <span class="access-title">Pengelola</span>
+                    <span class="access-description">Login untuk mengelola data sarpras</span>
+                </button>
+            </div>
+
+            <div class="feature-grid" aria-label="Keunggulan SIG Sarpras">
                 <div class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg>
-                    </div>
-                    <div><strong>Peta Interaktif</strong><span>Visualisasi data geospasial</span></div>
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6.5 8.5 4l7 2.5L21 4v13.5L15.5 20l-7-2.5L3 20Z"/><path d="M8.5 4v13.5M15.5 6.5V20"/></svg></span>
+                    <strong>Peta Interaktif</strong>
+                    <span>Visualisasi data geospasial</span>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
-                    </div>
-                    <div><strong>Data Sarana Prasarana</strong><span>Informasi lengkap dan akurat</span></div>
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+                    <strong>Data Sarana Prasarana</strong>
+                    <span>Informasi lengkap dan akurat</span>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M4 20V11h4v9M10 20V5h4v15M16 20V8h4v12Z"/></svg>
-                    </div>
-                    <div><strong>Monitoring &amp; Evaluasi</strong><span>Mendukung perencanaan</span></div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M12 3 21 6v6c0 5-3.8 8-9 10-5.2-2-9-5-9-10V6z"/><path d="m8 12 2.5 2.5L16 9"/></svg>
-                    </div>
-                    <div><strong>Akses Mudah</strong><span>Informasi yang mudah diakses</span></div>
+                    <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10h5v10M10 20V4h5v16M16 20v-7h4v7"/></svg></span>
+                    <strong>Monitoring &amp; Evaluasi</strong>
+                    <span>Mendukung perencanaan</span>
                 </div>
             </div>
 
@@ -497,14 +957,15 @@ body { background-attachment: scroll; }
             </div>
         </section>
 
-        <section class="login-card" aria-labelledby="loginTitle">
+
+    </main>
+
+        <section class="login-card" id="managerLogin" aria-labelledby="loginTitle" role="dialog" aria-modal="true" aria-hidden="true">
             <div class="login-inner">
-                <div class="login-emblem">
-                    <img src="logo-pemkot.png" alt="Lambang Pemerintah Kota Ambon">
-                </div>
-                <h3 id="loginTitle">Selamat Datang</h3>
+                <button type="button" class="modal-close" id="closeLogin" aria-label="Tutup formulir login">×</button>
+                <h3 id="loginTitle">Login Pengelola</h3>
                 <div class="login-kicker">di SIG Sarpras Teluk Ambon</div>
-                <p>Silakan masuk ke akun Anda<br>untuk melanjutkan ke sistem</p>
+                <p>Masukkan username dan password untuk mengakses pengelolaan data.</p>
 
                 <form id="loginForm">
                     <div class="field">
@@ -525,16 +986,48 @@ body { background-attachment: scroll; }
                     </button>
                 </form>
 
-                <div class="or-divider">atau</div>
+                <div class="or-divider">Akses khusus pengelola</div>
                 <div class="login-foot">
                     <strong>SIG Sarpras Teluk Ambon</strong>
                     Kecamatan Teluk Ambon
                 </div>
             </div>
         </section>
-    </main>
 
     <script>
+
+
+        const managerLogin = document.getElementById('managerLogin');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const managerAccess = document.getElementById('managerAccess');
+        const closeLogin = document.getElementById('closeLogin');
+
+        function openManagerLogin() {
+            managerLogin.classList.add('is-open');
+            modalBackdrop.classList.add('is-open');
+            managerLogin.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-active');
+            document.getElementById('username').focus();
+        }
+
+        function closeManagerLogin() {
+            managerLogin.classList.remove('is-open');
+            modalBackdrop.classList.remove('is-open');
+            managerLogin.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-active');
+        }
+
+        managerAccess.addEventListener('click', openManagerLogin);
+        closeLogin.addEventListener('click', closeManagerLogin);
+        modalBackdrop.addEventListener('click', closeManagerLogin);
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') closeManagerLogin();
+        });
+
+        document.getElementById('publicAccess').addEventListener('click', function () {
+            // Tampilan publik perlu didukung oleh index.html melalui mode baca-saja.
+            window.location.href = 'index.html?mode=public';
+        });
 
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();

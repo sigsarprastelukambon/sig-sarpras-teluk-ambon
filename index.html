@@ -3012,8 +3012,10 @@ function doLogout() {
             'operator_role'
         );
 
-        window.location.href =
-            'index.html';
+        // Kembali ke halaman login setelah sesi operator dibersihkan.
+        // replace() mencegah halaman dashboard logout menjadi entri riwayat
+        // yang langsung dibuka kembali melalui tombol Back.
+        window.location.replace('login.html');
     }
 }
 
@@ -4563,10 +4565,12 @@ function initMaps() {
     tambahKontrolGPS(mapFull, "full");
 }
 
-/* ================= KOREKSI SEUTUHNYA: EKSPOR CSV RAMAH EXCEL INDONESIA ================= */
+
+/* ================= EKSPOR CSV RAMAH EXCEL INDONESIA ================= */
 function eksporKeCSV() {
-    // Menggunakan ID tabel utama Anda yang sesuai di HTML
-    let table = document.getElementById("tabelUtamaSarpras"); 
+    // Mengambil tabel utama Sarpras
+    let table = document.getElementById("tabelUtamaSarpras");
+
     if (!table) {
         alert("Data tabel tidak ditemukan!");
         return;
@@ -4574,55 +4578,90 @@ function eksporKeCSV() {
 
     let csv = [];
     let rows = table.querySelectorAll("tr");
-    
+
     for (let i = 0; i < rows.length; i++) {
         let rowElement = rows[i];
-        
-        // PERBAIKAN LOGIKA FILTER: Cek apakah baris ini sedang disembunyikan oleh sistem pencarian
-        // Kita cek baik dari style.display, class hiden, ataupun jika isi tbody-nya dimanipulasi dinamis
-        if (rowElement.style.display === "none" || rowElement.classList.contains('hidden')) {
+
+        // Lewati baris yang disembunyikan oleh pencarian atau sistem
+        if (
+            rowElement.style.display === "none" ||
+            rowElement.classList.contains("hidden")
+        ) {
             continue;
         }
 
         let row = [];
         let cols = rowElement.querySelectorAll("td, th");
-        
-        // Jika baris kosong (misal teks "Memuat data tabular..."), jangan dimasukkan ke Excel
-        if (cols.length === 1 && cols[0].getAttribute('colspan')) continue;
+
+        // Lewati baris pesan kosong seperti "Memuat data tabular..."
+        if (cols.length === 1 && cols[0].getAttribute("colspan")) {
+            continue;
+        }
 
         for (let j = 0; j < cols.length; j++) {
             let text = cols[j].innerText.trim();
-            
-            // Bersihkan tanda kutip ganda agar tidak merusak sel Excel
+
+            // Escape tanda kutip ganda agar format CSV tetap valid
             text = text.replace(/"/g, '""');
-            
-            // Bungkus teks dengan kutip ganda
+
+            // Bungkus setiap nilai sel dengan tanda kutip ganda
             row.push('"' + text + '"');
         }
-        
-        // PERBAIKAN UTAMA: Gabungkan kolom menggunakan TITIK KOMA (;) agar langsung otomatis rapi di Excel Indonesia
+
+        // Pemisah titik koma agar sesuai dengan pengaturan Excel Indonesia
         csv.push(row.join(";"));
     }
-    
-    // Satukan baris dengan baris baru, tambahkan instruksi 'sep=;' di paling atas agar Excel dipaksa membaca titik koma
-    let csvContent = "sep=;\n" + csv.join("\n");
-    
-    // Gunakan Blob dengan encoding UTF-8 lengkap dengan BOM agar karakter aman
-    let blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
-    
-    // Proses download otomatis browser
-    let downloadLink = document.createElement("a");
+
+    // Pemisah kolom Excel Indonesia
+    let csvContent = "sep=;\r\n" + csv.join("\r\n");
+
+    /*
+     * PERBAIKAN ENCODING:
+     * UTF-16LE + BOM membantu Excel membaca karakter Unicode,
+     * termasuk ², ·, dan karakter khusus lainnya.
+     */
+    const utf16le = new Uint8Array(2 + csvContent.length * 2);
+
+    // BOM UTF-16LE: FF FE
+    utf16le[0] = 0xFF;
+    utf16le[1] = 0xFE;
+
+    // Mengubah teks JavaScript menjadi byte UTF-16LE
+    for (let i = 0; i < csvContent.length; i++) {
+        const code = csvContent.charCodeAt(i);
+
+        utf16le[2 + i * 2] = code & 0xFF;
+        utf16le[3 + i * 2] = (code >> 8) & 0xFF;
+    }
+
+    // Membuat file CSV dengan encoding UTF-16LE
+    const blob = new Blob([utf16le], {
+        type: "text/csv;charset=utf-16le;"
+    });
+
+    // Menyiapkan unduhan otomatis
+    const downloadLink = document.createElement("a");
+    const fileURL = window.URL.createObjectURL(blob);
+
     downloadLink.download = "Data_Sarpras_Teluk_Ambon.csv";
-    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.href = fileURL;
     downloadLink.style.display = "none";
+
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+
+    // Membersihkan URL sementara setelah proses unduhan
+    setTimeout(() => {
+        window.URL.revokeObjectURL(fileURL);
+    }, 1000);
 }
 
+
+/* ================= NAVIGASI HALAMAN ================= */
 function showPage(pageId, menuElement) {
     const semuaHalaman = document.querySelectorAll(".page-content");
-    
+
     // 1. Sembunyikan semua halaman
     semuaHalaman.forEach(p => {
         p.style.display = "none";
@@ -4631,25 +4670,30 @@ function showPage(pageId, menuElement) {
 
     // 2. Tampilkan halaman tujuan
     const halamanTujuan = document.getElementById(pageId);
-    if (!halamanTujuan) return; 
-    
+    if (!halamanTujuan) return;
+
     halamanTujuan.style.display = "block";
-    
+
     setTimeout(() => {
         halamanTujuan.classList.add("fade-in-active");
-        
+
         // Panggil fungsi penyesuaian peta
         updatePetaSetelahTampil(pageId);
-        
-        // TAMBAHAN: Panggil fungsi update laporan jika halaman adalah laporanPage
-        if (pageId === 'laporanPage') {
+
+        // Perbarui laporan jika halaman yang dibuka adalah halaman laporan
+        if (pageId === "laporanPage") {
             updateLaporanEksekutif();
         }
     }, 10);
 
     // 3. Ubah status aktif sidebar
-    document.querySelectorAll(".sidebar-item").forEach(item => item.classList.remove("active"));
-    if (menuElement) menuElement.classList.add("active");
+    document.querySelectorAll(".sidebar-item").forEach(item => {
+        item.classList.remove("active");
+    });
+
+    if (menuElement) {
+        menuElement.classList.add("active");
+    }
 }
 
 // FUNGSI PENGATUR PETA
