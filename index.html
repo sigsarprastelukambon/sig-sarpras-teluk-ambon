@@ -1462,9 +1462,14 @@ body.menu-collapsed .page-container {
         display: none;
     }
 
-    /* Logout tidak ditampilkan di navigasi bawah HP */
+    /* Logout tetap tersedia pada navigasi bawah HP */
     #sidebarContainer #menuLogout {
-        display: none !important;
+        display: flex !important;
+        color: #ff6b6b;
+    }
+    #sidebarContainer #menuLogout .sidebar-icon,
+    #sidebarContainer #menuLogout .sidebar-text {
+        color: #ff6b6b !important;
     }
 
     /* Konten tidak tertutup navigasi bawah */
@@ -1739,8 +1744,8 @@ body.menu-collapsed .page-container {
     }
 
     #tabelUtamaSarpras {
-        width: 850px !important;
-        min-width: 850px !important;
+        width: 970px !important;
+        min-width: 970px !important;
         max-width: none !important;
         table-layout: fixed;
         border-collapse: collapse;
@@ -1806,8 +1811,8 @@ body.menu-collapsed .page-container {
 /* Perbaikan tabel Data Sarpras untuk tablet dan iPad */
 @media screen and (min-width: 769px) and (max-width: 1100px) {
   #tabelUtamaSarpras {
-    width: 850px !important;
-    min-width: 850px !important;
+    width: 970px !important;
+    min-width: 970px !important;
     max-width: none !important;
     table-layout: fixed !important;
   }
@@ -2597,8 +2602,14 @@ body.menu-collapsed .page-container {
         color: #60a5fa !important;
     }
 
+    /* Logout tetap tersedia pada navigasi bawah tablet/iPad */
     #sidebarContainer #menuLogout {
-        display: none !important;
+        display: flex !important;
+        color: #ff6b6b !important;
+    }
+    #sidebarContainer #menuLogout .sidebar-icon,
+    #sidebarContainer #menuLogout .sidebar-text {
+        color: #ff6b6b !important;
     }
 
     /* Area halaman menggunakan seluruh lebar di atas navigasi bawah */
@@ -2839,72 +2850,123 @@ body.menu-collapsed .page-container {
    Tablet dan HP tetap memakai scroll horizontal
 ===================================================== */
 @media screen and (min-width: 1101px) {
+
+    /* Pembungkus tabel */
     #dataPage .chart-card:has(#tabelUtamaSarpras) {
+        display: block !important;
         width: 100% !important;
         max-width: 100% !important;
+        min-width: 0 !important;
         box-sizing: border-box !important;
         overflow-x: auto !important;
+        overflow-y: auto !important;
     }
 
+    /* Ukuran utama tabel */
     #dataPage #tabelUtamaSarpras {
         display: table !important;
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: 100% !important;
+        width: max-content !important;
+        min-width: 1250px !important;
+        max-width: none !important;
         table-layout: auto !important;
         border-collapse: collapse !important;
     }
 
+    /* Pengaturan umum sel tabel */
     #dataPage #tabelUtamaSarpras th,
     #dataPage #tabelUtamaSarpras td {
         box-sizing: border-box !important;
-        padding: 10px 8px !important;
-        white-space: normal !important;
+        padding: 10px 9px !important;
         word-break: normal !important;
-        overflow-wrap: anywhere !important;
+        overflow-wrap: break-word !important;
+        vertical-align: middle !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Judul kolom tidak terpotong */
+    #dataPage #tabelUtamaSarpras th {
+        white-space: nowrap !important;
+        text-align: center !important;
         vertical-align: middle !important;
     }
 
-    /* ID tetap terbaca, tetapi tidak mengambil ruang berlebihan */
+    /* Nomor urut */
+    #dataPage #tabelUtamaSarpras th:nth-child(1),
+    #dataPage #tabelUtamaSarpras td:nth-child(1) {
+        min-width: 55px !important;
+        width: 55px !important;
+        white-space: nowrap !important;
+        text-align: center !important;
+        overflow-wrap: normal !important;
+    }
+
+    /* ID Sarpras */
     #dataPage #tabelUtamaSarpras th:nth-child(2),
     #dataPage #tabelUtamaSarpras td:nth-child(2) {
-        min-width: 95px;
+        min-width: 125px !important;
+        white-space: nowrap !important;
     }
 
+    /* Jenis Sarpras */
     #dataPage #tabelUtamaSarpras th:nth-child(3),
     #dataPage #tabelUtamaSarpras td:nth-child(3) {
-        min-width: 110px;
+        min-width: 130px !important;
     }
 
+    /* Ukuran / Volume */
     #dataPage #tabelUtamaSarpras th:nth-child(4),
     #dataPage #tabelUtamaSarpras td:nth-child(4) {
-        min-width: 95px;
+        min-width: 120px !important;
     }
 
+    /* Desa / Negeri */
     #dataPage #tabelUtamaSarpras th:nth-child(5),
     #dataPage #tabelUtamaSarpras td:nth-child(5) {
-        min-width: 95px;
+        min-width: 110px !important;
     }
 
+    /* RT dan RW */
     #dataPage #tabelUtamaSarpras th:nth-child(6),
-    #dataPage #tabelUtamaSarpras td:nth-child(6) {
-        min-width: 140px;
-    }
-
+    #dataPage #tabelUtamaSarpras td:nth-child(6),
     #dataPage #tabelUtamaSarpras th:nth-child(7),
     #dataPage #tabelUtamaSarpras td:nth-child(7) {
-        min-width: 85px;
+        min-width: 55px !important;
+        white-space: nowrap !important;
+        text-align: center !important;
     }
 
+    /* Lokasi Detail */
     #dataPage #tabelUtamaSarpras th:nth-child(8),
     #dataPage #tabelUtamaSarpras td:nth-child(8) {
-        min-width: 95px;
+        min-width: 180px !important;
     }
 
+    /* Kondisi */
     #dataPage #tabelUtamaSarpras th:nth-child(9),
     #dataPage #tabelUtamaSarpras td:nth-child(9) {
-        min-width: 60px;
-        text-align: center;
+        min-width: 130px !important;
+    }
+
+    /* Anggaran */
+    #dataPage #tabelUtamaSarpras th:nth-child(10),
+    #dataPage #tabelUtamaSarpras td:nth-child(10) {
+        min-width: 130px !important;
+    }
+
+    /* Tahun */
+    #dataPage #tabelUtamaSarpras th:nth-child(11),
+    #dataPage #tabelUtamaSarpras td:nth-child(11) {
+        min-width: 75px !important;
+        white-space: nowrap !important;
+        text-align: center !important;
+    }
+
+    /* Aksi */
+    #dataPage #tabelUtamaSarpras th:nth-child(12),
+    #dataPage #tabelUtamaSarpras td:nth-child(12) {
+        min-width: 65px !important;
+        white-space: nowrap !important;
+        text-align: center !important;
     }
 }
 
@@ -3613,6 +3675,7 @@ function updateLaporanEksekutif(dataParameter) {
         </div>
     </div>
 
+
 <!-- ================= HALAMAN DATA SARPRAS ================= -->
 <div id="dataPage" class="page-content">
 
@@ -3653,6 +3716,13 @@ function updateLaporanEksekutif(dataParameter) {
                     <option value="RB - Rusak Berat">RB - Rusak Berat</option>
 
                 </select>
+
+                <button
+                    type="button"
+                    id="btnResetTabel"
+                    style="background:#475569; color:white; border:none; border-radius:10px; padding:10px 14px; font-weight:bold; cursor:pointer;">
+                    Reset Tabel
+                </button>
             </div>
 
             <div style="display:flex; gap:10px;">
@@ -3694,9 +3764,12 @@ function updateLaporanEksekutif(dataParameter) {
                     <th>Jenis Sarpras</th>
                     <th>Ukuran / Volume</th>
                     <th>Desa/Negeri</th>
+                    <th>RT</th>
+                    <th>RW</th>
                     <th>Lokasi Detail</th>
                     <th>Kondisi</th>
                     <th>Anggaran</th>
+                    <th>Tahun</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -3704,7 +3777,7 @@ function updateLaporanEksekutif(dataParameter) {
             <tbody id="bodyTabelSarpras">
                 <tr>
                     <td
-                        colspan="9"
+                        colspan="12"
                         style="text-align:center; opacity:0.5; padding:20px;">
                         Memuat data tabular...
                     </td>
@@ -4490,6 +4563,19 @@ function initMaps() {
 
     markerLayerFull = L.layerGroup();
     mapFull.addLayer(markerLayerFull);
+
+    // Kosongkan panel detail hanya ketika area kosong peta diklik.
+    mapDashboard.on("click", function() {
+        const panel = document.getElementById("detail");
+        if (panel) panel.innerHTML = "Klik marker untuk melihat detail";
+    });
+
+    mapFull.on("click", function() {
+        const panel = document.getElementById("detailPeta");
+        if (panel) {
+            panel.innerHTML = "Klik marker di peta untuk menampilkan data atribut lengkap di panel ini.";
+        }
+    });
 
     // 3. PETA KHUSUS LAMPIRAN LAPORAN
     mapLaporan = L.map("petaLaporanCetak", {
@@ -5359,7 +5445,7 @@ function tampilkanDataTabular(data) {
     if (dataTampil.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="8"
+                <td colspan="12"
                     style="text-align:center;opacity:0.7;padding:20px;">
                     Data tidak ditemukan
                 </td>
@@ -5402,6 +5488,10 @@ function tampilkanDataTabular(data) {
 
                 <td>${escapeHTML(row["Desa/Negeri/Kelurahan"])}</td>
 
+                <td>${escapeHTML(row["RT"])}</td>
+
+                <td>${escapeHTML(row["RW"])}</td>
+
                 <td>${escapeHTML(row["Lokasi Detail"])}</td>
 
                 <td>
@@ -5416,6 +5506,9 @@ function tampilkanDataTabular(data) {
                 </td>
 
                 <td>${escapeHTML(row["Sumber Anggaran"])}</td>
+
+                <!-- KOLOM TAHUN -->
+                <td>${escapeHTML(row["Waktu Pembangunan"])}</td>
 
                 <!-- MENU AKSI HAMBURGER -->
                 <td class="kolom-aksi-sarpras">
@@ -6631,23 +6724,39 @@ const urutanJenis = filterUrutanJenisChart?.value || "desc";
             `;
         }
 
-        async function loadGeoJSON(dataSarpras) {
-    // 1. Bersihkan semua layer lama dari ketiga peta
-    if (geojsonLayerDashboard && mapDashboard) mapDashboard.removeLayer(geojsonLayerDashboard);
-    if (geojsonLayerFull && mapFull) mapFull.removeLayer(geojsonLayerFull);
-    if (geojsonLayerLaporan && mapLaporan) mapLaporan.removeLayer(geojsonLayerLaporan);
+        async function loadGeoJSON(dataSarpras, targetPeta = "all") {
+    // targetPeta membatasi pembaruan agar filter satu halaman tidak
+    // mengubah layer pada halaman lain, terutama peta Laporan.
+    const perbaruiDashboard = targetPeta === "all" || targetPeta === "dashboard";
+    const perbaruiPeta = targetPeta === "all" || targetPeta === "peta";
+    const perbaruiLaporan = targetPeta === "all" || targetPeta === "laporan";
+
+    if (perbaruiDashboard && geojsonLayerDashboard && mapDashboard) {
+        mapDashboard.removeLayer(geojsonLayerDashboard);
+        geojsonLayerDashboard = null;
+    }
+    if (perbaruiPeta && geojsonLayerFull && mapFull) {
+        mapFull.removeLayer(geojsonLayerFull);
+        geojsonLayerFull = null;
+    }
+    if (perbaruiLaporan && geojsonLayerLaporan && mapLaporan) {
+        mapLaporan.removeLayer(geojsonLayerLaporan);
+        geojsonLayerLaporan = null;
+    }
 
     try {
         let res = await fetch("teluk_ambon_final.geojson");
-        if(!res.ok) throw new Error("File GeoJSON tidak ditemukan");
+        if (!res.ok) throw new Error("File GeoJSON tidak ditemukan");
         let geojsonData = await res.json();
 
-        // 2. Rekap Data (Sama seperti sebelumnya)
+        // Rekap kondisi dihitung dari data yang sedang ditampilkan.
         let rekapDesa = {};
-        dataSarpras.forEach(row => {
+        (Array.isArray(dataSarpras) ? dataSarpras : []).forEach(row => {
             let d = normalisasiDesa(row["Desa/Negeri/Kelurahan"]);
-            if (!rekapDesa[d]) rekapDesa[d] = { BA: 0, RR: 0, RS: 0, RB: 0, Total: 0 };
-            
+            if (!rekapDesa[d]) {
+                rekapDesa[d] = { BA: 0, RR: 0, RS: 0, RB: 0, Total: 0 };
+            }
+
             let k = row["Kondisi"] || "";
             if (k.includes("BA")) rekapDesa[d].BA++;
             if (k.includes("RR")) rekapDesa[d].RR++;
@@ -6671,322 +6780,260 @@ const urutanJenis = filterUrutanJenisChart?.value || "desc";
         function styleGeoJSON(feature) {
             let n = feature.properties.nama || feature.properties.NAMOBJ || feature.properties.desa || "";
             let dom = hitungKondisiDominan(n);
-            return { color: "#ffffff", weight: 1.5, fillColor: warna(dom), fillOpacity: 0.4 };
+            return {
+                color: "#ffffff",
+                weight: 1.5,
+                fillColor: warna(dom),
+                fillOpacity: 0.4
+            };
         }
 
-        // 3. Pasang GeoJSON ke Dashboard
-        geojsonLayerDashboard = L.geoJSON(geojsonData, {
-            style: styleGeoJSON,
-            onEachFeature: (f, layer) => {
-                let n = f.properties.nama || f.properties.NAMOBJ || f.properties.desa || "Desa/Negeri";
-                let dom = hitungKondisiDominan(n) || "Belum ada data objek";
-                layer.bindPopup(`<b>${n}</b><br>Kondisi Dominan: ${dom}`);
-            }
-        }).addTo(mapDashboard);
+        if (perbaruiDashboard && mapDashboard) {
+            geojsonLayerDashboard = L.geoJSON(geojsonData, {
+                style: styleGeoJSON,
+                onEachFeature: (f, layer) => {
+                    let n = f.properties.nama || f.properties.NAMOBJ || f.properties.desa || "Desa/Negeri";
+                    let dom = hitungKondisiDominan(n) || "Belum ada data objek";
+                    layer.bindPopup(`<b>${n}</b><br>Kondisi Dominan: ${dom}`);
+                }
+            }).addTo(mapDashboard);
+        }
 
-        // 4. Pasang GeoJSON ke Peta Full Screen
-        geojsonLayerFull = L.geoJSON(geojsonData, {
-            style: styleGeoJSON,
-            onEachFeature: (f, layer) => {
-                let n = f.properties.nama || f.properties.NAMOBJ || f.properties.desa || "Desa/Negeri";
-                layer.on({
-                    mouseover: (e) => { e.target.setStyle({ weight: 3, fillOpacity: 0.7 }); },
-                    mouseout: (e) => { geojsonLayerFull.resetStyle(e.target); },
-                    click: (e) => {
-                        let norm = normalisasiDesa(n);
-                        let stat = rekapDesa[norm];
-                        if (stat) {
-                            document.getElementById("statistikDesaPeta").innerHTML = `
-                                <b>Desa/Negeri:</b> ${n}<br>
-                                <b>Total Objek:</b> ${stat.Total}<br><br>
-                                <span style="color:#22c55e;"> Baik (BA): ${stat.BA}</span><br>
-                                <span style="color:#3b82f6;"> Rusak Ringan (RR): ${stat.RR}</span><br>
-                                <span style="color:#f59e0b;"> Rusak Sedang (RS): ${stat.RS}</span><br>
-                                <span style="color:#ef4444;"> Rusak Berat (RB): ${stat.RB}</span>
-                            `;
-                        } else {
-                            document.getElementById("statistikDesaPeta").innerHTML = `<b>Desa:</b> ${n}<br><span style='opacity:.6;'>Belum ada rekaman sarpras.</span>`;
+        if (perbaruiPeta && mapFull) {
+            geojsonLayerFull = L.geoJSON(geojsonData, {
+                style: styleGeoJSON,
+                onEachFeature: (f, layer) => {
+                    let n = f.properties.nama || f.properties.NAMOBJ || f.properties.desa || "Desa/Negeri";
+                    layer.on({
+                        mouseover: (e) => {
+                            e.target.setStyle({ weight: 3, fillOpacity: 0.7 });
+                        },
+                        mouseout: (e) => {
+                            if (geojsonLayerFull) geojsonLayerFull.resetStyle(e.target);
+                        },
+                        click: (e) => {
+                            let norm = normalisasiDesa(n);
+                            let stat = rekapDesa[norm];
+                            const panelStatistik = document.getElementById("statistikDesaPeta");
+
+                            if (panelStatistik) {
+                                if (stat) {
+                                    panelStatistik.innerHTML = `
+                                        <b>Desa/Negeri:</b> ${n}<br>
+                                        <b>Total Objek:</b> ${stat.Total}<br><br>
+                                        <span style="color:#22c55e;"> Baik (BA): ${stat.BA}</span><br>
+                                        <span style="color:#3b82f6;"> Rusak Ringan (RR): ${stat.RR}</span><br>
+                                        <span style="color:#f59e0b;"> Rusak Sedang (RS): ${stat.RS}</span><br>
+                                        <span style="color:#ef4444;"> Rusak Berat (RB): ${stat.RB}</span>
+                                    `;
+                                } else {
+                                    panelStatistik.innerHTML = `<b>Desa:</b> ${n}<br><span style="opacity:.6;">Belum ada rekaman sarpras.</span>`;
+                                }
+                            }
+                            layer.bindPopup(`<b>${n}</b>`).openPopup();
                         }
-                        layer.bindPopup(`<b>${n}</b>`).openPopup();
-                    }
-                });
-            }
-        }).addTo(mapFull);
+                    });
+                }
+            }).addTo(mapFull);
+        }
 
-        // 5. Pasang GeoJSON ke Peta Laporan
-        geojsonLayerLaporan = L.geoJSON(geojsonData, {
-            style: styleGeoJSON,
-            onEachFeature: (f, layer) => {
-                let n = f.properties.nama || f.properties.NAMOBJ || f.properties.desa || "Desa/Negeri";
-                layer.bindPopup(`<b>${n}</b>`);
-            }
-        }).addTo(mapLaporan);
+        // Layer Laporan hanya diperbarui saat pemuatan awal atau
+        // pemanggilan khusus laporan, bukan saat filter Dashboard/Peta GIS.
+        if (perbaruiLaporan && mapLaporan) {
+            geojsonLayerLaporan = L.geoJSON(geojsonData, {
+                style: styleGeoJSON,
+                onEachFeature: (f, layer) => {
+                    let n = f.properties.nama || f.properties.NAMOBJ || f.properties.desa || "Desa/Negeri";
+                    layer.bindPopup(`<b>${n}</b>`);
+                }
+            }).addTo(mapLaporan);
+        }
 
     } catch (err) {
         console.warn("GeoJSON Event: " + err.message);
     }
 }
-/* ================= SOLUSI FIX: FILTRASI TERPADU DENGAN ZOOM DETAIL OTOMATIS ================= */
+/* ================= FILTER TERAKHIR: WILAYAH/SEARCH + KONDISI ================= */
+// Status per peta: perubahan Desa/Search menentukan cakupan utama.
+// Perubahan Kondisi hanya memperbarui kondisi pada cakupan utama terakhir.
+const statusCakupanFilter = {
+    dashboard: { tipe: "desa", nilai: "" },
+    peta: { tipe: "desa", nilai: "" }
+};
+
 async function eksekusiFilter(isDashboard, jenisAksi) {
-    const elemenDesa = document.getElementById(
-        isDashboard ? "filterDesa" : "filterDesaPeta"
-    );
+    const kunci = isDashboard ? "dashboard" : "peta";
+    const elemenDesa = document.getElementById(isDashboard ? "filterDesa" : "filterDesaPeta");
+    const elemenKondisi = document.getElementById(isDashboard ? "filterKondisi" : "filterKondisiPeta");
+    const elemenCari = document.getElementById(isDashboard ? "searchBox" : "searchBoxPeta");
+    if (!elemenDesa || !elemenKondisi || !elemenCari) return;
 
-    const elemenKondisi = document.getElementById(
-        isDashboard ? "filterKondisi" : "filterKondisiPeta"
-    );
-
-    const elemenCari = document.getElementById(
-        isDashboard ? "searchBox" : "searchBoxPeta"
-    );
-
-    if (!elemenDesa || !elemenKondisi || !elemenCari) {
-        console.error("Elemen filter tidak ditemukan.");
-        return;
-    }
-
-    /* FILTER TERAKHIR YANG DIPILIH MENJADI FILTER AKTIF */
-    if (jenisAksi === "desa") {
-        elemenKondisi.value = "";
-        elemenCari.value = "";
-    } else if (jenisAksi === "kondisi") {
-        elemenDesa.value = "";
-        elemenCari.value = "";
-    } else if (jenisAksi === "cari") {
-        elemenDesa.value = "";
-        elemenKondisi.value = "";
-    }
-
-    const desa = String(elemenDesa.value ?? "").trim();
-    const kondisi = String(
-        elemenKondisi.value ?? ""
-    ).trim().toLowerCase();
-    const cari = String(
-        elemenCari.value ?? ""
-    ).trim().toLowerCase();
-
-    const dataSumber = Array.isArray(semuaData)
-        ? semuaData
-        : [];
-
-    /*
-     * Jika teks pencarian sama persis dengan salah satu nama desa,
-     * perlakukan sebagai filter wilayah (bukan pencarian bebas ke
-     * kolom lokasi, ID, jenis, atau kondisi). Berlaku untuk Dashboard
-     * dan Peta GIS karena keduanya memakai eksekusiFilter().
-     */
-    const daftarDesaFilter = Array.from(
-        document.querySelectorAll("#filterDesa option, #filterDesaPeta option")
-    )
-        .map(option => String(option.value || "").trim())
-        .filter(Boolean);
-
-    const desaCocokPencarian = cari
-        ? daftarDesaFilter.find(nama =>
-            normalisasiDesa(nama) === normalisasiDesa(cari)
-        ) || ""
+    const desaDropdown = String(elemenDesa.value || "").trim();
+    const kondisi = String(elemenKondisi.value || "").trim().toLowerCase();
+    const cari = String(elemenCari.value || "").trim().toLowerCase();
+    const dataSumber = Array.isArray(semuaData) ? semuaData : [];
+    const opsiDesa = Array.from(document.querySelectorAll(
+        isDashboard ? "#filterDesa option" : "#filterDesaPeta option"
+    )).map(o => String(o.value || "").trim()).filter(Boolean);
+    const desaDariSearch = cari
+        ? (opsiDesa.find(n => normalisasiDesa(n) === normalisasiDesa(cari)) || "")
         : "";
 
-    const hasil = dataSumber.filter(r => {
-        const namaDesa = String(
-            r["Desa/Negeri/Kelurahan"] ?? ""
-        ).toLowerCase().trim();
-
-        const lokasi = String(
-            r["Lokasi Detail"] ?? ""
-        ).toLowerCase().trim();
-
-        const id = String(
-            r["ID Sarpras"] ?? ""
-        ).toLowerCase().trim();
-
-        const jenis = String(
-            r["Jenis Sarpras"] ?? ""
-        ).toLowerCase().trim();
-
-        const kondisiData = String(
-            r["Kondisi"] ?? ""
-        ).toLowerCase().trim();
-
-        const matchDesa =
-            !desa ||
-            normalisasiDesa(namaDesa) ===
-                normalisasiDesa(desa);
-
-        const matchKondisi =
-            !kondisi ||
-            kondisiData === kondisi;
-
-        const teksPencarian = [
-            namaDesa,
-            lokasi,
-            id,
-            jenis,
-            kondisiData
-        ].join(" ");
-
-        const matchCari = !cari
-            ? true
-            : desaCocokPencarian
-                ? normalisasiDesa(namaDesa) ===
-                    normalisasiDesa(desaCocokPencarian)
-                : teksPencarian.includes(cari);
-
-        return matchDesa && matchKondisi && matchCari;
-    });
-
-    /* PERBARUI KOMPONEN DENGAN HASIL FILTER */
-    tampilkanMarkerDashboard(hasil);
-    tampilkanMarkerPetaFull(hasil);
-    hitungKPI(hasil);
-    hitungPrioritasDesa(hasil);
-    updateCharts(hasil);
-
-    /* TUNGGU GEOJSON SELESAI DIMUAT */
-    await loadGeoJSON(hasil);
-
-    tampilkanStatistikGlobalPeta(hasil);
-
-    if (typeof tampilkanDataTabular === "function") {
-        tampilkanDataTabular(hasil);
-    }
-
-    /* NOTIFIKASI JIKA DATA TIDAK DITEMUKAN */
-    const notif = document.getElementById("notif");
-
-    if (hasil.length === 0) {
-        if (notif) {
-            notif.textContent = "Data tidak Ditemukan";
-            notif.style.display = "block";
+    // Hanya aksi Desa/Search yang mengganti cakupan utama.
+    // Aksi Kondisi tidak boleh menghidupkan kembali filter lama yang sudah dikalahkan
+    // oleh perintah wilayah/search yang lebih baru.
+    if (jenisAksi === "desa") {
+        statusCakupanFilter[kunci] = { tipe: "desa", nilai: desaDropdown };
+    } else if (jenisAksi === "cari") {
+        if (desaDariSearch) {
+            statusCakupanFilter[kunci] = { tipe: "desa", nilai: desaDariSearch };
         } else {
-            showNotif();
+            statusCakupanFilter[kunci] = { tipe: "teks", nilai: cari };
         }
-        return;
     }
 
-    if (notif) {
-        notif.textContent = "Data tidak Ditemukan";
-        notif.style.display = "none";
-    }
+    const cakupan = statusCakupanFilter[kunci] || { tipe: "desa", nilai: desaDropdown };
+    const desaAktif = cakupan.tipe === "desa" ? cakupan.nilai : "";
+    const teksAktif = cakupan.tipe === "teks" ? cakupan.nilai : "";
 
-    /* KUMPULKAN KOORDINAT MARKER HASIL FILTER */
-    const kumpulanTitik = [];
-
-    hasil.forEach(row => {
-        const koordinat = ambilKoordinat(row);
-
-        if (koordinat) {
-            kumpulanTitik.push(koordinat);
-        }
+    const hasil = dataSumber.filter(r => {
+        const namaDesa = String(r["Desa/Negeri/Kelurahan"] ?? "").trim();
+        const lokasi = String(r["Lokasi Detail"] ?? "");
+        const id = String(r["ID Sarpras"] ?? "");
+        const jenis = String(r["Jenis Sarpras"] ?? "");
+        const kondisiData = String(r["Kondisi"] ?? "").trim().toLowerCase();
+        const matchDesa = !desaAktif || normalisasiDesa(namaDesa) === normalisasiDesa(desaAktif);
+        const matchTeks = !teksAktif || [namaDesa, lokasi, id, jenis, kondisiData]
+            .join(" ").toLowerCase().includes(teksAktif);
+        const matchKondisi = !kondisi || kondisiData === kondisi;
+        return matchDesa && matchTeks && matchKondisi;
     });
 
-    const petaAktif = isDashboard
-        ? mapDashboard
-        : mapFull;
+    const panelDetail = document.getElementById(isDashboard ? "detail" : "detailPeta");
+    if (panelDetail) panelDetail.innerHTML = "Klik marker untuk melihat detail";
 
+    if (isDashboard) {
+        tampilkanMarkerDashboard(hasil);
+        hitungKPI(hasil);
+        hitungPrioritasDesa(hasil);
+        updateCharts(hasil);
+        await loadGeoJSON(hasil, "dashboard");
+    } else {
+        tampilkanMarkerPetaFull(hasil);
+        tampilkanStatistikGlobalPeta(hasil);
+        await loadGeoJSON(hasil, "peta");
+    }
+
+    const notif = document.getElementById("notif");
+    if (notif) {
+        notif.textContent = hasil.length ? "" : "Data tidak Ditemukan";
+        notif.style.display = hasil.length ? "none" : "block";
+    }
+
+    const petaAktif = isDashboard ? mapDashboard : mapFull;
     if (!petaAktif) return;
 
-    /* FILTER DESA: UTAMAKAN BATAS POLIGON DESA */
-    if (desa) {
-        const layerAktif = isDashboard
-            ? geojsonLayerDashboard
-            : geojsonLayerFull;
-
+    // Zoom ke batas poligon desa aktif, bukan sekadar ke marker.
+    if (desaAktif) {
+        const layerAktif = isDashboard ? geojsonLayerDashboard : geojsonLayerFull;
         let boundsDesa = null;
-
         if (layerAktif) {
             layerAktif.eachLayer(layer => {
                 const props = layer.feature?.properties || {};
-
-                const namaPoligon = String(
-                    props.nama ||
-                    props.NAMOBJ ||
-                    props.desa ||
-                    ""
-                ).trim();
-
-                if (
-                    normalisasiDesa(namaPoligon) ===
-                    normalisasiDesa(desa)
-                ) {
-                    boundsDesa = layer.getBounds();
-                }
+                const namaPoligon = String(props.nama || props.NAMOBJ || props.desa || props.NAMDESA || "").trim();
+                if (normalisasiDesa(namaPoligon) === normalisasiDesa(desaAktif)) boundsDesa = layer.getBounds();
             });
         }
-
         if (boundsDesa && boundsDesa.isValid()) {
-            petaAktif.fitBounds(boundsDesa, {
-                padding: [25, 25],
-                maxZoom: 16
-            });
-        } else if (kumpulanTitik.length > 0) {
-            petaAktif.fitBounds(
-                L.latLngBounds(kumpulanTitik),
-                {
-                    padding: [25, 25],
-                    maxZoom: 16
-                }
-            );
+            petaAktif.fitBounds(boundsDesa, { padding: [25, 25], maxZoom: 16, animate: true });
+            return;
         }
-
-        return;
     }
-
-    /* FILTER KONDISI ATAU PENCARIAN: TAMPILKAN SEBARAN HASIL */
-    if (kumpulanTitik.length > 0) {
-        petaAktif.fitBounds(
-            L.latLngBounds(kumpulanTitik),
-            {
-                padding: [40, 40],
-                maxZoom: 16
-            }
-        );
-    }
+    const titik = hasil.map(r => ambilKoordinat(r)).filter(Boolean);
+    if (titik.length) petaAktif.fitBounds(L.latLngBounds(titik), {
+        padding: [35, 35], maxZoom: 16, animate: true
+    });
 }
+
         /* ================= SOLUSI FIX: RESET FILTER BALIK KE SELURUH WILAYAH ================= */
-        function resetSemuaFilter() {
+        function resetDashboardFilter() {
+            statusCakupanFilter.dashboard = { tipe: "desa", nilai: "" };
             document.getElementById("filterDesa").value = "";
             document.getElementById("filterKondisi").value = "";
             document.getElementById("searchBox").value = "";
-            document.getElementById("filterDesaPeta").value = "";
-            document.getElementById("filterKondisiPeta").value = "";
-            document.getElementById("searchBoxPeta").value = "";
-            
-            if(document.getElementById("searchBoxTabel")) document.getElementById("searchBoxTabel").value = "";
-            if(document.getElementById("filterKondisiTabel")) document.getElementById("filterKondisiTabel").value = "";
+
+            const panelDetail = document.getElementById("detail");
+            if (panelDetail) panelDetail.innerHTML = "Klik marker untuk melihat detail";
 
             tampilkanMarkerDashboard(semuaData);
-            tampilkanMarkerPetaFull(semuaData);
             hitungKPI(semuaData);
             hitungPrioritasDesa(semuaData);
             updateCharts(semuaData);
-            loadGeoJSON(semuaData);
-            tampilkanStatistikGlobalPeta(semuaData);
-            if(typeof tampilkanDataTabular === 'function') tampilkanDataTabular(semuaData);
+            loadGeoJSON(semuaData, "dashboard");
 
-            // Kembalikan sudut pandang peta ke seluruh data sarpras awal Teluk Ambon
-            let boundsTotal = [];
+            const boundsTotal = [];
             semuaData.forEach(row => {
-                let koordinat = ambilKoordinat(row);
+                const koordinat = ambilKoordinat(row);
                 if (koordinat) boundsTotal.push(koordinat);
             });
-            if (boundsTotal.length > 0) {
-                if (mapDashboard) mapDashboard.fitBounds(boundsTotal, { padding: [40, 40] });
-                if (mapFull) mapFull.fitBounds(boundsTotal, { padding: [40, 40] });
+            if (boundsTotal.length > 0 && mapDashboard) {
+                mapDashboard.fitBounds(boundsTotal, { padding: [40, 40] });
             }
+        }
+
+        function resetPetaFilter() {
+            statusCakupanFilter.peta = { tipe: "desa", nilai: "" };
+            document.getElementById("filterDesaPeta").value = "";
+            document.getElementById("filterKondisiPeta").value = "";
+            document.getElementById("searchBoxPeta").value = "";
+
+            const panelDetail = document.getElementById("detailPeta");
+            if (panelDetail) {
+                panelDetail.innerHTML = "Klik marker di peta untuk menampilkan data atribut lengkap di panel ini.";
+            }
+
+            tampilkanMarkerPetaFull(semuaData);
+            tampilkanStatistikGlobalPeta(semuaData);
+            loadGeoJSON(semuaData, "peta");
+
+            const boundsTotal = [];
+            semuaData.forEach(row => {
+                const koordinat = ambilKoordinat(row);
+                if (koordinat) boundsTotal.push(koordinat);
+            });
+            if (boundsTotal.length > 0 && mapFull) {
+                mapFull.fitBounds(boundsTotal, { padding: [40, 40] });
+            }
+        }
+
+        function resetFilterTabel() {
+            const elemenCari = document.getElementById("searchBoxTabel");
+            const elemenKondisi = document.getElementById("filterKondisiTabel");
+            if (elemenCari) elemenCari.value = "";
+            if (elemenKondisi) elemenKondisi.value = "";
+            tampilkanDataTabular(semuaData);
+        }
+
+        // Kompatibilitas untuk pemanggilan lama yang memang meminta reset menyeluruh.
+        function resetSemuaFilter() {
+            resetDashboardFilter();
+            resetPetaFilter();
+            resetFilterTabel();
         }
 
         /* ================= ENGINE LISTENERS & AJAX ================= */
         function bindEvents() {
-            document.getElementById("btnReset").addEventListener("click", resetSemuaFilter);
+            document.getElementById("btnReset").addEventListener("click", resetDashboardFilter);
             document.getElementById("filterDesa").addEventListener("change", () => eksekusiFilter(true, 'desa'));
             document.getElementById("filterKondisi").addEventListener("change", () => eksekusiFilter(true, 'kondisi'));
             document.getElementById("searchBox").addEventListener("input", () => eksekusiFilter(true, 'cari'));
 
-            document.getElementById("btnResetPeta").addEventListener("click", resetSemuaFilter);
+            document.getElementById("btnResetPeta").addEventListener("click", resetPetaFilter);
             document.getElementById("filterDesaPeta").addEventListener("change", () => eksekusiFilter(false, 'desa'));
             document.getElementById("filterKondisiPeta").addEventListener("change", () => eksekusiFilter(false, 'kondisi'));
             document.getElementById("searchBoxPeta").addEventListener("input", () => eksekusiFilter(false, 'cari'));
+            const tombolResetTabel = document.getElementById("btnResetTabel");
+            if (tombolResetTabel) tombolResetTabel.addEventListener("click", resetFilterTabel);
         }
 
       async function ambildataSarpras() {
