@@ -5095,6 +5095,7 @@ function buatHTMLDetailSarpras(row, foto) {
         `;
 
     /* WAKTU UPDATE */
+    /*
     const waktuUpdate = row["Timestamp"]
         ? (
             typeof formatTanggal === "function"
@@ -5102,6 +5103,7 @@ function buatHTMLDetailSarpras(row, foto) {
                 : nilai(row["Timestamp"])
         )
         : "-";
+     /*   
 
     /* TAMPILAN DETAIL SARPRAS */
     return `
@@ -5220,10 +5222,10 @@ function buatHTMLDetailSarpras(row, foto) {
                         nilai(row["Nama Operator"])
                     )}
 
-                    ${baris(
+                    ${false ? baris(
                         "Waktu Update",
                         waktuUpdate
-                    )}
+                    ) : ""}
                 </tbody>
             </table>
 
